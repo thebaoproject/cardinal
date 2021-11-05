@@ -75,7 +75,7 @@ mes = {
 def enough_permission(interaction: Aci):
     if interaction.author.bot:
         return False
-    for role_id in cfg.read("admin-role"):
+    for role_id in cfg.read("admin-roles"):
         if interaction.author.get_role(role_id) is None:
             return False
     return True
