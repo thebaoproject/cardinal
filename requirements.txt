@@ -2,3 +2,4 @@ disnake
 opencv-python
 scipy
 sympy
+Flask
