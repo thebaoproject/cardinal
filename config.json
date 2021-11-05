@@ -1,0 +1,11 @@
+{
+  "token": "NzgwNjY4MjcwNzI1NDMxMjk3.X7yb-w.vbUejoRdmAOA1bjQd-_1PtPbJKQ",
+  "prefix": ".b ",
+  "affect-other-bots": false,
+  "language": "en",
+  "functions-dir": "functions",
+  "guild-ids": [867312387765567488],
+  "rick-rolling": true,
+  "admin-roles": [867313269227257876],
+  "social-credit-channel-ids": [897088456906379294]
+}

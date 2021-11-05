@@ -1,0 +1,4 @@
+disnake
+opencv-python
+scipy
+sympy
