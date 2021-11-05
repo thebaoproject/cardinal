@@ -22,7 +22,7 @@ async def on_ready():
 def keep_alive_server():
     app = Flask(__name__)
 
-    app.run(port=8080, debug=False, use_reloader=False)
+    app.run(port=os.environ.get("PORT"), debug=False, use_reloader=False)
 
 
 if __name__ == "__main__":
