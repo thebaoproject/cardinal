@@ -36,7 +36,7 @@ Người mời:           `{invi}`
 Đường link:          `{link}`
 """
 
-title = "Thông tin tính báo về "
+title = "Thông tin tình báo về {name}"
 
 
 class Intelligence(commands.Cog):
@@ -54,7 +54,7 @@ class Intelligence(commands.Cog):
                 autho = invite.inviter
                 break
         response = disnake.Embed(
-            title=title.format(user=member.mention),
+            title=title.format(name=member.name),
             description=content.format(
                 name=member.name,
                 nick=member.display_name,
@@ -66,7 +66,8 @@ class Intelligence(commands.Cog):
                 link=inv
             ),
         )
-        response.set_image(member.avatar.url)
+        if member.avatar is not None:
+            response.set_image(member.avatar.url)
         await interaction.response.send_message(embed=response)
 
 

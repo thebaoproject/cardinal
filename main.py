@@ -1,28 +1,17 @@
 import os
 import disnake
-import threading
 import config_manager as cfg
 
-from flask import Flask
 from disnake.ext import commands
 
 # Sẽ bị bỏ qua, vì dùng /.
 bot = commands.Bot(command_prefix=cfg.read("prefix"))
-
+status = cfg.read("status")
 
 @bot.event
 async def on_ready():
     print("Bot đã khởi động thành công và đã kết nối với Discord.")
-    await bot.change_presence(activity=disnake.Activity(type=disnake.ActivityType.listening, name="nghe phản ánh của "
-                                                                                                  "member nhưng chúng"
-                                                                                                  " tôi không quan "
-                                                                                                  "tâm"))
-
-
-def keep_alive_server():
-    app = Flask(__name__)
-
-    app.run(port=os.environ.get("PORT"), debug=False, use_reloader=False)
+    await bot.change_presence(activity=disnake.Activity(type=disnake.ActivityType.listening, name=status))
 
 
 if __name__ == "__main__":
@@ -59,6 +48,4 @@ Ngôn ngữ:               '{cfg.read("language")}'.
     except FileNotFoundError:
         print("Không có thư mục cho trò đùa. Không load trò đùa.")
 
-    # Chống Heroku tắt bot
-    web_server = threading.Thread(target=keep_alive_server, args=())
     bot.run(cfg.read("token"))

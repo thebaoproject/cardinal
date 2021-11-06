@@ -1,5 +1,6 @@
 import disnake
 import random
+from disnake import ApplicationCommandInteraction as Aci
 from disnake.ext import commands
 import os
 
@@ -30,6 +31,11 @@ class SocialCredit(commands.Cog):
             for entry in banned:
                 if entry.upper() in content.upper():
                     await message.reply(file=disnake.File(img_path))
+
+    @commands.slash_command(name=name, description=des)
+    async def social_credit(self, interaction: Aci, member: disnake.Member):
+        img_path = os.path.join("jokes", "social_credit", f"rem-{random.randint(0, 4)}.png")
+        await interaction.response.send_message(f"{member.mention}, 哦艾弗伊艾哦哦艾弗伊艾哦哦艾弗伊艾哦!", file=disnake.File(img_path))
 
 
 def setup(bot: commands.Bot):
