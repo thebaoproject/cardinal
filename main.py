@@ -4,7 +4,7 @@ import config_manager as cfg
 
 from disnake.ext import commands
 
-# Sẽ bị bỏ qua, vì dùng /.
+# Omitted, because we use / here
 bot = commands.Bot(command_prefix=cfg.read("prefix"))
 status = cfg.read("status")
 
@@ -25,27 +25,32 @@ ID server đăng kí lệnh:  {cfg.read("guild-ids")};
 Ngôn ngữ:               '{cfg.read("language")}'.
 """)
 
-    func_dir = cfg.read("functions-dir")
-    # Code này ăn trộm từ Stack Overflow (tm)
-    # Load các phần quan trọng
-    for file in os.listdir(func_dir):
+    # Copied from Stack Overflow (tm)
+    # Loads important cogs
+    for file in os.listdir("functions"):
         if file.endswith(".py"):
             try:
-                bot.load_extension(f"{func_dir}.{file[:-3]}")
+                bot.load_extension(f"functions.{file[:-3]}")
                 print(f"OK: Đã load chức năng: {file}")
             except disnake.ext.commands.errors.NoEntryPointError:
                 print(f"LỖI: Không thể load được chức năng: {file}")
 
-    # Load trò đùa
-    try:
-        for file in os.listdir("jokes"):
-            if file.endswith(".py"):
-                try:
-                    bot.load_extension(f"jokes.{file[:-3]}")
-                    print(f"OK: Đã load trò đùa: {file}")
-                except disnake.ext.commands.errors.NoEntryPointError:
-                    print(f"LỖI: Không thể load được trò đùa: {file}")
-    except FileNotFoundError:
-        print("Không có thư mục cho trò đùa. Không load trò đùa.")
+    # Loads jokes
+    for file in os.listdir("jokes"):
+        if file.endswith(".py"):
+            try:
+                bot.load_extension(f"jokes.{file[:-3]}")
+                print(f"OK: Đã load trò đùa: {file}")
+            except disnake.ext.commands.errors.NoEntryPointError:
+                print(f"LỖI: Không thể load được trò đùa: {file}")
+
+    # Loads games
+    for file in os.listdir("games"):
+        if file.endswith(".py"):
+            try:
+                bot.load_extension(f"games.{file[:-3]}")
+                print(f"OK: Đã load game: {file}")
+            except disnake.ext.commands.errors.NoEntryPointError:
+                print(f"LỖI: Không thể load được game: {file}")
 
     bot.run(cfg.read("token"))

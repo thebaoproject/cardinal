@@ -5,7 +5,7 @@ from disnake.ext import commands
 import random
 import config_manager as cfg
 
-# Các mô tả của câu lệnh.
+# Commands description
 des = {
     "ban": "Cấm một Thành viên khỏi server. Nêu ra số ngày nếu cần cấm tạm thời.",
     "tempban": "Vẫn là cấm nhưng có hạn. Hiện vẫn chưa hoạt động.",
@@ -20,9 +20,7 @@ name = {
     "kick": "kick",
     "warn": "warn"
 }
-# Các tin nhắn của câu lệnh. Sẽ được chọn ngẫu nhiên để tăng tính hài hước.
-# Sẽ có hai phần: Phần 1. Gửi trong server.
-#                 Phần 2. DM thành viên
+# Messages will be randomized to add "tension"
 mes = {
     "ban": {
         "public": [
@@ -129,7 +127,7 @@ class Moderate(commands.Cog):
         await interaction.author.guild.unban(user=member, reason=reason)
         await member.send(mes["unban"]["dm"].format(admin=interaction.author.mention, reas=reason, dur=duration))
 
-    # Thanh trừ
+    # Get out!
     @commands.slash_command(name=name["kick"], description=des["kick"])
     async def kick(self, interaction: Aci, member: disnake.Member, reason: str = "không xác định"):
         if not enough_permission(interaction):
@@ -141,7 +139,7 @@ class Moderate(commands.Cog):
         await member.kick(reason=reason)
         await member.send(mes["kick"]["dm"].format(admin=interaction.author.mention, reas=reason))
 
-    # Cảnh cáo
+    # Warn!
     @commands.slash_command(name=name["warn"], description=des["warn"])
     async def warn(self, interaction: Aci, member: disnake.Member, content: str = "không gì cả"):
         if not enough_permission(interaction):

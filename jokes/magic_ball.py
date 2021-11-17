@@ -5,7 +5,6 @@ from disnake.ext import commands
 from enum import Enum
 import config_manager as cfg
 
-
 name = "quacauphale"
 des = "Trả lời một câu hỏi cho bạn. Đừng tin vào nó quá."
 response = [
@@ -21,11 +20,11 @@ class Choice(str, Enum):
     choice = "choices"
 
 
-
 class MagicBall(commands.Cog):
     """
     Quả cầu thần kì
     """
+
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
@@ -40,7 +39,6 @@ class MagicBall(commands.Cog):
             await interaction.response.send_message(random.choice(choices))
         else:
             await interaction.response.send_message("Lựa chọn không rõ.")
-        
 
 
 def setup(bot: commands.Bot):
