@@ -20,8 +20,6 @@ ID:                  `{id}`
 Có nitro từ:         `{nitro}` 
 Đăng kí Discord lúc: `{res_date}`
 Đã vào server lúc:   `{join_date}`
-Người mời:           `{invi}`
-Đường link:          `{link}`
 """
 # Cho bot
 content_bot = """
@@ -32,8 +30,7 @@ ID người tạo ra bot: `{ownerid}`
 ID bot:              `{id}`
 Đăng kí Discord lúc: `{res_date}`
 Đã vào server lúc:   `{join_date}`
-Người mời:           `{invi}`
-Đường link:          `{link}`
+
 """
 
 title = "Thông tin tình báo về {name}"
@@ -45,14 +42,6 @@ class Intelligence(commands.Cog):
 
     @commands.slash_command(name=name["intelligence"], description=des["intelligence"])
     async def intelligence(self, interaction: Aci, member: disnake.Member):
-        inv = ""
-        autho = None
-        invite_list = await interaction.guild.invites()
-        for invite in invite_list:
-            if invite.target_user == interaction.author:
-                inv = invite.code
-                autho = invite.inviter
-                break
         response = disnake.Embed(
             title=title.format(name=member.name),
             description=content.format(
@@ -61,9 +50,7 @@ class Intelligence(commands.Cog):
                 id=member.id,
                 nitro=member.premium_since,
                 res_date=member.created_at,
-                join_date=member.joined_at,
-                invi=autho,
-                link=inv
+                join_date=member.joined_at
             ),
         )
         if member.avatar is not None:
