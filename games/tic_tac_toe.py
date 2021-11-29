@@ -1,3 +1,5 @@
+# Shit, 100 lines of useless code.
+
 import disnake
 import random
 import time

@@ -11,14 +11,16 @@ des = {
     "tempban": "Vẫn là cấm nhưng có hạn. Hiện vẫn chưa hoạt động.",
     "unban": "Hủy lệnh cấm cho một thành viên nào đó.",
     "kick": "Thanh trừ một thành viên khỏi server.",
-    "warn": "Cảnh cáo một thành viên vì hành động của họ"
+    "warn": "Cảnh cáo một thành viên vì hành động của họ",
+    "mute": "Khóa mồm một thành viên. VD cho thời gian hợp lệ: 31/11/2011 20:29:43 hay 5h4m3s"
 }
 name = {
     "ban": "ban",
     "unban": "unban",
     "tempban": "tempban",
     "kick": "kick",
-    "warn": "warn"
+    "warn": "warn",
+    "mute": "mute"
 }
 # Messages will be randomized to add "tension"
 mes = {
@@ -66,7 +68,16 @@ mes = {
             "Người dùng... À mà thôi."
             "Ai cho bạn dùng câu lệnh này?"
         ]
+    },
+    "mute": {
+        "public": [
+            "{usr} nói nhiều quá đấy. Bạn bị mute bởi {admin} kìa. Do {reas} đấy.",
+            "Đang khóa mồm {usr} vì {reas}... Xong, thưa ngài {admin}.",
+            "{admin} bảo tôi tìm cách làm cho {usr} im miệng vì {reas}"
+        ],
+        "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị mute bởi {admin} vì {reas} kìa."
     }
+
 }
 
 
@@ -149,6 +160,19 @@ class Moderate(commands.Cog):
             random.choice(mes["warn"]["public"]).format(usr=member.mention, admin=interaction.author.mention,
                                                         content=content)
         )
+
+    # Finally, mute. Your opinion don't matter to us.
+    @commands.slash_command(name=name["mute"], description=des["mute"])
+    async def mute(self, interaction: Aci, member: disnake.Member, duration: str, until: str, reason: str = "không gì "
+                                                                                                            "cả"):
+        if not enough_permission(interaction):
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
+            return
+        await interaction.response.send_message(
+            random.choice(mes["mute"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
+                                                        reas=reason))
+        await member.timeout()
+        await member.send(mes["mute"]["dm"].format(admin=interaction.author.mention, reas=reason))
 
 
 def setup(bot):
