@@ -92,7 +92,7 @@ class Moderate(commands.Cog):
             duration: str = "mãi mãi"
     ):
         if not enough_permission(interaction):
-            interaction.response.send_message(random.choice(mes["perms"]["public"]))
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
             random.choice(mes["ban"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
@@ -108,7 +108,7 @@ class Moderate(commands.Cog):
             await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         # await self.ban(interaction, member, reason, duration)
-        interaction.response.send_message(mes["tempban"])
+        await interaction.response.send_message(mes["tempban"])
 
     @commands.slash_command(name=name["unban"], description=des["unban"])
     async def unban(
