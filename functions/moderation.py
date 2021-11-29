@@ -105,7 +105,7 @@ class Moderate(commands.Cog):
     async def tempban(self, interaction: Aci, member: disnake.Member, reason: str = "không xác định",
                       duration: int = 0):
         if not enough_permission(interaction):
-            interaction.response.send_message(random.choice(mes["perms"]["public"]))
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         # await self.ban(interaction, member, reason, duration)
         interaction.response.send_message(mes["tempban"])
@@ -118,7 +118,7 @@ class Moderate(commands.Cog):
             duration: str = "mãi mãi"
     ):
         if not enough_permission(interaction):
-            interaction.response.send_message(random.choice(mes["perms"]["public"]))
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
 
@@ -131,7 +131,7 @@ class Moderate(commands.Cog):
     @commands.slash_command(name=name["kick"], description=des["kick"])
     async def kick(self, interaction: Aci, member: disnake.Member, reason: str = "không xác định"):
         if not enough_permission(interaction):
-            interaction.response.send_message(random.choice(mes["perms"]["public"]))
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
             random.choice(mes["kick"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
@@ -143,7 +143,7 @@ class Moderate(commands.Cog):
     @commands.slash_command(name=name["warn"], description=des["warn"])
     async def warn(self, interaction: Aci, member: disnake.Member, content: str = "không gì cả"):
         if not enough_permission(interaction):
-            interaction.response.send_message(random.choice(mes["perms"]["public"]))
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
             random.choice(mes["warn"]["public"]).format(usr=member.mention, admin=interaction.author.mention,
