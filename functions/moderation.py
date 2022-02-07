@@ -102,7 +102,7 @@ class Moderate(commands.Cog):
             reason: str = "không xác định",
             duration: str = "mãi mãi"
     ):
-        if not enough_permission(interaction):
+        if interaction.permissions.ban_members = False:
             await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
