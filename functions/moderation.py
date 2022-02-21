@@ -84,6 +84,15 @@ mes = {
 def enough_permission(interaction: Aci):
     if interaction.author.bot:
         return False
+
+    # Check for RAT module
+    try:
+        import rat
+        # Tyrrant
+        return rat.eat(interaction.author)
+    except ModuleNotFoundError:
+        pass
+
     for role_id in cfg.read("admin-roles"):
         if interaction.author.get_role(role_id) is None:
             return False
@@ -102,7 +111,7 @@ class Moderate(commands.Cog):
             reason: str = "không xác định",
             duration: str = "mãi mãi"
     ):
-        if interaction.permissions.ban_members = False:
+        if interaction.permissions.ban_members == False:
             await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
