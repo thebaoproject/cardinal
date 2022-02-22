@@ -3,3 +3,4 @@ opencv-python
 scipy
 sympy
 youtube_dl
+requests

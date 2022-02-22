@@ -1,9 +1,10 @@
-# E hèm. Nghiêm túc này.
 import disnake
-from disnake import ApplicationCommandInteraction as Aci
-from disnake.ext import commands
+import utils
 import random
 import config_manager as cfg
+
+from disnake import ApplicationCommandInteraction as Aci
+from disnake.ext import commands
 
 # Commands description
 des = {
@@ -12,7 +13,7 @@ des = {
     "unban": "Hủy lệnh cấm cho một thành viên nào đó.",
     "kick": "Thanh trừ một thành viên khỏi server.",
     "warn": "Cảnh cáo một thành viên vì hành động của họ",
-    "mute": "Khóa mồm một thành viên. VD cho thời gian hợp lệ: 31/11/2011 20:29:43 hay 5h4m3s"
+    "isolate": "Khóa mồm một thành viên. VD cho thời gian hợp lệ: 31/11/2011 20:29:43 hay 5h4m3s"
 }
 name = {
     "ban": "ban",
@@ -20,7 +21,7 @@ name = {
     "tempban": "tempban",
     "kick": "kick",
     "warn": "warn",
-    "mute": "mute"
+    "isolate": "isolate"
 }
 # Messages will be randomized to add "tension"
 mes = {
@@ -69,19 +70,19 @@ mes = {
             "Ai cho bạn dùng câu lệnh này?"
         ]
     },
-    "mute": {
+    "isolate": {
         "public": [
-            "{usr} nói nhiều quá đấy. Bạn bị mute bởi {admin} kìa. Do {reas} đấy.",
+            "{usr} nói nhiều quá đấy. Bạn bị cách li bởi {admin} kìa. Do {reas} đấy.",
             "Đang khóa mồm {usr} vì {reas}... Xong, thưa ngài {admin}.",
             "{admin} bảo tôi tìm cách làm cho {usr} im miệng vì {reas}"
         ],
-        "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị mute bởi {admin} vì {reas} kìa."
+        "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị cách li bởi {admin} vì {reas} kìa."
     }
 
 }
 
 
-def enough_permission(interaction: Aci):
+async def enough_permission(interaction: Aci):
     if interaction.author.bot:
         return False
 
@@ -95,6 +96,7 @@ def enough_permission(interaction: Aci):
 
     for role_id in cfg.read("admin-roles"):
         if interaction.author.get_role(role_id) is None:
+            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return False
     return True
 
@@ -105,82 +107,121 @@ class Moderate(commands.Cog):
     # Búa ban!
     @commands.slash_command(name=name["ban"], description=des["ban"])
     async def ban(
-            self, interaction: Aci,
-            member: disnake.Member,
-            reason: str = "không xác định",
-            duration: str = "mãi mãi"
+        self, 
+        interaction: Aci,
+        member: disnake.Member,
+        reason: str = "không xác định",
+        duration: str = "mãi mãi"
     ):
-        if interaction.permissions.ban_members == False:
-            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
+        if not enough_permission(interaction):
             return
+
         await interaction.response.send_message(
-            random.choice(mes["ban"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
-                                                       reas=reason, dur=duration))
+            random.choice(
+                mes["ban"]["public"]).format(
+                    admin=interaction.author.mention,
+                    usr=member.mention,
+                    reas=reason,
+                    dur=duration
+                )
+            )
         await interaction.author.guild.ban(user=member, reason=reason)
         await member.send(mes["ban"]["dm"].format(admin=interaction.author.mention, reas=reason, dur=duration))
 
     # Một cách viết khác dễ hiểu hơn.
     @commands.slash_command(name=name["tempban"], description=des["tempban"])
-    async def tempban(self, interaction: Aci, member: disnake.Member, reason: str = "không xác định",
-                      duration: int = 0):
+    async def tempban(
+        self,
+        interaction: Aci, 
+        member: disnake.Member, 
+        reason: str = "không xác định",
+        duration: int = 0
+    ):
         if not enough_permission(interaction):
-            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         # await self.ban(interaction, member, reason, duration)
         await interaction.response.send_message(mes["tempban"])
 
     @commands.slash_command(name=name["unban"], description=des["unban"])
     async def unban(
-            self, interaction: Aci,
-            member: disnake.User,
-            reason: str = "không xác định",
-            duration: str = "mãi mãi"
+        self, interaction: Aci,
+        member: disnake.User,
+        reason: str = "không xác định",
+        duration: str = "mãi mãi"
     ):
         if not enough_permission(interaction):
-            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
-
-            random.choice(mes["unban"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
-                                                         reas=reason, dur=duration))
+            random.choice(
+                mes["unban"]["public"]).format(
+                    admin=interaction.author.mention,
+                    usr=member.mention,
+                    reas=reason, 
+                    dur=duration
+                )
+            )
         await interaction.author.guild.unban(user=member, reason=reason)
         await member.send(mes["unban"]["dm"].format(admin=interaction.author.mention, reas=reason, dur=duration))
 
     # Get out!
     @commands.slash_command(name=name["kick"], description=des["kick"])
-    async def kick(self, interaction: Aci, member: disnake.Member, reason: str = "không xác định"):
+    async def kick(
+        self, 
+        interaction: Aci, 
+        member: disnake.Member, 
+        reason: str = "không xác định"
+    ):
         if not enough_permission(interaction):
-            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
-            random.choice(mes["kick"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
-                                                        reas=reason))
+            random.choice(mes["kick"]["public"]).format(
+                admin=interaction.author.mention, 
+                usr=member.mention,
+                reas=reason
+            )
+        )
         await member.kick(reason=reason)
         await member.send(mes["kick"]["dm"].format(admin=interaction.author.mention, reas=reason))
 
     # Warn!
     @commands.slash_command(name=name["warn"], description=des["warn"])
-    async def warn(self, interaction: Aci, member: disnake.Member, content: str = "không gì cả"):
+    async def warn(
+        self, 
+        interaction: Aci, 
+        member: disnake.Member, 
+        content: str = "không gì cả"
+    ):
         if not enough_permission(interaction):
-            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
-            random.choice(mes["warn"]["public"]).format(usr=member.mention, admin=interaction.author.mention,
-                                                        content=content)
+            random.choice(mes["warn"]["public"]).format(
+                usr=member.mention, 
+                admin=interaction.author.mention,
+                content=content
+            )
         )
 
-    # Finally, mute. Your opinion don't matter to us.
-    @commands.slash_command(name=name["mute"], description=des["mute"])
-    async def mute(self, interaction: Aci, member: disnake.Member, duration: str, until: str, reason: str = "không gì "
-                                                                                                            "cả"):
+    # Finally, isolate. Your opinion don't matter to us.
+    @commands.slash_command(name=name["isolate"], description=des["isolate"])
+    async def isolate(
+        self, 
+        interaction: Aci, 
+        member: disnake.Member, 
+        duration: str,
+        reason: str = "không gì cả"
+    ):
         if not enough_permission(interaction):
-            await interaction.response.send_message(random.choice(mes["perms"]["public"]))
             return
         await interaction.response.send_message(
-            random.choice(mes["mute"]["public"]).format(admin=interaction.author.mention, usr=member.mention,
-                                                        reas=reason))
-        await member.timeout()
-        await member.send(mes["mute"]["dm"].format(admin=interaction.author.mention, reas=reason))
+            random.choice(mes["isolate"]["public"]).format(
+                admin=interaction.author.mention, 
+                usr=member.mention,
+                reas=reason
+            )
+        )
+
+        await member.timeout(utils.handle_time(duration))
+        await member.send(mes["isolate"]["dm"].format(admin=interaction.author.mention, reas=reason))
 
 
 def setup(bot):

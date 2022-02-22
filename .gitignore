@@ -8,4 +8,8 @@ __pycache__
 .vscode
 *.pyc
 env/
-/config.json
+config.json
+ffmpeg.tar.gz
+ffmpeg
+dtb.json
+test.py
