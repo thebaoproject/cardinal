@@ -1,4 +1,5 @@
-disnake
+disnake[voice]
 opencv-python
 scipy
 sympy
+youtube_dl

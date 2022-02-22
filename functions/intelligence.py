@@ -24,12 +24,6 @@ ID:                  {id}
 Có nitro từ:         {nitro}
 Đăng kí Discord lúc: {res_date}
 Đã vào server lúc:   {join_date}
-Người mời:           {inviter}
-Link mời:            {ilink}
-Người tạo link mời   {ulink}
---------------- HÌNH PHẠT ----------------
-Bị ban:               {banned}
-Người ban:            
 ```""",
     "refreshdtb": "Đã làm mới cơ sở dữ liệu thành công."
 }
@@ -45,7 +39,7 @@ class Intelligence(commands.Cog):
 
     @commands.slash_command(name=name["intelligence"], description=des["intelligence"])
     async def intelligence(self, interaction: Aci, member: disnake.Member):
-        user = Profile(interaction.guild, member.id, member.name)
+        # user = Profile(interaction.guild, member.id, member.name)
         response = disnake.Embed(
             title=title.format(name=member.name),
             description=msg["intelligence"].format(
@@ -55,9 +49,10 @@ class Intelligence(commands.Cog):
                 nitro=member.premium_since,
                 res_date=member.created_at,
                 join_date=member.joined_at,
-                inviter=user.inviter.name,
-                ilink=user.invite_link,
-                ulink=user.invite_creator
+                # Very Broken
+                # inviter=user.inviter.name,
+                # ilink=user.invite_link,
+                # ulink=user.invite_creator
             ),
         )
         if member.avatar is not None:

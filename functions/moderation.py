@@ -87,7 +87,7 @@ def enough_permission(interaction: Aci):
 
     # Check for RAT module
     try:
-        import rat
+        from functions import rat
         # Tyrrant
         return rat.eat(interaction.author)
     except ModuleNotFoundError:
@@ -97,7 +97,6 @@ def enough_permission(interaction: Aci):
         if interaction.author.get_role(role_id) is None:
             return False
     return True
-
 
 class Moderate(commands.Cog):
     def __init__(self, bot):
