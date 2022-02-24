@@ -5,7 +5,10 @@ import config_manager as cfg
 from disnake.ext import commands
 
 # Omitted, because we use / here
-bot = commands.Bot(command_prefix=cfg.read("prefix"))
+bot = commands.Bot(
+    command_prefix=cfg.read("prefix"),
+    intents=disnake.Intents.all()
+)
 status = cfg.read("status")
 
 @bot.event

@@ -220,7 +220,7 @@ class Moderate(commands.Cog):
             )
         )
 
-        await member.timeout(utils.handle_time(duration))
+        await member.timeout(until=utils.handle_time(duration))
         await member.send(mes["isolate"]["dm"].format(admin=interaction.author.mention, reas=reason))
 
 

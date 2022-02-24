@@ -1,7 +1,9 @@
 import datetime
 
+
 def handle_error(content: str):
     print(content)
+
 
 def handle_time(time: str):
     """
@@ -37,12 +39,16 @@ def handle_time(time: str):
         elif i == "y":
             timer["y"] = int(buffer)
             buffer = ""
-        
 
     dur = datetime.timedelta(seconds=timer["s"], minutes=timer["m"], hours=timer["h"], days=timer["d"])
     a = datetime.datetime.now() + dur
     if timer["y"] == 0:
         return a
     else:
-        return datetime.datetime(a.year + timer["y"], seconds=timer["s"], minutes=timer["m"], hours=timer["h"], days=timer["d"])
-
+        return datetime.datetime(
+            year=a.year + timer["y"],
+            second=timer["s"],
+            minute=timer["m"],
+            hour=timer["h"],
+            day=timer["d"]
+        )
