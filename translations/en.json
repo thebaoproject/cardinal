@@ -1,0 +1,119 @@
+{
+  "mod": {
+    "ban": {
+      "public": [
+        "{usr} has been banned from the guild, because: `{reas}` by {admin} for {dur}",
+        "United Nations Secrectary General {admin} has senteced {usr} to deportation, because `{reas}` for {dur}",
+        "{admin} has hired a hacker to hack {usr}'s account, because `{reas}` for {dur}",
+        "The judge has concluded that {usr} should be BANNED FROM THE GUILD, {admin} concluded, because `{reas}` for {dur} "
+      ],
+      "dm": "Sorry, you have been banned from the guild by {admin} because `{reas}`, for {dur}"
+    },
+    "tempban": "This is a test command. Don't touch.",
+    "kick": {
+      "public": [
+        "{usr} has been kicked from the guild, because: `{reas}` by {admin}",
+        "{admin} has decided to kick {usr} out because `{reas}`",
+        "{admin}'s hacker has successfullt hacked {usr}'s account, therefore he has left the server, because `{reas}`."
+      ],
+      "dm": "Sorry, you have been kicked from the guild by {admin} because `{reas}`"
+    },
+    "warn": {
+      "public": [
+        "Hey {usr}, small notice for `{reas}` by {admin}",
+        "{usr} has been warned by {admin} for `{reas}`"
+      ]
+    },
+    "unban": {
+      "public": [
+        "The judge head: {admin} will pardon {usr} because `{reas}`",
+        "{usr}'s ban have been lifted by {admin} for `{reas}`",
+        "{admin} has unbanned {usr} because `{reas}`"
+      ],
+      "dm": "You have been unbanned by {admin}, because `{reas}`"
+    },
+    "perms": {
+      "public": [
+        "You don't have the necessary permissions.",
+        "You know the rules, and so do I...",
+        "Nope.",
+        "LOL",
+        "Do you know what ligma is?",
+        "You are not permitted to use this command."
+      ]
+    },
+    "isolate": {
+      "public": [
+        "{usr} has spoken so much that {admin} decided to isolate him for {dur}, because `{reas}`.",
+        "Trying to lock {usr} up for {dur} because `{reas}`... Done. (requested by {admin}).",
+        "{admin} has asked be to shut {usr} up because `{reas} for {dur}`"
+      ],
+      "dm": "You have been isolated by {admin} because `{reas}` for {dur}."
+    },
+    "unspecifiedReason": "nothing",
+    "forever": "forever"
+  },
+  "intel": {
+    "card": {
+      "title": "Intelligence information for {usr}",
+      "name": "Name",
+      "nickname": "Nickname",
+      "id": "ID",
+      "pre": "Nitro supscription",
+      "create": "Discord registration",
+      "join": "Guild join"
+    },
+    "refreshdtb": "The database have been refreshed successfully."
+  },
+  "music": {
+    "chooseCard": "{title} - {channel}",
+    "buttonChooseLabel": "Choose & Start playing",
+    "songDescription": {
+        "title": "Title",
+        "description": "Description",
+        "length": "Length",
+        "channel": "Channel",
+        "url": "URL"
+    },
+    "error": {
+        "notInVoice": "You are not in a voice channel.",
+        "videoNotFound": "Video not found.",
+        "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
+    },
+    "success": {
+        "pause": "Paused/resumed.",
+        "stop": "Stopped.",
+        "list": "List of songs in queue:",
+        "skip": "Song skipped successfully."
+    },
+    "noDescription": "no description",
+    "noSongInQueue": "no songs"
+  },
+  "config": {
+    "read": "The value of `{tag}` is `{value}`",
+    "write": "Overwritten `{tag}`: `{value}` (old value is `{old_value}`)",
+    "error": {
+      "invalidTag": "`{tag}` doesn't exists.",
+      "invalidValue": "Value `{value}` is invalid."
+    }
+  },
+  "timeFormat": "%H{h}:%M{m}:%S{s}, {mo}%b {d}%d {y}%Y",
+  "time": {
+    "h": "",
+    "m": "",
+    "s": "",
+    "d": "",
+    "mo": "",
+    "y": ""
+  },
+  "true": "true",
+  "fasle": "false",
+  "yes": "yes",
+  "no": "no",
+  "setup": {
+    "noDM": "Don't DM me!",
+    "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
+    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
+    "languageSuccess": "Your language has been changed to {lang}. You can change it later by using `/settings language`."
+  }
+}

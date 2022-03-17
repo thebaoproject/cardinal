@@ -1,0 +1,119 @@
+{
+  "mod": {
+    "ban": {
+      "public": [
+        "{dur} ɹoɟ {admin} ʎq `{reas}` :ǝsnɐɔǝq ,plᴉnƃ ǝɥʇ ɯoɹɟ pǝuuɐq uǝǝq sɐɥ {usr}",
+        "{dur} ɹoɟ `{reas}` ǝsnɐɔǝq ,uoᴉʇɐʇɹodǝp oʇ {usr} pǝɔǝʇuǝs sɐɥ {admin} lɐɹǝuǝ⅁ ʎɹɐʇɔǝɹɔǝS suoᴉʇɐN pǝʇᴉu∩",
+        "{dur} ɹoɟ `{reas}` ǝsnɐɔǝq ,ʇunoɔɔɐ s'{usr} ʞɔɐɥ oʇ ɹǝʞɔɐɥ ɐ pǝɹᴉɥ sɐɥ {admin}",
+        " {dur} ɹoɟ `{reas}` ǝsnɐɔǝq ,pǝpnlɔuoɔ {admin} ,ᗰ˥I∩⅁ ƎHᴛ WOᴚℲ ᗰƎNN∀ᗡ ǝq plnoɥs {usr} ʇɐɥʇ pǝpnlɔuoɔ sɐɥ ǝƃpnɾ ǝɥᴛ"
+      ],
+      "dm": "{dur} ɹoɟ ,`{reas}` ǝsnɐɔǝq {admin} ʎq plᴉnƃ ǝɥʇ ɯoɹɟ pǝuuɐq uǝǝq ǝʌɐɥ noʎ ,ʎɹɹoS"
+    },
+    "tempban": ".ɥɔnoʇ ʇ'uoᗰ .puɐɯɯoɔ ʇsǝʇ ɐ sᴉ sᴉɥᴛ",
+    "kick": {
+      "public": [
+        "{admin} ʎq `{reas}` :ǝsnɐɔǝq ,plᴉnƃ ǝɥʇ ɯoɹɟ pǝʞɔᴉʞ uǝǝq sɐɥ {usr}",
+        "`{reas}` ǝsnɐɔǝq ʇno {usr} ʞɔᴉʞ oʇ pǝpᴉɔǝp sɐɥ {admin}",
+        ".`{reas}` ǝsnɐɔǝq ,ɹǝʌɹǝs ǝɥʇ ʇɟǝl sɐɥ ǝɥ ǝɹoɟǝɹǝɥʇ ,ʇunoɔɔɐ s'{usr} pǝʞɔɐɥ ʇllnɟssǝɔɔns sɐɥ ɹǝʞɔɐɥ s'{admin}"
+      ],
+      "dm": "`{reas}` ǝsnɐɔǝq {admin} ʎq plᴉnƃ ǝɥʇ ɯoɹɟ pǝʞɔᴉʞ uǝǝq ǝʌɐɥ noʎ ,ʎɹɹoS"
+    },
+    "warn": {
+      "public": [
+        "{admin} ʎq `{reas}` ɹoɟ ǝɔᴉʇou llɐɯs ,{usr} ʎǝH",
+        "`{reas}` ɹoɟ {admin} ʎq pǝuɹɐʍ uǝǝq sɐɥ {usr}"
+      ]
+    },
+    "unban": {
+      "public": [
+        "`{reas}` ǝsnɐɔǝq {usr} uopɹɐd llᴉʍ {admin} :pɐǝɥ ǝƃpnɾ ǝɥᴛ",
+        "`{reas}` ɹoɟ {admin} ʎq pǝʇɟᴉl uǝǝq ǝʌɐɥ uɐq s'{usr}",
+        "`{reas}` ǝsnɐɔǝq {usr} pǝuuɐqun sɐɥ {admin}"
+      ],
+      "dm": "`{reas}` ǝsnɐɔǝq ,{admin} ʎq pǝuuɐqun uǝǝq ǝʌɐɥ no⅄"
+    },
+    "perms": {
+      "public": [
+        ".suoᴉssᴉɯɹǝd ʎɹɐssǝɔǝu ǝɥʇ ǝʌɐɥ ʇ'uop no⅄",
+        "...I op os puɐ ,sǝlnɹ ǝɥʇ ʍouʞ no⅄",
+        ".ǝdoN",
+        "˥O˥",
+        "?sᴉ ɐɯƃᴉl ʇɐɥʍ ʍouʞ noʎ oᗰ",
+        ".puɐɯɯoɔ sᴉɥʇ ǝsn oʇ pǝʇʇᴉɯɹǝd ʇou ǝɹɐ no⅄"
+      ]
+    },
+    "isolate": {
+      "public": [
+        ".`{reas}` ǝsnɐɔǝq ,{dur} ɹoɟ ɯᴉɥ ǝʇɐlosᴉ oʇ pǝpᴉɔǝp {admin} ʇɐɥʇ ɥɔnɯ os uǝʞods sɐɥ {usr}",
+        ".){admin} ʎq pǝʇsǝnbǝɹ( .ǝuoᗰ ...`{reas}` ǝsnɐɔǝq {dur} ɹoɟ dn {usr} ʞɔol oʇ ƃuᴉʎɹᴛ",
+        "`{dur} ɹoɟ {reas}` ǝsnɐɔǝq dn {usr} ʇnɥs oʇ ǝq pǝʞsɐ sɐɥ {admin}"
+      ],
+      "dm": ".{dur} ɹoɟ `{reas}` ǝsnɐɔǝq {admin} ʎq pǝʇɐlosᴉ uǝǝq ǝʌɐɥ no⅄"
+    },
+    "unspecifiedReason": "ƃuᴉɥʇou",
+    "forever": "ɹǝʌǝɹoɟ"
+  },
+  "intel": {
+    "card": {
+      "title": "{usr} ɹoɟ uoᴉʇɐɯɹoɟuᴉ ǝɔuǝƃᴉllǝʇuI",
+      "name": "ǝɯɐN",
+      "nickname": "ǝɯɐuʞɔᴉN",
+      "id": "ᗰI",
+      "pre": "uoᴉʇdᴉɹɔsdns oɹʇᴉN",
+      "create": "uoᴉʇɐɹʇsᴉƃǝɹ pɹoɔsᴉᗰ",
+      "join": "uᴉoɾ plᴉn⅁"
+    },
+    "refreshdtb": ".ʎllnɟssǝɔɔns pǝɥsǝɹɟǝɹ uǝǝq ǝʌɐɥ ǝsɐqɐʇɐp ǝɥᴛ"
+  },
+  "music": {
+    "chooseCard": "{lǝuuɐɥɔ} - {ǝlʇᴉʇ}",
+    "buttonChooseLabel": "ƃuᴉʎɐld ʇɹɐʇS & ǝsooɥƆ",
+    "songDescription": {
+      "title": "ǝlʇᴉᴛ",
+      "description": "uoᴉʇdᴉɹɔsǝᗰ",
+      "length": "ɥʇƃuǝ˥",
+      "channel": "lǝuuɐɥƆ",
+      "url": "˥ᴚ∩"
+    },
+    "error": {
+      "notInVoice": ".lǝuuɐɥɔ ǝɔᴉoʌ ɐ uᴉ ʇou ǝɹɐ no⅄",
+      "videoNotFound": ".punoɟ ʇou oǝpᴉΛ",
+      "internalError": ".uoos pǝʌlosǝɹ ǝq llᴉʍ ʇᴉ ǝdoɥ puɐ <@!603577134535147524> ƃuᴉɯɯɐds ʎɹᴛ .ɹoɹɹǝ ʇoq lɐuɹǝʇuI"
+    },
+    "success": {
+      "pause": ".pǝɯnsǝɹ/pǝsnɐԀ",
+      "stop": ".pǝddoʇS",
+      "list": ":ǝnǝnb uᴉ sƃuos ɟo ʇsᴉ˥",
+      "skip": ".ʎllnɟssǝɔɔns pǝddᴉʞs ƃuoS"
+    },
+    "noDescription": "uoᴉʇdᴉɹɔsǝp ou",
+    "noSongInQueue": "sƃuos ou"
+  },
+  "config": {
+    "read": "`{value}` sᴉ `{tag}` ɟo ǝnlɐʌ ǝɥᴛ",
+    "write": ")`{old_value}` sᴉ ǝnlɐʌ plo( `{value}` :`{tag}` uǝʇʇᴉɹʍɹǝʌO",
+    "error": {
+      "invalidTag": ".sʇsᴉxǝ ʇ'usǝop `{tag}`",
+      "invalidValue": ".pᴉlɐʌuᴉ sᴉ `{value}` ǝnlɐΛ"
+    }
+  },
+  "timeFormat": "%H{h}:%M{m}:%S{s}, {mo}%b {d}%d {y}%Y",
+  "time": {
+    "h": "",
+    "m": "",
+    "s": "",
+    "d": "",
+    "mo": "",
+    "y": ""
+  },
+  "true": "ǝnɹʇ",
+  "fasle": "ǝslɐɟ",
+  "yes": "sǝʎ",
+  "no": "ou",
+  "setup": {
+    "noDM": "Don't DM me!",
+    "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
+    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
+    "languageSuccess": "Your language has been changed to {lang}. You can change it later by using `/settings language`."
+  }
+}

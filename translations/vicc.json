@@ -1,0 +1,119 @@
+{
+  "mod": {
+    "ban": {
+      "public": [
+        "{usr} dã bị kấm xỏi sezvez, với lí zo: `{reas}` bởi {admin} với wời hạn {zuz}",
+        "Ủy ban Kiểm Ca Cuq Ươq, Bộ Cín' Cị, Ủy Ban Mặt Cận Spike's Kiqzom dại tá {admin} xử dồq cí {usr} với hìn' fạt wan' cừ mãi mãi, với tội `{reas}` với wời hạn {zuz}",
+        "{admin} xử {usr} án PAY AKK, với lí zo là `{reas}` với wời hạn {zuz}",
+        "Tòa tuyên fạt bị káo {usr} với tội KẤM XỎI SEZVEZ, với lí zo dưa za coq bản káo cạq kủa viện cưởq Viện Kiểm Sát N'ân Zân {admin}: `{reas}` với wời hạn {zuz} "
+      ],
+      "dm": "Xin lỗi, bạn dã bị kấm xỏi sezvez bởi {admin}, với lí zo `{reas}`"
+    },
+    "tempban": "Xin lỗi, kâu lện' này cưa dượk hoàn wàn', coq kuá cìn' wử qiệm.",
+    "kick": {
+      "public": [
+        "Qười zùq {usr} bị duổi xỏi sezvez, vì: `{reas}` bởi {admin}",
+        "Bí wư {admin} kủa Spike's Kiqzom kuyết dịn' kỉ luật wàn' viên {usr} bằq hìn' wứk:\n    - Wan' cừ vì tội `{reas}`",
+        "PAY AKK {usr}, vì {admin} dã kikk với lí zo: `{reas}`"
+      ],
+      "dm": "Xin lỗi, bạn dã bị duổi xỏi sezvez bởi {admin} với lí zo: `{reas}`"
+    },
+    "warn": {
+      "public": [
+        "Này {usr}, bạn dã bị kản' káo về: `{reas}` bởi {admin}",
+        "Qười zùq {usr} dã bị kản' káo bởi {admin} về: `{reas}`"
+      ]
+    },
+    "unban": {
+      "public": [
+        "Củ tọa {admin} kuyên bố: wa co bị káo {usr} vì `{reas}`",
+        "Qười zùq {usr} dã dượk gỡ lện' kấm bởi {admin} với lí zo: `{reas}`",
+        "Wượq Wư Hìn' Bộ {admin} dã wa cết co {usr} vì dã dượk zải oan: `{reas}`"
+      ],
+      "dm": "Bạn dã dượk gỡ lện' kấm bởi {admin}, với lí zo là: `{reas}`"
+    },
+    "perms": {
+      "public": [
+        "Bạn xôq kó kuyền",
+        "Dịn' lên mặt à? Bạn xôq wể wựk hiện hàn' dộq này dâu!",
+        "Dừq kó mơ",
+        "Kòn lâu",
+        "Qười zùq... À mà wôi.",
+        "Ai co bạn zùq kâu lện' này?"
+      ]
+    },
+    "isolate": {
+      "public": [
+        "{usr} nói n'iều kuá dấy. Bạn bị kác li bởi {admin} kìa. Zo `{reas}` dấy.",
+        "Daq xóa mồm {usr} vì `{reas}`... Xoq, wưa qài {admin}.",
+        "{admin} bảo tôi tìm kác làm co {usr} im miệq vì `{reas}`"
+      ],
+      "dm": "An' bạn à, nói n'iều kuá dấy. Bạn bị kác li bởi {admin} vì `{reas}` coq {zuz} kìa."
+    },
+    "unspecifiedReason": "xôq zì kả",
+    "forever": "mãi mãi"
+  },
+  "intel": {
+    "card": {
+      "title": "Wôq tin tìn' báo co {usr}",
+      "name": "Tên",
+      "nickname": "Biệt zan'",
+      "id": "IZ",
+      "pre": "Kó Nico",
+      "create": "Dăq kí Ziskozz",
+      "join": "Vào sezvez"
+    },
+    "refreshdtb": "Dã làm mới kơ sở zữ liệu wàn' kôq."
+  },
+  "music": {
+    "chooseCard": "{title} - {channel}",
+    "buttonChooseLabel": "Cọn & Bắt dầu cơi",
+    "songDescription": {
+        "title": "Tiêu dề",
+        "description": "Mô tả",
+        "length": "Dộ zài",
+        "channel": "Kên'",
+        "url": "UZL"
+    },
+    "error": {
+        "notInVoice": "Bạn xôq ở coq kên' voike nào.",
+        "videoNotFound": "Vizeo kủa bạn xôq kó kết kuả tìm kiếm.",
+        "internalError": "Lỗi nội bộ bot. Hãy spam piq <@!603577134535147524> dể wan' niên này xử lí."
+    },
+    "success": {
+        "pause": "Bài n'ạk daq cơi dã dượk zừq/tiếp tụk.",
+        "stop": "Bot dã qừq fát.",
+        "list": "Kák bài n'ạk hiện kó coq hàq cờ:",
+        "skip": "Bỏ kua bài hát wàn' kôq."
+    },
+    "noDescription": "xôq kó mô tả",
+    "noSongInQueue": "xôq zì kả"
+  },
+  "config": {
+    "read": "Zá cị kủa `{tag}` là `{value}`",
+    "write": "Dã gi dè lên `{tag}`: `{value}` (zá cị kũ là `{old_value}`)",
+    "error": {
+      "invalidTag": "Zá cị `{tag}` xôq tồn tại.",
+      "invalidValue": "Zá cị `{value}` xôq hợp lệ."
+    }
+  },
+  "timeFormat": "%H {h} %M {m} %S {s}, {d} %d {mo} %m {y} %Y",
+  "time": {
+    "h": "zờ",
+    "m": "fút",
+    "s": "zây",
+    "d": "qày",
+    "mo": "wáq",
+    "y": "năm"
+  },
+  "true": "dúq",
+  "fasle": "sai",
+  "yes": "kó",
+  "no": "xôq",
+  "setup": {
+    "nodm": "Dừq ZM tôi!",
+    "noDMok": "OK, tôi sẽ xôq ZM bạn nữa. Bạn kó wể zùq `/settiqs enableZM cue` dể bật lại ZM.",
+    "card": "Xin cào, dây là bot Kazzinal, một kon bot \"wập kẩm\" bởi SpikeBonjouz.\nDây là setup lần dầu ziêq kủa bạn.\n Hãy cọn qôn qữ kủa bạn dể tiếp tụk: (*nếu bạn xôq cọn, qôn qữ zao ziện Ziskozz kủa bạn sẽ dượk sử zụq*)",
+    "languageSuccess": "Qôn qữ kủa bạn dã dượk dặt wàn' {laq}. Bạn kó wể way dổi bằq lện' `/settiqs laquage`."
+  }
+}

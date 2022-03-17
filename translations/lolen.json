@@ -1,0 +1,119 @@
+{
+  "mod": {
+    "ban": {
+      "public": [
+        "{usr} hz bn banned from the gld bcz `{reas}` by {admin} for {dur}",
+        "{admin} has used the UwU Special Skill to get {usr} out of the gld, because `{reas}` for {dur}",
+        "{admin} hax {usr}'s account, because `{reas}` for {dur}",
+        "{admin} used UwU on {usr}: Very Effective, banned him for {dur}: `{reas}`"
+      ],
+      "dm": "Sorry, you have been banned from the guild by {admin} because `{reas}`, for {dur}"
+    },
+    "tempban": "This is a test command. Don't touch.",
+    "kick": {
+      "public": [
+        "{usr} hz bin kiked bcz: `{reas}` by {admin}",
+        "{admin} kik-ed {usr}: `{reas}`",
+        "{admin} hax {usr}'s account, so he has left the server, because `{reas}`."
+      ],
+      "dm": "Sorry, you have been kicked from the guild by {admin} because `{reas}`"
+    },
+    "warn": {
+      "public": [
+        "Hey {usr}, small notice for `{reas}` by {admin}",
+        "{usr} has been warned by {admin} for `{reas}`"
+      ]
+    },
+    "unban": {
+      "public": [
+        "so {admin} hz jst pardoned {usr} bcz `{reas}`",
+        "{usr} is not benned anymore, pardoned by {admin} 4 `{reas}`",
+        "{admin} has unbanned {usr} because `{reas}`"
+      ],
+      "dm": "You have been unbanned by {admin}, because `{reas}`"
+    },
+    "perms": {
+      "public": [
+        "no perms, get out.",
+        "You know the rules, and so do I...",
+        "no no no no no.",
+        ":trollface:",
+        "Do you know what ligma is?",
+        "u.r.not.permitted.to.uz.ths.cmd."
+      ]
+    },
+    "isolate": {
+      "public": [
+        "{admin} wnt {usr} to sht up for {dur}, so he did it for `{reas}`.",
+        "Locking {usr} up 4 {dur} bcz `{reas}`... ok. (requested by {admin}).",
+        "{admin} used duct tape to slience {usr}, because `{reas} for {dur}`"
+      ],
+      "dm": "You have been isolated by {admin} because `{reas}` for {dur}."
+    },
+    "unspecifiedReason": "nothing at all",
+    "forever": "f o r e v e r"
+  },
+  "intel": {
+    "card": {
+      "title": "{usr}'s intelligence information found in FBI database",
+      "name": "Name",
+      "nickname": "Nickname",
+      "id": "ID",
+      "pre": "Nitro supscription",
+      "create": "Discord registration",
+      "join": "Guild join"
+    },
+    "refreshdtb": "The database have been refreshed successfully."
+  },
+  "music": {
+    "chooseCard": "{title} - {channel}",
+    "buttonChooseLabel": "Choose & Start playing da song",
+    "songDescription": {
+        "title": "Title",
+        "description": "Description",
+        "length": "Length",
+        "channel": "Channel",
+        "url": "URL"
+    },
+    "error": {
+        "notInVoice": "join a voice channel first you fool.",
+        "videoNotFound": "no vid with that name, dude.",
+        "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
+    },
+    "success": {
+        "pause": "Paused/resumed.",
+        "stop": "Stopped.",
+        "list": "queue hz these songs:",
+        "skip": "skipped."
+    },
+    "noDescription": "no description",
+    "noSongInQueue": "no songs"
+  },
+  "config": {
+    "read": "The value of `{tag}` is `{value}`",
+    "write": "Overwritten `{tag}`: `{value}` (old value is `{old_value}`)",
+    "error": {
+      "invalidTag": "`{tag}` doesn't exists.",
+      "invalidValue": "Value `{value}` is invalid."
+    }
+  },
+  "timeFormat": "%H{h}:%M{m}:%S{s}, {mo}%b {d}%d {y}%Y",
+  "time": {
+    "h": "",
+    "m": "",
+    "s": "",
+    "d": "",
+    "mo": "",
+    "y": ""
+  },
+  "true": "tru",
+  "fasle": "false",
+  "yes": "yeah",
+  "no": "nope",
+  "setup": {
+    "noDM": "Don't DM me!",
+    "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
+    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
+    "languageSuccess": "Your language has been changed to {lang}. You can change it later by using `/settings language`."
+  }
+}

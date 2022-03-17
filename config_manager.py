@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def read(entry: str):
@@ -7,6 +8,9 @@ def read(entry: str):
     """
     with open("config.json", "r") as f:
         config = json.loads(f.read())
+    if config[entry] is None:
+        return os.environ[entry]
+    else:
         return config[entry]
 
 

@@ -7,3 +7,12 @@ __pycache__
 .idea
 .vscode
 *.pyc
+env/
+config.json
+ffmpeg.tar.gz
+ffmpeg
+dtb.json
+test.py
+*.webm
+*.mp4
+*.m4a

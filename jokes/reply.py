@@ -2,6 +2,7 @@ import disnake
 from disnake.ext import commands
 import config_manager as cfg
 
+from disnake import ApplicationCommandInteraction as Aci
 # Tụ tập tất cả mọi thứ liên quan đến troll.
 # Không buộc phải có cái này. Để cho gọn thôi.
 msg = {
@@ -25,21 +26,27 @@ class Reply(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: disnake.Message):
-        if (not message.author.bot) and ("rick" in message.content) and cfg.read("rick-rolling"):
+        if (not message.author.bot) and ("rickroll".upper() in message.content.upper()) and cfg.read("rick-rolling"):
             await message.reply(msg["rickroll"])
-        if (not message.author.bot) and (self.bot.user.mention in message.content) and ("đảng" in message.content):
-            reply = "⠀⠀⠀⠀ ⠀⢀⣤⣀⣀⣀⠀⠈⠻⣷⣄\n⠀⠀⠀⠀⢀⣴⣿⣿⣿⡿⠋⠀⠀⠀⠹⣿⣦⡀\n⠀⠀⢀⣴⣿⣿⣿⣿⣏⠀⠀⠀⠀⠀⠀⢹⣿⣧\n⠀⠀⠙⢿⣿⡿⠋⠻⣿⣿⣦⡀⠀⠀⠀⢸⣿⣿⡆\n⠀⠀⠀⠀⠉⠀⠀⠀⠈⠻⣿⣿⣦⡀⠀⢸⣿⣿⡇\n⠀⠀⠀⠀⢀⣀⣄⡀⠀⠀⠈⠻⣿⣿⣶⣿⣿⣿⠁\n⠀⠀⠀⣠⣿⣿⢿⣿⣶⣶⣶⣶⣾⣿⣿⣿⣿⡁\n⢠⣶⣿⣿⠋⠀⠉⠛⠿⠿⠿⠿⠿⠛⠻⣿⣿⣦⡀\n⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⡿"
+        if (not message.author.bot) and (self.bot.user.mention[3:] in message.content) and ("đảng".upper() in message.content.upper()):
+            reply = "```\n⠀⠀⠀⠀ ⠀⢀⣤⣀⣀⣀⠀⠈⠻⣷⣄\n" \
+                    "⠀⠀⠀⠀⢀⣴⣿⣿⣿⡿⠋⠀⠀⠀⠹⣿⣦⡀\n" \
+                    "⠀⠀⢀⣴⣿⣿⣿⣿⣏⠀⠀⠀⠀⠀⠀⢹⣿⣧\n" \
+                    "⠀⠀⠙⢿⣿⡿⠋⠻⣿⣿⣦⡀⠀⠀⠀⢸⣿⣿⡆\n" \
+                    "⠀⠀⠀⠀⠉⠀⠀⠀⠈⠻⣿⣿⣦⡀⠀⢸⣿⣿⡇\n" \
+                    "⠀⠀⠀⠀⢀⣀⣄⡀⠀⠀⠈⠻⣿⣿⣶⣿⣿⣿⠁\n" \
+                    "⠀⠀⠀⣠⣿⣿⢿⣿⣶⣶⣶⣶⣾⣿⣿⣿⣿⡁\n" \
+                    "⢠⣶⣿⣿⠋⠀⠉⠛⠿⠿⠿⠿⠿⠛⠻⣿⣿⣦⡀\n" \
+                    "⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⡿```"
             await message.reply(reply)
-
 
     # Còn nếu chú muốn "tự" rickroll mình thì cũng được thôi.
     @commands.slash_command(name=msg["name"], description=msg["description"])
-    async def rickroll(self, interaction: disnake.Interaction):
+    async def rickroll(self, interaction: Aci):
         if cfg.read("rick-rolling"):
             await interaction.response.send_message(msg["rickroll"])
         else:
             await interaction.response.send_message(msg["invalid"])
-
 
 
 def setup(bot):

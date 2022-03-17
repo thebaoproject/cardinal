@@ -1,0 +1,119 @@
+{
+  "mod": {
+    "ban": {
+      "public": [
+        "{usr} đã bị cấm khỏi server, với lí do: `{reas}` bởi {admin} với thời hạn {dur}",
+        "Ủy ban Kiểm Tra Trung Ương, Bộ Chính Trị, Ủy Ban Mặt Trận Spike's Kingdom đại tá {admin} xử đồng chí {usr} với hình phạt thanh trừ mãi mãi, với tội `{reas}` với thời hạn {dur}",
+        "{admin} xử {usr} án PAY ACC, với lí do là `{reas}` với thời hạn {dur}",
+        "Tòa tuyên phạt bị cáo {usr} với tội CẤM KHỎI SERVER, với lí do đưa ra trong bản cáo trạng của viện trưởng Viện Kiểm Sát Nhân Dân {admin}: `{reas}` với thời hạn {dur} "
+      ],
+      "dm": "Xin lỗi, bạn đã bị cấm khỏi server bởi {admin}, với lí do `{reas}`"
+    },
+    "tempban": "Xin lỗi, câu lệnh này chưa được hoàn thành, trong quá trình thử nghiệm.",
+    "kick": {
+      "public": [
+        "Người dùng {usr} bị đuổi khỏi server, vì: `{reas}` bởi {admin}",
+        "Bí thư {admin} của Spike's Kingdom quyết định kỉ luật thành viên {usr} bằng hình thức:\n    - Thanh trừ vì tội `{reas}`",
+        "PAY ACC {usr}, vì {admin} đã kick với lí do: `{reas}`"
+      ],
+      "dm": "Xin lỗi, bạn đã bị đuổi khỏi server bởi {admin} với lí do: `{reas}`"
+    },
+    "warn": {
+      "public": [
+        "Này {usr}, bạn đã bị cảnh cáo về: `{reas}` bởi {admin}",
+        "Người dùng {usr} đã bị cảnh cáo bởi {admin} về: `{reas}`"
+      ]
+    },
+    "unban": {
+      "public": [
+        "Chủ tọa {admin} quyên bố: tha cho bị cáo {usr} vì `{reas}`",
+        "Người dùng {usr} đã được gỡ lệnh cấm bởi {admin} với lí do: `{reas}`",
+        "Thượng Thư Hình Bộ {admin} đã tha chết cho {usr} vì đã được giải oan: `{reas}`"
+      ],
+      "dm": "Bạn đã được gỡ lệnh cấm bởi {admin}, với lí do là: `{reas}`"
+    },
+    "perms": {
+      "public": [
+        "Bạn không có quyền",
+        "Định lên mặt à? Bạn không thể thực hiện hành động này đâu!",
+        "Đừng có mơ",
+        "Còn lâu",
+        "Người dùng... À mà thôi.",
+        "Ai cho bạn dùng câu lệnh này?"
+      ]
+    },
+    "isolate": {
+      "public": [
+        "{usr} nói nhiều quá đấy. Bạn bị cách li bởi {admin} kìa. Do `{reas}` đấy.",
+        "Đang khóa mồm {usr} vì `{reas}`... Xong, thưa ngài {admin}.",
+        "{admin} bảo tôi tìm cách làm cho {usr} im miệng vì `{reas}`"
+      ],
+      "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị cách li bởi {admin} vì `{reas}` trong {dur} kìa."
+    },
+    "unspecifiedReason": "không gì cả",
+    "forever": "mãi mãi"
+  },
+  "intel": {
+    "card": {
+      "title": "Thông tin tình báo về {usr}",
+      "name": "Tên",
+      "nickname": "Biệt danh",
+      "id": "ID",
+      "pre": "Có Nitro",
+      "create": "Đăng kí Discord",
+      "join": "Vào server"
+    },
+    "refreshdtb": "Đã làm mới cơ sở dữ liệu thành công."
+  },
+  "music": {
+    "chooseCard": "{title} - {channel}",
+    "buttonChooseLabel": "Chọn & Bắt đầu chơi",
+    "songDescription": {
+        "title": "Tiêu đề",
+        "description": "Mô tả",
+        "length": "Độ dài",
+        "channel": "Kênh",
+        "url": "URL"
+    },
+    "error": {
+        "notInVoice": "Bạn không ở trong kênh voice nào.",
+        "videoNotFound": "Video của bạn không có kết quả tìm kiếm.",
+        "internalError": "Lỗi nội bộ bot. Hãy spam ping <@!603577134535147524> để thanh niên này xử lí."
+    },
+    "success": {
+        "pause": "Bài nhạc đang chơi đã được dừng/tiếp tục.",
+        "stop": "Bot đã ngừng phát.",
+        "list": "Các bài nhạc hiện có trong hàng chờ:",
+        "skip": "Bỏ qua bài hát thành công."
+    },
+    "noDescription": "không có mô tả",
+    "noSongInQueue": "không gì cả"
+  },
+  "config": {
+    "read": "Giá trị của `{tag}` là `{value}`",
+    "write": "Đã ghi đè lên `{tag}`: `{value}` (giá trị cũ là `{old_value}`)",
+    "error": {
+      "invalidTag": "Giá trị `{tag}` không tồn tại.",
+      "invalidValue": "Giá trị `{value}` không hợp lệ."
+    }
+  },
+  "timeFormat": "%H {h} %M {m} %S {s}, {d} %d {mo} %m {y} %Y",
+  "time": {
+    "h": "giờ",
+    "m": "phút",
+    "s": "giây",
+    "d": "ngày",
+    "mo": "tháng",
+    "y": "năm"
+  },
+  "true": "đúng",
+  "fasle": "sai",
+  "yes": "có",
+  "no": "không",
+  "setup": {
+    "noDM": "Đừng DM tôi!",
+    "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
+    "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\n Hãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
+    "languageSuccess": "Ngôn ngữ của bạn đã được đặt thành {lang}. Bạn có thể thay đổi bằng lệnh `/settings language`."
+  }
+}

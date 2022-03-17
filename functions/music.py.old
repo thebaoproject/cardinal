@@ -1,0 +1,181 @@
+from youtubesearchpython.__future__ import *
+
+import datetime
+import disnake
+import tarfile
+import requests
+import youtube_dl
+import asyncio
+import platform
+import os
+
+from disnake.ext import commands
+from disnake import ApplicationCommandInteraction as Aci
+
+youtube_dl.utils.bug_reports_message = lambda: ''
+FFMPEG_BEFORE_OPTS = '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5'
+
+YTDL_OPTS = {
+    "default_search": "ytsearch",
+    "format": "bestaudio/best",
+    "quiet": True,
+    "extract_flat": "in_playlist"
+}
+
+
+class Vid:
+    def __init__(self, url_or_search):
+        """Plays audio from (or searches for) a URL."""
+        with youtube_dl.YoutubeDL(YTDL_OPTS) as ydl:
+            video = self._get_info(url_or_search)
+            video_format = video["formats"][0]
+            self.stream_url = video_format["url"]
+            self.video_url = video["webpage_url"]
+            self.title = video["title"]
+
+    def _get_info(self, video_url):
+        with youtube_dl.YoutubeDL(YTDL_OPTS) as ydl:
+            info = ydl.extract_info(video_url, download=False)
+            video = None
+            if "_type" in info and info["_type"] == "playlist":
+                return self._get_info(
+                    info["entries"][0]["url"])  # get info for first video
+            else:
+                video = info
+            return video
+
+
+def ensure_ffmpeg():
+    if "ffmpeg" not in os.listdir():
+        if "LINUX" in platform.platform().upper():
+            link = "https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz"
+            print("DOWNLOADING FFmpeg...")
+            r = requests.get(link)
+            f_dir = os.path.abspath("ffmpeg.tar.gz")
+            with open(f_dir, "wb") as f:
+                f.write(r.content)
+            tar = tarfile.open(f_dir, "r:xz")
+            tar.extractall(path=os.path.abspath("ffmpeg"))
+            tar.close()
+
+        else:
+            print("No FFmeg lol, no sound. linux only. function/music.py")
+    else:
+        print("FFmpeg already exists, skipping...")
+    f_dir = os.path.abspath(os.path.join("ffmpeg", os.listdir(os.path.join(os.getcwd(), "ffmpeg"))[0], "ffmpeg"))
+
+    return f_dir
+
+
+class Music(commands.Cog):
+    def __init__(self, bot: commands.Bot):
+        self.bot = bot
+
+    @commands.slash_command(name="music", description="DJ Discord")
+    async def music(self, interaction: Aci):
+        pass
+
+    @music.sub_command()
+    async def play(self, interaction: Aci, data: str):
+        """Chơi bài hát nào đó."""
+
+        async def get_link():
+            if not data.upper().__contains__("YOUTU"):
+                videos_search = VideosSearch(data, limit=1)
+                videos_result = await videos_search.next()
+                link = "https://youtube.com/watch?v=" + videos_result["result"][0]["id"]
+
+            vs = await Video.getInfo(link, resultMode=ResultMode.json)
+
+            return link, vs
+
+        try:
+            await interaction.guild.voice_client.disconnect()
+        except (disnake.ClientException, AttributeError) as e:
+            pass
+        try:
+            a = interaction.author.voice.channel
+        except TypeError:
+            await interaction.response.send_message(
+                "Vào kênh voice trước đi rồi hãng nói"
+            )
+            return
+
+        client = await a.connect()
+        link = data
+        link, vs = await get_link()
+
+        embed = disnake.Embed(
+            title=f"Đang phát bài {vs['title']}",
+            description=f"Bởi `{vs['channel']['name']}`\nNgày upload: `{vs['uploadDate']}`",
+            color=disnake.Color.red(),
+        )
+        embed.video.url = link
+        embed.set_thumbnail(url=vs["thumbnails"][0]["url"])
+        embed.timestamp = datetime.datetime.now()
+
+        try:
+            video = Vid(link)
+        except youtube_dl.DownloadError as e:
+            await interaction.response.send_message(
+                "loi roi lol"
+            )
+            return
+        self._play_song(
+            client=client,
+            song=video
+        )
+        await interaction.response.send_message(embed=embed)
+
+    @music.sub_command()
+    async def pause(self, interaction: Aci):
+        """Tạm dừng bài nhạc đang phát"""
+        voice_client = interaction.guild.voice_client
+        if voice_client.is_playing():
+            voice_client.pause()
+            await interaction.response.send_message("Đã tạm dừng bài nhạc đang phát.")
+        else:
+            await interaction.response.send_message("Bot hiện không đang phát bài nào.")
+
+    @music.sub_command()
+    async def resume(self, interaction: Aci):
+        """Tiếp tục bài nhạc"""
+        voice_client = interaction.guild.voice_client
+        if voice_client.is_paused():
+            voice_client.resume()
+            await interaction.response.send_message("Đã tiếp tục bài nhạc bị tạm dừng.")
+        else:
+            await interaction.response.send_message("Bot không đang phát bài nào mà bị dừng.")
+
+    @music.sub_command()
+    async def stop(self, interaction: Aci):
+        """Dừng bài nhạc"""
+        voice_client = interaction.guild.voice_client
+        if voice_client.is_playing():
+            voice_client.stop()
+            await voice_client.disconnect()
+            await interaction.response.send_message("Đã dừng bài nhạc đang phát.")
+        else:
+            await interaction.response.send_message("Bot hiện không đang phát bài nào.")
+
+    def _play_song(self, client, song):
+        source = disnake.PCMVolumeTransformer(
+            disnake.FFmpegPCMAudio(
+                song.stream_url,
+                before_options=FFMPEG_BEFORE_OPTS,
+                executable=ensure_ffmpeg()
+            ),
+        )
+
+        def after_playing(err):
+            asyncio.run_coroutine_threadsafe(
+                client.disconnect(),
+                self.bot.loop
+            )
+
+        client.play(source, after=after_playing)
+
+
+def setup(bot: commands.Bot):
+    ensure_ffmpeg()
+    bot.add_cog(Music(bot))

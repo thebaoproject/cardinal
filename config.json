@@ -1,13 +1,15 @@
 {
-  "token": "NzgwNjY4MjcwNzI1NDMxMjk3.X7yb-w.gZqvkh0tD4y1W5nJHrA6VXJ1Dp4",
-  "prefix": ".b ",
+  "token": "-",
+  "prefix": ".c",
   "affect-other-bots": false,
   "language": "en",
   "functions-dir": "functions",
-  "guild-ids": [867312387765567488],
+  "guild-ids": [686814591069585448],
   "rick-rolling": true,
-  "admin-roles": [867313269227257876, 914752754042404895],
-  "social-credit-channel-ids": [897088456906379294],
-  "status": "phản ánh của member nhưng chúng tôi không quan tâm",
-  "standard-role-ids": [867313373980393482]
+  "admin-roles": [754928367115174010],
+  "social-credit-channel-ids": [929628750344249344],
+  "status": "Hentai VR",
+  "standard-role-ids": [867313373980393482],
+  "fire-dtb": "https://troli-320fc-default-rtdb.asia-southeast1.firebasedatabase.app/",
+  "fire-api-key": "AIzaSyAL_oxQF0TIqGSR8J6p_zAZDT4LfOt6j5s"
 }
