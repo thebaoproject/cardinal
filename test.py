@@ -1,13 +1,14 @@
-from functions.music import find_video
+import youtubesearchpython.__future__ as yt
+
 import asyncio
+import json
 
 
-def main():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    result = loop.run_until_complete(find_video("rickroll", 1))
-    print(result)
-
+async def do_stuffs():
+    vs = yt.VideosSearch('xue hua piao piao', limit=1)
+    found = await vs.next()
+    print(json.dumps(found))
 
 if __name__ == "__main__":
-    main()
+    loop = asyncio.new_event_loop()
+    loop.run_until_complete(do_stuffs())

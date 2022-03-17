@@ -1,8 +1,8 @@
 import disnake
+import translations as msg
 
 from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
-from storage import Profile
 
 name = {
     "intelligence": "intelligence",
@@ -16,23 +16,6 @@ des = {
     "refrestdtb": "Làm mới cơ sở dữ liệu toàn server."
 }
 
-msg = {
-    "intelligence": """```
--------------- CƠ BẢN -------------
-Tên thật:            {name}
-Biệt danh:           {nick}
-ID:                  {id}
-Có nitro từ:         {nitro}
-Đăng kí Discord lúc: {res_date}
-Đã vào server lúc:   {join_date}
-```""",
-    "refreshdtb": "Đã làm mới cơ sở dữ liệu thành công."
-}
-
-# Cho con người
-
-title = "Thông tin tình báo về {name}"
-
 
 class Intelligence(commands.Cog):
     def __init__(self, bot):
@@ -41,41 +24,50 @@ class Intelligence(commands.Cog):
     @commands.slash_command(name=name["intelligence"], description=des["intelligence"])
     async def intelligence(self, interaction: Aci, member: disnake.Member):
         # user = Profile(interaction.guild, member.id, member.name)
+        await interaction.response.defer()
         response = disnake.Embed(
-            title=title.format(name=member.name),
-            description=msg["intelligence"].format(
-                name=member.name,
-                nick=member.display_name,
-                id=member.id,
-                nitro=member.premium_since,
-                res_date=member.created_at,
-                join_date=member.joined_at,
-                # Very Broken
-                # inviter=user.inviter.name,
-                # ilink=user.invite_link,
-                # ulink=user.invite_creator
+            title=msg.get(interaction.author, "intel.card.title").format(usr=member.name),
+            color=disnake.Color.blue()
+        )
+        time_format = msg.get(interaction.author, "timeFormat")
+        time_tags = msg.get(interaction.author, "time")
+        response.add_field(msg.get(interaction.author, "intel.card.name"), member.name)
+        response.add_field(msg.get(interaction.author, "intel.card.nickname"), member.display_name)
+        response.add_field(msg.get(interaction.author, "intel.card.id"), member.id)
+        if member.premium_since is None:
+            pre_time = msg.get(interaction.author, "no")
+        else:
+            pre_time = member.premium_since.strftime(time_format)
+        response.add_field(msg.get(interaction.author, "intel.card.pre"), pre_time)
+        response.add_field(
+            msg.get(
+                interaction.author, "intel.card.create"
             ),
+            member.created_at.strftime(time_format).format(
+                h=time_tags["h"],
+                m=time_tags["m"],
+                s=time_tags["s"],
+                d=time_tags["d"],
+                mo=time_tags["mo"],
+                y=time_tags["y"]
+            )
+        )
+        response.add_field(
+            msg.get(
+                interaction.author, "intel.card.join"
+            ),
+            member.joined_at.strftime(time_format).format(
+                h=time_tags["h"],
+                m=time_tags["m"],
+                s=time_tags["s"],
+                d=time_tags["d"],
+                mo=time_tags["mo"],
+                y=time_tags["y"]
+            )
         )
         if member.avatar is not None:
-            response.set_image(member.avatar.url)
-        await interaction.response.send_message(embed=response)
-
-    @commands.slash_command(name=name["refreshdtb"], description=des["refrestdtb"])
-    async def refresh(self, interaction: Aci):
-        guild = interaction.guild
-        for user in guild.members:
-            prof = Profile(guild, user.id, user.name).user
-            if prof.name is None:
-                prof.user = user
-                prof.description = None
-                prof.banned = False
-                prof.ban_due = None
-                prof.inviter = None
-                prof.invite_link = None
-                prof.invite_creator = None
-                prof.commit()
-
-        interaction.response.send_message(msg["refreshdtb"])
+            response.set_thumbnail(member.avatar.url)
+        await interaction.edit_original_message(embed=response)
 
 
 def setup(bot: commands.Bot):

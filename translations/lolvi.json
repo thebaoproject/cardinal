@@ -1,0 +1,118 @@
+{
+  "mod": {
+    "ban": {
+      "public": [
+        "{usr} bay ra khỏi server với một quỹ đạo xác định. Chắc là do `{reas}`, bởi {admin} quyết định với thời hạn {dur}",
+        "UwU {admin} định cho {usr} kẹo nhưng thực chất là kẹo đồng: vì `{reas}` và phải nằm viện trong {dur}",
+        "{admin} đã sử dụng chiêu Uwu lên {usr}: K.O. | lí do: `{reas}`; thời hạn {dur}",
+        "{usr} bị dính chưởng của {admin} rồi: chiêu ban siêu cấp với lí do `{reas}` và thời hạn {dur} "
+      ],
+      "dm": "Xin lỗi, bạn đã bị cấm khỏi server bởi {admin}, với lí do `{reas}`"
+    },
+    "tempban": "Xin lỗi, câu lệnh này chưa được hoàn thành, trong quá trình thử nghiệm.",
+    "kick": {
+      "public": [
+        "{usr} bịk đủi khỏi sv ròi: `{reas}` bởi {admin}",
+        "{admin} gọi đụi quân mèo ra để đuổi {usr} ra khủi sv. Vì `{reas}` đấy.",
+        "rip {usr}, {admin} đuổi vì: `{reas}`"
+      ],
+      "dm": "Xin lỗi, bạn đã bị đuổi khỏi server bởi {admin} với lí do: `{reas}`"
+    },
+    "warn": {
+      "public": [
+        "{usr}, bạn đã bị kảnh káo về: `{reas}` bởi {admin}",
+        "{usr} đã bị cảnh cáo bởi {admin} về: `{reas}`"
+      ]
+    },
+    "unban": {
+      "public": [
+        "Chủ tọ {admin} quyên bố: tha cho bị mèo {usr} vì `{reas}`",
+        "{usr} lại quay trở lại đội quân hello kitty của {admin} rồi, với lí do: `{reas}`",
+        "{admin} + U3N2Ba4N  --t*--> {usr}(OK2)3 + `{reas}`"
+      ],
+      "dm": "Bạn đã được gỡ lệnh cấm bởi {admin}, với lí do là: `{reas}`"
+    },
+    "perms": {
+      "public": [
+        "ko đâu pé ơi",
+        "lol",
+        "anh bạn à",
+        "sike",
+        "ta lằng ta lằng.",
+        "you know the rules, and so do i..."
+      ]    },
+    "isolate": {
+      "public": [
+        "{usr} đã bị kách li bởi {admin}, không phải do COVID mà do `{reas}`.",
+        "{admin} + {reas} --> {usr} + KHOAMOM.",
+        "{admin} UwU làm cho {usr} phải im miệng vì `{reas}`"
+      ],
+      "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị cách li bởi {admin} vì `{reas}` trong {dur} kìa."
+    },
+    "unspecifiedReason": "ko có mo tả",
+    "forever": "vĩnk cửu"
+  },
+  "intel": {
+    "card": {
+      "title": "Thông tin nghe đc dưới gầm giường của {usr}",
+      "name": "Ten",
+      "nickname": "Bịt danh",
+      "id": "ID",
+      "pre": "Nitro?",
+      "create": "Đng kí Dscrd",
+      "join": "when sv"
+    },
+    "refreshdtb": "trí nhớ đã đc dọn sạch."
+  },
+  "music": {
+    "chooseCard": "{title} - {channel}",
+    "buttonChooseLabel": "Chọn & Chơi luôn cho máu",
+    "songDescription": {
+        "title": "Tiu đề",
+        "description": "Mô-tả",
+        "length": "Bao lâu",
+        "channel": "Kên",
+        "url": "sauce"
+    },
+    "error": {
+        "notInVoice": "vào voice đi pé ơi.",
+        "videoNotFound": "ko tìm thấy ròi.",
+        "internalError": "Lỗi nội bộ bot. Hãy spam ping <@!603577134535147524> để thanh niên này xử lí."
+    },
+    "success": {
+        "pause": "okii.",
+        "stop": "o hết nhạc ròi",
+        "list": "đây nè:",
+        "skip": "ok, không nge bài đó nữa."
+    },
+    "noDescription": "ko co mo tả rò",
+    "noSongInQueue": "ko co gi UwU"
+  },
+  "config": {
+    "read": "Giá trị của `{tag}` là `{value}`",
+    "write": "Đã ghi đè lên `{tag}`: `{value}` (giá trị cũ là `{old_value}`)",
+    "error": {
+      "invalidTag": "Giá trị `{tag}` không tồn tại.",
+      "invalidValue": "Giá trị `{value}` không hợp lệ."
+    }
+  },
+  "timeFormat": "%H {h} %M {m} %S {s}, {d} %d {mo} %m {y} %Y",
+  "time": {
+    "h": "giừ",
+    "m": "pút",
+    "s": "giây",
+    "d": "ngày",
+    "mo": "thg",
+    "y": "năm"
+  },
+  "true": "chủn",
+  "fasle": "khum chủn",
+  "yes": "cúm",
+  "no": "khun",
+  "setup": {
+    "noDM": "Đừng DM tôi!",
+    "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
+    "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\n Hãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
+    "languageSuccess": "Ngôn ngữ của bạn đã được đặt thành {lang}. Bạn có thể thay đổi bằng lệnh `/settings language`."
+  }
+}

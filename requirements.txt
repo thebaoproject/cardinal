@@ -3,4 +3,7 @@ opencv-python
 scipy
 sympy
 youtube_dl
+youtube-search-python
+pyrebase4
+colorlog
 requests

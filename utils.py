@@ -1,9 +1,6 @@
 import datetime
 
 
-def handle_error(content: str):
-    print(content)
-
 
 def handle_time(time: str):
     """
