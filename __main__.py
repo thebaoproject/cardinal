@@ -32,7 +32,7 @@ if __name__ == "__main__":
     log_level = logger.DEBUG if "--debug" in sys.argv else logger.INFO
     logger.set_min_level(log_level)
     logger.info("Bot staring algorithm is initiated")
-    logger.info(f"Using token '{cfg.read('token')}'")
+    logger.info(f"Using token '{cfg.read('bot-token')}'")
     logger.info(f"Starting Cogs initiation")
     # Copied from Stack Overflow (tm)
     # Loads important cogs
@@ -54,13 +54,13 @@ if __name__ == "__main__":
                 logger.warning(f"Cannot load joke cog {file}: no setup() method found")
 
     # Load games
-    for file in os.listdir("games"):
-        if file.endswith(".py"):
-            try:
-                bot.load_extension(f"games.{file[:-3]}")
-                logger.info(f"Successfully loaded game cog {file}")
-            except disnake.ext.commands.errors.NoEntryPointError:
-                logger.warning(f"Cannot load game cog {file}: no setup() method found")
+    # for file in os.listdir("games"):
+    #     if file.endswith(".py"):
+    #         try:
+    #             bot.load_extension(f"games.{file[:-3]}")
+    #             logger.info(f"Successfully loaded game cog {file}")
+    #         except disnake.ext.commands.errors.NoEntryPointError:
+    #             logger.warning(f"Cannot load game cog {file}: no setup() method found")
 
     logger.info("Running bot with token...")
-    bot.run(cfg.read("token"))
+    bot.run(cfg.read("bot-token"))
