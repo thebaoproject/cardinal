@@ -6,8 +6,9 @@ import disnake
 import logger
 import translations as msg
 import youtube_dl as ytdl
+import asyncio
 
-from disnake.ext import commands
+from disnake.ext import commands, tasks
 from enum import Enum
 from disnake import ApplicationCommandInteraction as Aci
 
@@ -22,8 +23,9 @@ PLAYING = {}
 QUEUE = []
 CHOICES = []
 CHOSEN = -1
-BOT = None
-VOICE_CLIENT = None
+BOT: commands.Bot = None
+VOICE_CLIENT: disnake.VoiceClient = None
+SKIPPING = False
 
 
 class MusicStatus(Enum):
@@ -40,24 +42,32 @@ class MusicStatus(Enum):
 
 
 class SongSelect(disnake.ui.Button):
-    def __init__(self, lang: disnake.User):
+    def __init__(self, lang: disnake.User, supposed_choice: dict):
         super().__init__(
             style=disnake.ButtonStyle.green,
             label=msg.get(lang, "music.buttonChooseLabel")
         )
+        self.supposed_choice = supposed_choice
 
     async def callback(self, interaction: disnake.MessageInteraction):
+        await interaction.response.defer()
         global QUEUE
         global CHOICES
         global CHOSEN
         global VOICE_CLIENT
-        QUEUE.append(CHOICES[CHOSEN])
+        QUEUE.append(self.supposed_choice)
         if _is_in_voice(interaction.author):
             channel = interaction.author.voice.channel
             if VOICE_CLIENT is None:
                 VOICE_CLIENT = await channel.connect()
-            await interaction.send(embed=infobox(QUEUE[0], interaction.author))
-            await _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+            try:
+                await interaction.send(embed=infobox(self.supposed_choice, interaction.author))
+                await _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+            except IndexError:
+                pass
+            except disnake.ClientException as e:
+                logger.warning(f"ClientException received: {e}")
+                pass
         else:
             await interaction.send(msg.get(interaction.author, "music.error.notInVoice"))
 
@@ -79,7 +89,7 @@ class SongChooser(disnake.ui.Select):
         global CHOICES
         CHOSEN = int(self.values[0])
         chosen_info = CHOICES[CHOSEN]
-        ok = SongSelect(interaction.author)
+        ok = SongSelect(interaction.author, chosen_info)
         ui = disnake.ui.View()
         ui.add_item(self)
         ui.add_item(ok)
@@ -128,7 +138,7 @@ async def find_video(query: str, find: int = 5) -> list[dict]:
 
 def _is_playing():
     """Checks that audio is currently playing before continuing."""
-    return bool(PLAYING)
+    return VOICE_CLIENT.is_playing()
 
 
 def extract_juice(video_url: str):
@@ -177,11 +187,16 @@ async def _play(client: disnake.VoiceClient, url: str):
             logger.error(err)
         else:
             global QUEUE
-            if len(QUEUE) == 1:
+            global SKIPPING
+            if not SKIPPING:
+                logger.warning(f"Trying to pop a song out of the queue... {QUEUE}")
+                QUEUE.pop(0)
+            else:
+                SKIPPING = False
+            if len(QUEUE) == 0:
                 return
-            QUEUE.pop(0)
             _play(client, QUEUE[0]["url"])
-
+    logger.debug(f"Đang chơi... {url}")
     client.play(msc, after=_after)
 
 
@@ -234,7 +249,7 @@ def ensure_ffmpeg() -> str:
         logger.info("Found FFmpeg installed on your system. Getting its path...")
     ffmpeg_executable = "ffmpeg"
     ffmpeg_executable += ".exe" if os.name == "nt" else ""
-    f_dir = os.path.abspath(os.path.join("ffmpeg", os.listdir(os.path.join(os.getcwd(), ffmpeg_executable))[0]))
+    f_dir = os.path.abspath(os.path.join("ffmpeg", ffmpeg_executable))
     logger.info(f"FFmpeg found at {f_dir}")
     return f_dir
 
@@ -314,32 +329,45 @@ class Music(commands.Cog):
         global CHOICES
         CHOICES = songs
         await _song_choose(interaction, songs)
-        if not _is_playing():
-            self.voice_client = VOICE_CLIENT
-            try:
-                await interaction.send(embed=infobox(QUEUE[0], interaction.author))
-                await _play(self.voice_client, QUEUE[0]["rawurl"])
-            except IndexError:
-                pass
+        # if not _is_playing():
+        #     self.voice_client = VOICE_CLIENT
+        #     try:
+        #         await interaction.send(embed=infobox(CHOICES[CHOSEN], interaction.author))
+        #         try:
+        #             await _play(self.voice_client, QUEUE[0]["rawurl"])
+        #         except disnake.ClientException:
+        #             pass
+        #     except IndexError:
+        #         pass
 
     @music.sub_command()
     async def skip(self, interaction: Aci, song_number: int = 0):
         """Bỏ qua bài nhạc có số thứ tự được nêu. Mặc định là bài tiếp theo."""
+        await interaction.response.defer()
         global QUEUE
+        global VOICE_CLIENT
+        logger.debug(f"Trying to pop a song out of the queue... {QUEUE}")
         QUEUE.pop(song_number)
         if song_number == 0:
+            global SKIPPING
+            SKIPPING = True
             await _stop()
-        await interaction.send(msg.get(interaction.author, "music.success.skip"))
+        if len(QUEUE) != 0:
+            VOICE_CLIENT = await interaction.author.voice.channel.connect()
+            logger.debug("Trying to play the next song")
+            await _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+        await interaction.edit_original_message(content=msg.get(interaction.author, "music.success.skip"))
 
     @music.sub_command()
     async def listqueue(self, interaction: Aci):
         """Hiện danh sách phát bài nhạc"""
+        await interaction.response.defer()
         embeds = []
         global QUEUE
         for i in QUEUE:
             embeds.append(infobox(i, interaction.author))
-        await interaction.send(
-            msg.get(interaction.author, "music.success.list") +
+        await interaction.edit_original_message(
+            content=msg.get(interaction.author, "music.success.list") +
             msg.get(interaction.author, "music.noSongInQueue") if len(QUEUE) == 0 else "",
             embeds=embeds
         )

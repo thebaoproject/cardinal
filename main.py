@@ -3,10 +3,7 @@ import sys
 import disnake
 import logger
 import config_manager as cfg
-try:
-    import colorlog
-except ImportError:
-    pass
+import asyncio
 
 from disnake.ext import commands
 

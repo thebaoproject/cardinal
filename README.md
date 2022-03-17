@@ -9,7 +9,7 @@ pip install -r requirements.txt
 ```
 Run the project with:
 ```shell
-python __main__.py
+python main.py
 ```
 CLI is avaliable. You can run that with `--cli` or `-c` argument added to the end of the former command.
 
