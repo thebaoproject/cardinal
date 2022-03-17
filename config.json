@@ -1,5 +1,5 @@
 {
-  "token": "-",
+  "token": null,
   "prefix": ".c",
   "affect-other-bots": false,
   "language": "en",
@@ -8,8 +8,8 @@
   "rick-rolling": true,
   "admin-roles": [754928367115174010],
   "social-credit-channel-ids": [929628750344249344],
-  "status": "Hentai VR",
+  "status": null,
   "standard-role-ids": [867313373980393482],
-  "fire-dtb": "https://troli-320fc-default-rtdb.asia-southeast1.firebasedatabase.app/",
-  "fire-api-key": "AIzaSyAL_oxQF0TIqGSR8J6p_zAZDT4LfOt6j5s"
+  "fire-dtb": null,
+  "fire-api-key": null
 }
