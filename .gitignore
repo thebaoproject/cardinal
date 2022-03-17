@@ -9,8 +9,6 @@ __pycache__
 *.pyc
 env/
 config.json
-ffmpeg.tar.gz
-ffmpeg
 dtb.json
 test.py
 *.webm

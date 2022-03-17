@@ -6,9 +6,8 @@ import disnake
 import logger
 import translations as msg
 import youtube_dl as ytdl
-import asyncio
 
-from disnake.ext import commands, tasks
+from disnake.ext import commands
 from enum import Enum
 from disnake import ApplicationCommandInteraction as Aci
 
