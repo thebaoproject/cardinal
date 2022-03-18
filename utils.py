@@ -49,7 +49,7 @@ def handle_time(time: str):
             day=timer["d"]
         )
 
-def get_key(dictonary: dict, value: any) -> str | int | bool:
+def get_key(dictonary: dict, value: any):
     """
     A simple function to find a dict key by its value.
 
