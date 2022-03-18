@@ -1,6 +1,7 @@
 import disnake
 import translations as msg
 import storage
+import utils
 
 from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
@@ -34,7 +35,7 @@ class LanguageChooser(disnake.ui.Select):
             "description": None,
         }
         dtb.child("users").child(str(interaction.user.id)).set(data)
-        await interaction.send(msg.get(self.values[0], "setup.languageSuccess"))
+        await interaction.send(msg.get(self.values[0], "setup.languageSuccess").format(lang=utils.get_key(msg.LANG_LIST, self.values[0])))
 
 
 class DontSpamMeButton(disnake.ui.Button):
@@ -48,7 +49,8 @@ class DontSpamMeButton(disnake.ui.Button):
         await interaction.send(
             msg.get(interaction.locale, "setup.noDMok")
         )
-        storage.get_dtb().child("users").child(str(interaction.user.id)).child("dm").set(False)
+        storage.get_dtb().child("users").child(
+            str(interaction.user.id)).child("dm").set(False)
 
 
 class Setup(commands.Cog):

@@ -114,6 +114,6 @@
     "noDM": "Don't DM me!",
     "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
     "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
-    "languageSuccess": "Your language has been changed to {lang}. You can change it later by using `/settings language`."
+    "languageSuccess": "`/settings language` ƃuᴉsn ʎq ɹǝʇɐl ʇᴉ ǝƃuɐɥɔ uɐɔ no⅄ .{lang} oʇ pǝƃuɐɥɔ uǝǝq sɐɥ ǝƃɐnƃuɐl ɹno⅄."
   }
 }

@@ -22,8 +22,8 @@ PLAYING = {}
 QUEUE = []
 CHOICES = []
 CHOSEN = -1
-BOT: commands.Bot = None
-VOICE_CLIENT: disnake.VoiceClient = None
+BOT = None
+VOICE_CLIENT = None
 SKIPPING = False
 
 
@@ -253,7 +253,7 @@ def ensure_ffmpeg() -> str:
     return f_dir
 
 
-async def _song_choose(interaction: Aci, songs: list[dict[str, str, disnake.User]]):
+async def _song_choose(interaction: Aci, songs: list[dict]):
     """
     Displays a graphical UI to choose the song.
     """
@@ -286,7 +286,8 @@ def _scrap_result(result, lang):
             "description": description,
             "thumbnail": i["thumbnails"][0]["url"],
             "url": i["link"],
-            "rawurl": extract_juice(i["link"])
+            "rawurl": extract_juice(i["link"]),
+            "id": i["id"]
         })
     return output
 

@@ -113,6 +113,6 @@
     "noDM": "Đừng DM tôi!",
     "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
     "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\n Hãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
-    "languageSuccess": "Ngôn ngữ của bạn đã được đặt thành {lang}. Bạn có thể thay đổi bằng lệnh `/settings language`."
+    "languageSuccess": "Ngôn ngữ của pé đã đc đặt lè {lang}. Nếu pé ko thik á, đổi = cách `/settings language`."
   }
 }

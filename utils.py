@@ -1,7 +1,6 @@
 import datetime
 
 
-
 def handle_time(time: str):
     """
     Convert "time string"s like 3m4s into neat datetime format
@@ -49,3 +48,18 @@ def handle_time(time: str):
             hour=timer["h"],
             day=timer["d"]
         )
+
+def get_key(dictonary: dict, value: any) -> str | int | bool:
+    """
+    A simple function to find a dict key by its value.
+
+    Args:
+        dictionary (dict): The dictionary to find the key in.
+        value (any): The key's value.
+
+    Returns:
+        int | bool | str: The key.
+    """
+    for k, val in dictonary.items():
+        if val == value:
+            return k

@@ -3,6 +3,7 @@ import utils
 import random
 import translations as msg
 import config_manager as cfg
+import storage
 
 from disnake import ApplicationCommandInteraction as Aci
 from disnake.ext import commands
@@ -66,13 +67,13 @@ async def say_goodbye(
         nduration = duration
     await to.send(
         random.choice(msg.get(lang, string + ".public")).format(
-            member=member.mention,
+            usr=member.mention,
             admin=admin.mention,
             dur=nduration,
             reas=nreason
         )
     )
-    if dm:
+    if dm and storage.get_dtb().child("users").child(str(member.id)).child("dm").get():
         await member.send(
             random.choice(msg.get(lang, string + ".dm")).format(
                 admin=admin.name,
