@@ -44,9 +44,9 @@
     },
     "isolate": {
       "public": [
-        "{usr} nói n'iều kuá dấy. Bạn bị kác li bởi {admin} kìa. Zo `{reas}` dấy.",
-        "Daq xóa mồm {usr} vì `{reas}`... Xoq, wưa qài {admin}.",
-        "{admin} bảo tôi tìm kác làm co {usr} im miệq vì `{reas}`"
+        "{usr} nói n'iều kuá dấy. Bạn bị kác li bởi {admin} coq `{dur}` kìa. Zo `{reas}` dấy.",
+        "Daq xóa mồm {usr} coq `{dur}` vì `{reas}`... Xoq, wưa qài {admin}.",
+        "{admin} bảo tôi tìm kác làm co {usr} im miệq coq `{dur}` vì `{reas}`"
       ],
       "dm": "An' bạn à, nói n'iều kuá dấy. Bạn bị kác li bởi {admin} vì `{reas}` coq {zuz} kìa."
     },

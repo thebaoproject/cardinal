@@ -3,7 +3,7 @@ import sys
 import disnake
 import logger
 import config_manager as cfg
-import asyncio
+import logger
 
 from disnake.ext import commands
 
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     log_level = logger.DEBUG if "--debug" in sys.argv else logger.INFO
     logger.set_min_level(log_level)
     logger.info("Bot staring algorithm is initiated")
-    logger.info(f"Using token '{cfg.read('bot-token')}'")
+    logger.info(f"Using token '***************************************'")
     logger.info(f"Starting Cogs initiation")
     # Copied from Stack Overflow (tm)
     # Loads important cogs

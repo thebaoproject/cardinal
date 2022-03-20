@@ -44,11 +44,11 @@
     },
     "isolate": {
       "public": [
-        ".`{reas}` ǝsnɐɔǝq ,{dur} ɹoɟ ɯᴉɥ ǝʇɐlosᴉ oʇ pǝpᴉɔǝp {admin} ʇɐɥʇ ɥɔnɯ os uǝʞods sɐɥ {usr}",
-        ".){admin} ʎq pǝʇsǝnbǝɹ( .ǝuoᗰ ...`{reas}` ǝsnɐɔǝq {dur} ɹoɟ dn {usr} ʞɔol oʇ ƃuᴉʎɹᴛ",
-        "`{dur} ɹoɟ {reas}` ǝsnɐɔǝq dn {usr} ʇnɥs oʇ ǝq pǝʞsɐ sɐɥ {admin}"
+        ".`{reas}` ǝsnɐɔǝq ,`{dur}` ɹoɟ ɯᴉɥ ǝʇɐlosᴉ oʇ pǝpᴉɔǝp {admin} ʇɐɥʇ ɥɔnɯ os uǝʞods sɐɥ {usr}",
+        ".){admin} ʎq pǝʇsǝnbǝɹ( .ǝuoᗰ ...`{reas}` ǝsnɐɔǝq `{dur}` ɹoɟ dn {usr} ʞɔol oʇ ƃuᴉʎɹᴛ",
+        "`{dur}` ɹoɟ `{reas}` ǝsnɐɔǝq dn {usr} ʇnɥs oʇ ǝq pǝʞsɐ sɐɥ {admin}"
       ],
-      "dm": ".{dur} ɹoɟ `{reas}` ǝsnɐɔǝq {admin} ʎq pǝʇɐlosᴉ uǝǝq ǝʌɐɥ no⅄"
+      "dm": ".`{dur}` ɹoɟ `{reas}` ǝsnɐɔǝq {admin} ʎq pǝʇɐlosᴉ uǝǝq ǝʌɐɥ no⅄"
     },
     "unspecifiedReason": "ƃuᴉɥʇou",
     "forever": "ɹǝʌǝɹoɟ"
@@ -66,7 +66,7 @@
     "refreshdtb": ".ʎllnɟssǝɔɔns pǝɥsǝɹɟǝɹ uǝǝq ǝʌɐɥ ǝsɐqɐʇɐp ǝɥᴛ"
   },
   "music": {
-    "chooseCard": "{lǝuuɐɥɔ} - {ǝlʇᴉʇ}",
+    "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "ƃuᴉʎɐld ʇɹɐʇS & ǝsooɥƆ",
     "songDescription": {
       "title": "ǝlʇᴉᴛ",

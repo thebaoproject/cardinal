@@ -44,11 +44,11 @@
     },
     "isolate": {
       "public": [
-        "{usr} has spoken so much that {admin} decided to isolate him for {dur}, because `{reas}`.",
-        "Trying to lock {usr} up for {dur} because `{reas}`... Done. (requested by {admin}).",
-        "{admin} has asked be to shut {usr} up because `{reas} for {dur}`"
+        "{usr} has spoken so much that {admin} decided to isolate him for `{dur}`, because `{reas}`.",
+        "Trying to lock {usr} up for `{dur}` because `{reas}`... Done. (requested by {admin}).",
+        "{admin} has asked be to shut {usr} up because `{reas}` for `{dur}`"
       ],
-      "dm": "You have been isolated by {admin} because `{reas}` for {dur}."
+      "dm": "You have been isolated by {admin} because `{reas}` for `{dur}`."
     },
     "unspecifiedReason": "nothing",
     "forever": "forever"

@@ -1,7 +1,12 @@
 # Yes, I implement my own logger algorithm,
 import datetime
 import inspect
+import os
 
+from disnake.ext import tasks
+
+
+LOG = []
 
 __FORMAT = "{color}[{time} {level}] {file}:{line}: "
 
@@ -45,9 +50,11 @@ LV2CL = {
 def _log(filename: str, line: int, level: int, *message: str):
     ct = datetime.datetime.now()
     time = f"{ct.hour}:{ct.minute}:{ct.second}"
+    if level > __MIN_LEVEL:
+        return
     print(
         __FORMAT.format(
-            file=filename,
+            file=os.path.relpath(filename),
             time=time,
             color=LV2CL[str(level)],
             line=line,
@@ -55,6 +62,16 @@ def _log(filename: str, line: int, level: int, *message: str):
         ),
         *message,
         sep=""
+    )
+    LOG.append(
+        __FORMAT.format(
+            file=os.path.relpath(filename),
+            time=time,
+            color="",
+            line=line,
+            level=N2LV[str(level)]
+        ) +
+        "".join(message)
     )
 
 

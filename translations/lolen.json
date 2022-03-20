@@ -44,13 +44,13 @@
     },
     "isolate": {
       "public": [
-        "{admin} wnt {usr} to sht up for {dur}, so he did it for `{reas}`.",
-        "Locking {usr} up 4 {dur} bcz `{reas}`... ok. (requested by {admin}).",
-        "{admin} used duct tape to slience {usr}, because `{reas} for {dur}`"
+        "{admin} wnt {usr} to sht up 4 `{dur}`, so he did it for `{reas}`.",
+        "Locking {usr} up 4 `{dur}` bcz `{reas}`... ok. (requested by {admin}).",
+        "{admin} used duct tape to slience {usr}, because `{reas}` 4 `{dur}`"
       ],
-      "dm": "You have been isolated by {admin} because `{reas}` for {dur}."
+      "dm": "You have been isolated by {admin} because `{reas}` for `{dur}`."
     },
-    "unspecifiedReason": "nothing at all",
+    "unspecifiedReason": "nothin' at all",
     "forever": "f o r e v e r"
   },
   "intel": {

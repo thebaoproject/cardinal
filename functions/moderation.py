@@ -1,4 +1,8 @@
+import datetime
+
 import disnake
+
+import logger
 import utils
 import random
 import translations as msg
@@ -43,6 +47,8 @@ async def enough_permission(interaction: Aci):
     for role_id in cfg.read("admin-roles"):
         if interaction.author.get_role(role_id) is None:
             await interaction.response.send_message(random.choice(msg.get(interaction.author, "mod.perms.public")))
+            logger.info(f"{interaction.author} tried to get access to administrative commands, but access is denied: "
+                        f"not enough premission.")
             return False
     return True
 
@@ -57,6 +63,19 @@ async def say_goodbye(
     duration: str = None,
     dm: bool = True
 ):
+    """
+    Says goodbye to a member when he is punished by a moderation command.
+
+    Args:
+        to (disnake.ApplicationCommandInteraction | disnake.Messagable): The public channel to send the message to
+        member (disnake.Member): The member to send the message to.
+        admin (disnake.Member): The moderator who punished the member.
+        string (str): The codename of the string needed.
+        lang (disnake.User): The user from whom the language will be infered
+        reason (str, optional): The reason for the punishment. Defaults to None.
+        duration (str, optional): The duration of the punishment. Defaults to None.
+        dm (bool, optional): Whether will the member be dm-ed. Will check if they had dm enabled first. Defaults to True.
+    """
     if reason is None:
         nreason = msg.get(lang, "mod.unspecifiedReason")
     else:
@@ -81,6 +100,17 @@ async def say_goodbye(
                 reas=nreason
             )
         )
+    logger.success(f"{to.author} ({to.author.id}) has used {string} on {member} ({member.id})")
+    punishments = storage.get_dtb().child("users").child(str(member.id)).child("violations").child(string)
+    punishments_list = punishments.get()
+    punishments_list.append({
+        "time": datetime.datetime.now().timestamp(),
+        "type": string,
+        "adminID": to.author.id,
+        "reason": reason,
+        "duration": duration,
+    })
+    punishments.set(punishments_list)
 
 
 class Moderate(commands.Cog):

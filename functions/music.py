@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import youtubesearchpython.__future__ as yt
 
 import os
@@ -22,8 +24,8 @@ PLAYING = {}
 QUEUE = []
 CHOICES = []
 CHOSEN = -1
-BOT = None
-VOICE_CLIENT = None
+BOT: commands.Bot | None = None
+VOICE_CLIENT: disnake.VoiceClient | None = None
 SKIPPING = False
 
 
@@ -61,7 +63,7 @@ class SongSelect(disnake.ui.Button):
                 VOICE_CLIENT = await channel.connect()
             try:
                 await interaction.send(embed=infobox(self.supposed_choice, interaction.author))
-                await _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+                _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
             except IndexError:
                 pass
             except disnake.ClientException as e:
@@ -84,6 +86,7 @@ class SongChooser(disnake.ui.Select):
         )
 
     async def callback(self, interaction: disnake.MessageInteraction):
+        await interaction.response.defer()
         global CHOSEN
         global CHOICES
         CHOSEN = int(self.values[0])
@@ -102,7 +105,7 @@ class SongChooser(disnake.ui.Select):
         logger.debug(f"User has chosen {self.values[0]}")
 
 
-async def find_video(query: str, find: int = 5) -> list[dict]:
+async def find_video(query: str, find: int = 5) -> dict | None | any:
     """
     Find the video with the specified query/link.
 
@@ -115,7 +118,7 @@ async def find_video(query: str, find: int = 5) -> list[dict]:
 
     Returns
     -------
-    info: list[dict]
+    info: dict
         The info of the video found.
     """
     logger.debug(f"Video search request initiated: '{query}', finding {find} videos.")
@@ -140,13 +143,39 @@ def _is_playing():
     return VOICE_CLIENT.is_playing()
 
 
-def extract_juice(video_url: str):
+async def search_results(inter: disnake.ApplicationCommandInteraction, inp: str):
+    s = yt.Suggestions()
+    result = await s.get(language="vi", region="VN", query=inp)
+    output = result["result"][:5]
+    return output
+
+
+def extract_juice(video_url: str) -> str:
+    """
+    Get a video raw link from its YouTube URL.
+
+    Args:
+        video_url (str): The URL of the video.
+
+    Returns:
+        str: The raw video URL.
+    """    
     with ytdl.YoutubeDL(YDL_OPTIONS) as ydl:
         info = ydl.extract_info(video_url, download=False)
         return info["formats"][0]["url"]
 
 
-def infobox(video: dict, lang):
+def infobox(video: dict, lang) -> disnake.Embed:
+    """
+    Generates an infobox for the song.
+
+    Args:
+        video (dict): The video information. Supposed to come from _scrap_result()
+        lang (disnake.User): The user from whom the language will be infered
+
+    Returns:
+        disnake.Embed: The embed which contains the infobox.
+    """    
     embed = disnake.Embed(title=video["title"], color=disnake.Color.red())
     embed.add_field(msg.get(lang, "music.songDescription.title"), video["title"])
     embed.add_field(msg.get(lang, "music.songDescription.length"), video["length"])
@@ -157,20 +186,26 @@ def infobox(video: dict, lang):
 
 
 def _is_in_voice(member: disnake.Member) -> bool:
+    """
+    Checks whether the user is in a voice channel.
+
+    Args:
+        member (disnake.Member): The member to check.
+
+    Returns:
+        bool: Whether the user is in a voice channel.
+    """    
     voice = member.voice
     return bool(voice) and bool(voice.channel)
 
 
-async def _play(client: disnake.VoiceClient, url: str):
+def _play(client: disnake.VoiceClient, url: str):
     """
-    Plays the video with the url above.
+    Plays a song using the provided voice client and raw video URL.
 
-    Parameters
-    ----------
-    client: disnake.VoiceClient
-        The client the bot is connected to
-    url: str
-        The URL of the video.
+    Args:
+        client (disnake.VoiceClient): The voice client the bot is conected to.
+        url (str): The URL of the raw video.
     """
     msc = disnake.PCMVolumeTransformer(
         disnake.FFmpegPCMAudio(
@@ -188,7 +223,7 @@ async def _play(client: disnake.VoiceClient, url: str):
             global QUEUE
             global SKIPPING
             if not SKIPPING:
-                logger.warning(f"Trying to pop a song out of the queue... {QUEUE}")
+                logger.debug(f"Trying to pop a song out of the queue... {QUEUE}")
                 QUEUE.pop(0)
             else:
                 SKIPPING = False
@@ -220,14 +255,13 @@ async def _stop():
 
 def ensure_ffmpeg() -> str:
     """
-    Ensures that ffmpeg is installed on the system.
+    Finds the FFMPEG executable.
 
-    Returns
-    -------
-    f_dir: str
-        The directory where the ffmpeg executable lives.
+    Returns:
+        str: The location of the FFMPEG executable
     """
     if "ffmpeg" not in os.listdir():
+        # Downloading is not supported anymore
         # if "LINUX" in platform.platform().upper():
         #     link = "https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz"
         #     logger.info(
@@ -255,7 +289,11 @@ def ensure_ffmpeg() -> str:
 
 async def _song_choose(interaction: Aci, songs: list[dict]):
     """
-    Displays a graphical UI to choose the song.
+    Presents the user with a UI to choose the song.
+
+    Args:
+        interaction (disnake.ApplicationCommandInteraction): The interaction object.
+        songs (list[dict]): The song list found in his request.
     """
     choices = SongChooser(interaction.author)
     for i, v in enumerate(songs):
@@ -269,15 +307,24 @@ async def _song_choose(interaction: Aci, songs: list[dict]):
     await interaction.send(view=ui)
 
 
-def _scrap_result(result, lang):
-    """Extract juice"""
+def _scrap_result(result, lang) -> list[dict]:
+    """
+    Removes the useless bits from the raw result.
+
+    Args:
+        result (dict): The result returned from the youtube-dl library.
+        lang (disnake.User): The user from whom the language will be infered.
+
+    Returns:
+        list[dict]: The now useful bits.
+    """
     videos = result
     output = []
     for i in videos:
         logger.debug(f"parsing video: {i}")
         try:
             description = i["descriptionSnippet"][0]["text"]
-        except TypeError:
+        except (TypeError, KeyError):
             description = msg.get(lang, "music.noDescription")
         output.append({
             "title": i["title"],
@@ -306,6 +353,8 @@ class Music(commands.Cog):
         """Dừng bài nhạc"""
         await _stop()
         await interaction.send(msg.get(interaction.author, "music.success.stop"))
+        global QUEUE
+        QUEUE = []
 
     @music.sub_command()
     async def pause(self, interaction: Aci):
@@ -314,7 +363,7 @@ class Music(commands.Cog):
         await interaction.send(msg.get(interaction.author, "music.success.pause"))
 
     @music.sub_command()
-    async def play(self, interaction: Aci, query: str):
+    async def play(self, interaction: Aci, query: str = commands.Param(autocomplete=search_results)):
         """Chơi bài hát nào đó."""
         if not _is_in_voice(interaction.author):
             await interaction.send(msg.get(interaction.author, "music.error.notInVoice"))
@@ -355,7 +404,7 @@ class Music(commands.Cog):
         if len(QUEUE) != 0:
             VOICE_CLIENT = await interaction.author.voice.channel.connect()
             logger.debug("Trying to play the next song")
-            await _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+            _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
         await interaction.edit_original_message(content=msg.get(interaction.author, "music.success.skip"))
 
     @music.sub_command()

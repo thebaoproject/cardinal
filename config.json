@@ -11,5 +11,6 @@
   "status": null,
   "standard-role-ids": [867313373980393482],
   "fire-dtb": null,
-  "fire-api-key": null
+  "fire-api-key": null,
+  "spam-threshold": 0.6
 }

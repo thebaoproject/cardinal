@@ -44,9 +44,9 @@
     },
     "isolate": {
       "public": [
-        "{usr} nói nhiều quá đấy. Bạn bị cách li bởi {admin} kìa. Do `{reas}` đấy.",
-        "Đang khóa mồm {usr} vì `{reas}`... Xong, thưa ngài {admin}.",
-        "{admin} bảo tôi tìm cách làm cho {usr} im miệng vì `{reas}`"
+        "{usr} nói nhiều quá đấy. Bạn bị cách li bởi {admin} trong `{dur}` kìa. Do `{reas}` đấy.",
+        "Đang khóa mồm {usr} trong `{dur}` vì `{reas}`... Xong, thưa ngài {admin}.",
+        "{admin} bảo tôi tìm cách làm cho {usr} im miệng trong `{dur}` vì `{reas}`"
       ],
       "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị cách li bởi {admin} vì `{reas}` trong {dur} kìa."
     },
@@ -114,6 +114,13 @@
     "noDM": "Đừng DM tôi!",
     "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
     "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\n Hãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
-    "languageSuccess": "Ngôn ngữ của bạn đã được đặt thành {lang}. Bạn có thể thay đổi bằng lệnh `/settings language`."
+    "languageSuccess": "Ngôn ngữ của bạn đã được đặt thành {lang}. Bạn có thể thay đổi bằng lệnh `/settings language`.",
+    "askRegion": "Bạn hãy cho tôi biết bạn đang ở nước nào. Nếu bạn không muốn trả lời, hãy chọn Trái đất. Điều này sẽ ảnh hưởng đến kết quả tìm kiếm âm nhạc của bạn.",
+    "regionSuccess": "Vùng của bạn đã được đặt thành {region} thành công."
+  },
+  "antiRaid": {
+    "isolateMember": "Cách li {member} trong `{dur}`.",
+    "susTitle": "Đã phát hiện hành vi bất thường",
+    "action": "Hướng giải quyết"
   }
 }

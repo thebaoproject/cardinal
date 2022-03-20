@@ -1,4 +1,6 @@
 import disnake
+
+import logger
 import translations as msg
 import storage
 import utils
@@ -38,6 +40,20 @@ class LanguageChooser(disnake.ui.Select):
         await interaction.send(msg.get(self.values[0], "setup.languageSuccess").format(lang=utils.get_key(msg.LANG_LIST, self.values[0])))
 
 
+class LocationChooser(disnake.ui.Select):
+    def __init__(self):
+        super().__init__()
+
+        for i, v in msg.REIGIONS.items():
+            self.add_option(
+                label=i,
+                value=v
+            )
+
+    async def callback(self, interaction: disnake.MessageInteraction):
+        storage.get_dtb().child("users").child(str(interaction.author.id)).child("location").set(self.values[0])
+
+
 class DontSpamMeButton(disnake.ui.Button):
     def __init__(self):
         super().__init__(
@@ -62,10 +78,10 @@ class Setup(commands.Cog):
         self.bot = bot
 
     @commands.slash_command(name=name["jointask"], description=description["jointask"])
-    async def jointask(self, interaction: Aci, debug=True):
+    async def jointask(self, interaction, debug=True):
         global LANGUAGE
         LANGUAGE = interaction.locale
-        if not enough_permission(interaction):
+        if not await enough_permission(interaction):
             return
         ui = disnake.ui.View()
         ui.add_item(LanguageChooser())
@@ -78,8 +94,28 @@ class Setup(commands.Cog):
                 "language": interaction.locale,
                 "dm": True,
                 "description": None,
+                "violations": []
             }
             dtb.child("users").child(str(interaction.user.id)).set(data)
+
+    @commands.Cog.listener()
+    async def on_member_join(self, member: disnake.Member):
+        global LANGUAGE
+        LANGUAGE = "em"
+        logger.info(f"{member} ({member.id}) has joined the server. Executing jointask...")
+        ui = disnake.ui.View()
+        ui.add_item(LanguageChooser())
+        ui.add_item(DontSpamMeButton())
+        await member.send(msg.get("en", "setup.card"), view=ui)
+        dtb = storage.get_dtb()
+        data = {
+            "name": member.name,
+            "language": "en",
+            "dm": True,
+            "description": None,
+            "violations": []
+        }
+        dtb.child("users").child(str(member.id)).set(data)
 
 
 def setup(bot: commands.Bot):

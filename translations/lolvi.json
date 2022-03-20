@@ -43,9 +43,9 @@
       ]    },
     "isolate": {
       "public": [
-        "{usr} đã bị kách li bởi {admin}, không phải do COVID mà do `{reas}`.",
-        "{admin} + {reas} --> {usr} + KHOAMOM.",
-        "{admin} UwU làm cho {usr} phải im miệng vì `{reas}`"
+        "{usr} đã bị kách li bởi {admin} trong vòng `{dur}`, không phải do COVID mà do `{reas}`.",
+        "{admin} + {reas} --> {usr} + KHOAMOM + `{dur}`.",
+        "{admin} UwU làm cho {usr} phải im miệng trog `{dur}` vì `{reas}`"
       ],
       "dm": "Anh bạn à, nói nhiều quá đấy. Bạn bị cách li bởi {admin} vì `{reas}` trong {dur} kìa."
     },

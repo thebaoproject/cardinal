@@ -1,5 +1,6 @@
 import disnake
 import translations as msg
+import logger
 
 from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
@@ -68,6 +69,21 @@ class Intelligence(commands.Cog):
         if member.avatar is not None:
             response.set_thumbnail(member.avatar.url)
         await interaction.edit_original_message(embed=response)
+
+    @commands.Cog.listener()
+    async def on_message_delete(self, message: disnake.Message):
+        logger.info(
+            f"INTELLIGENCE: Message with author {message.author} ({message.author.id}) has been deleted: "
+            f"'{message.content}' with ID {message.id} in channel '{message.channel}'"
+        )
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, before: disnake.Message, after: disnake.Message):
+        logger.info(
+            f"INTELLIGENCE: Message with author {before.author} ({before.author.id}) has been edited: old:"
+            f"'{before.content}' with ID {before.id} | new: '{after.content}' with ID {after.id} in "
+            f"channel '{before.channel}'"
+        )
 
 
 def setup(bot: commands.Bot):

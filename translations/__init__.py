@@ -9,10 +9,9 @@ import storage
 LANG_LIST = {
     "Tiếng Việt (Việt Nam)": "vi",
     "English (United States/United Kingdom)": "en",
-    "LOLCAT Tiếg Vịt (Vịt Nem)": "lolvi",
-    "English LOLCAT (United Steaks/United Kindam)": "lolen",
+    "LOLCAT TiếG VịT (Vịt Nem)": "lolvi",
+    "EngLisH LOLCAT (UNiTed Steaks/UNited KiNdam)": "lolen",
     "Tiếq Việt Kải Kác (Bùi Hiền Việt Nam)": "vicc",
-    "Anime English (Sensei Kindom)": "anien",
     "(ɯopɓuᴉʞ pǝʇᴉu∩/sǝʇɐʇs pǝʇᴉu∩) ɥsᴉlɓuǝ uʍopǝpᴉsd∩": "uen",
 }
 
