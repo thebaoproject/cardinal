@@ -2,12 +2,12 @@
   "mod": {
     "ban": {
       "public": [
-        "{usr} hz bn banned from the gld bcz `{reas}` by {admin} for {dur}",
-        "{admin} has used the UwU Special Skill to get {usr} out of the gld, because `{reas}` for {dur}",
-        "{admin} hax {usr}'s account, because `{reas}` for {dur}",
-        "{admin} used UwU on {usr}: Very Effective, banned him for {dur}: `{reas}`"
+        "{usr} hz bn maid to go aw@y bcz `{reas}` by {admin} 4 {dur}",
+        "{admin} has used the UwU Special Skill to get {usr} out of the gld, because `{reas}` 4 {dur}",
+        "{admin} hax {usr}'s account, because `{reas}` 4 {dur}",
+        "{admin} used UwU on {usr}: Very Effective, banned him 4 {dur}: `{reas}`"
       ],
-      "dm": "Sorry, you have been banned from the guild by {admin} because `{reas}`, for {dur}"
+      "dm": "Sorry, you have been banned from the guild by {admin} because `{reas}`, 4 {dur}"
     },
     "tempban": "This is a test command. Don't touch.",
     "kick": {
@@ -20,8 +20,8 @@
     },
     "warn": {
       "public": [
-        "Hey {usr}, small notice for `{reas}` by {admin}",
-        "{usr} has been warned by {admin} for `{reas}`"
+        "Hey {usr}, small notice 4 `{reas}` by {admin}",
+        "{usr} hz been warned by {admin} 4 `{reas}`"
       ]
     },
     "unban": {
@@ -36,68 +36,68 @@
       "public": [
         "no perms, get out.",
         "You know the rules, and so do I...",
-        "no no no no no.",
+        "nah",
         ":trollface:",
-        "Do you know what ligma is?",
-        "u.r.not.permitted.to.uz.ths.cmd."
+        "L I G M A",
+        "no kat food left"
       ]
     },
     "isolate": {
       "public": [
-        "{admin} wnt {usr} to sht up 4 `{dur}`, so he did it for `{reas}`.",
+        "{admin} wnt {usr} to sht up 4 `{dur}`, so he did it 4 `{reas}`.",
         "Locking {usr} up 4 `{dur}` bcz `{reas}`... ok. (requested by {admin}).",
-        "{admin} used duct tape to slience {usr}, because `{reas}` 4 `{dur}`"
+        "{admin} uz silence -> {usr}, bcz `{reas}` 4 `{dur}`"
       ],
-      "dm": "You have been isolated by {admin} because `{reas}` for `{dur}`."
+      "dm": "You have been isolated by {admin} because `{reas}` 4 `{dur}`."
     },
-    "unspecifiedReason": "nothin' at all",
-    "forever": "f o r e v e r"
+    "unspecifiedReason": "no food left, kitten go away",
+    "forever": "infinite kat yearz"
   },
   "intel": {
     "card": {
-      "title": "{usr}'s intelligence information found in FBI database",
-      "name": "Name",
-      "nickname": "Nickname",
-      "id": "ID",
-      "pre": "Nitro supscription",
-      "create": "Discord registration",
-      "join": "Guild join"
+      "title": "{usr}'s deez nuts",
+      "name": "Namz",
+      "nickname": "Nicknamz",
+      "id": "I-D",
+      "pre": "KAT MASSGE SRVC",
+      "create": "KAT REGISTRATION",
+      "join": "when u join"
     },
-    "refreshdtb": "The database have been refreshed successfully."
+    "refreshdtb": "k."
   },
   "music": {
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "Choose & Start playing da song",
     "songDescription": {
-        "title": "Title",
-        "description": "Description",
-        "length": "Length",
+        "title": "kat name",
+        "description": "food ìnormation",
+        "length": "food duration",
         "channel": "Channel",
-        "url": "URL"
+        "url": "linkz"
     },
     "error": {
-        "notInVoice": "join a voice channel first you fool.",
-        "videoNotFound": "no vid with that name, dude.",
+        "notInVoice": "kat needz voice chennel first",
+        "videoNotFound": "no kat with that name was foundz",
         "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
     },
     "success": {
-        "pause": "Paused/resumed.",
-        "stop": "Stopped.",
+        "pause": "kat has broken the music disc successfully",
+        "stop": "kat has stopped the msc.",
         "list": "queue hz these songs:",
         "skip": "skipped."
     },
-    "noDescription": "no description",
-    "noSongInQueue": "no songs"
+    "noDescription": "no desc :'<",
+    "noSongInQueue": "no songz ¯\\_(ツ)_/¯"
   },
   "config": {
-    "read": "The value of `{tag}` is `{value}`",
-    "write": "Overwritten `{tag}`: `{value}` (old value is `{old_value}`)",
+    "read": "velue ov `{tag}` iz `{value}`",
+    "write": "kat hz jumpd ovr `{tag}` & overwritten a new vlue to it:`{value}` (it usd to B `{old_value}`)",
     "error": {
-      "invalidTag": "`{tag}` doesn't exists.",
-      "invalidValue": "Value `{value}` is invalid."
+      "invalidTag": "kat didn't found `{tag}`.",
+      "invalidValue": "kat doesn't know `{value}` iz."
     }
   },
-  "timeFormat": "%H{h}:%M{m}:%S{s}, {mo}%b {d}%d {y}%Y",
+  "timeformat": "%H{h}:%M{m}:%S{s}, {mo}%b {d}%d {y}%Y",
   "time": {
     "h": "",
     "m": "",
@@ -108,12 +108,16 @@
   },
   "true": "tru",
   "fasle": "false",
-  "yes": "yeah",
-  "no": "nope",
+  "yes": "yiss",
+  "no": "nah",
   "setup": {
     "noDM": "Don't DM me!",
     "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
     "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
     "languageSuccess": "what i spek to u is changed 2 {lang}. if u don't like it, usz `/settings language`."
+  },
+  "trans": {
+    "Tcard": "food input: `{src}`\noutput-thingy: `{r}`",
+    "error": "meowz errz: `{err}`"
   }
 }

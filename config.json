@@ -13,5 +13,6 @@
   "fire-dtb": null,
   "fire-api-key": null,
   "spam-threshold": 0.6,
-  "enable-antiraid": false
+  "enable-antiraid": false,
+  "rapidapi-key": null
 }

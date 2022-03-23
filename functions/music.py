@@ -1,11 +1,11 @@
 from __future__ import annotations
-
 import youtubesearchpython.__future__ as yt
 
 import os
 import json
 import disnake
 import logger
+import asyncio
 import translations as msg
 import youtube_dl as ytdl
 
@@ -221,13 +221,18 @@ def _play(client: disnake.VoiceClient, url: str):
             logger.error(err)
         else:
             global QUEUE
+            logger.debug(f"Current item to play: {QUEUE[0]}")
             global SKIPPING
             if not SKIPPING:
-                logger.debug(f"Trying to pop a song out of the queue... {QUEUE}")
+                logger.debug(f"Trying to pop a song out of the queue... {QUEUE[0]['title']}")
                 QUEUE.pop(0)
             else:
                 SKIPPING = False
             if len(QUEUE) == 0:
+                global BOT
+                coro = client.disconnect()
+                fut = asyncio.run_coroutine_threadsafe(coro, BOT.loop)
+                fut.result()
                 return
             _play(client, QUEUE[0]["url"])
     logger.debug(f"Đang chơi... {url}")
@@ -374,10 +379,19 @@ class Music(commands.Cog):
         logger.debug("Received play request.")
         songs = await find_video(query)
         songs = _scrap_result(songs, interaction.author)
-        logger.debug(json.dumps(songs, ensure_ascii=False))
-        global CHOICES
-        CHOICES = songs
-        await _song_choose(interaction, songs)
+        if len(songs) == 1:
+            global VOICE_CLIENT
+            global QUEUE
+            VOICE_CLIENT = await interaction.author.voice.channel.connect()
+            QUEUE.append(songs[0])
+            await interaction.edit_original_message(embed=infobox(songs[0], interaction.author))
+            if not _is_playing():
+                _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+        else:
+            logger.debug(json.dumps(songs, ensure_ascii=False))
+            global CHOICES
+            CHOICES = songs
+            await _song_choose(interaction, songs)
         # if not _is_playing():
         #     self.voice_client = VOICE_CLIENT
         #     try:

@@ -115,5 +115,9 @@
     "noDMok": "OK, tôi sẽ xôq ZM bạn nữa. Bạn kó wể zùq `/settings enableDM true` dể bật lại ZM.",
     "card": "Xin cào, dây là bot Kazzinal, một kon bot \"wập kẩm\" bởi SpikeBonjouz.\nDây là setup lần dầu ziêq kủa bạn.\n Hãy cọn qôn qữ kủa bạn dể tiếp tụk: (*nếu bạn xôq cọn, qôn qữ zao ziện Ziskozz kủa bạn sẽ dượk sử zụq*)",
     "languageSuccess": "Qôn qữ kủa bạn dã dượk dặt wàn' {lang}. Bạn kó wể way dổi bằq lện' `/settings language`."
+  },
+  "trans": {
+    "Tcard": "Gốc: `{src}`\nĐã dịch: `{r}`",
+    "error": "Dịch thất bại: `{err}`"
   }
 }

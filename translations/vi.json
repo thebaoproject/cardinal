@@ -35,11 +35,11 @@
     "perms": {
       "public": [
         "Bạn không có quyền",
-        "Định lên mặt à? Bạn không thể thực hiện hành động này đâu!",
-        "Đừng có mơ",
+        "Có 99% tỉ lệ câu lệnh này thất bại",
+        "Không.",
         "Còn lâu",
-        "Người dùng... À mà thôi.",
-        "Ai cho bạn dùng câu lệnh này?"
+        "Thôi đi bạn, bạn chẳng có quyền gì cả",
+        "Check perm đi"
       ]
     },
     "isolate": {
@@ -110,6 +110,7 @@
   "fasle": "sai",
   "yes": "có",
   "no": "không",
+  "ok": "OK",
   "setup": {
     "noDM": "Đừng DM tôi!",
     "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
@@ -122,5 +123,9 @@
     "isolateMember": "Cách li {member} trong `{dur}`.",
     "susTitle": "Đã phát hiện hành vi bất thường",
     "action": "Hướng giải quyết"
+  },
+  "trans": {
+    "Tcard": "Gốc: `{src}`\nĐã dịch: `{r}`",
+    "error": "Dịch thất bại: `{err}`"
   }
 }

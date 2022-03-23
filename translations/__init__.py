@@ -1,10 +1,15 @@
 import json
 import os
+import urllib.parse
 import logger
 import disnake
+import aiohttp
+import config_manager as cfg
+import storage
+import translations.langlist
+
 from typing import Union
 
-import storage
 
 LANG_LIST = {
     "Tiếng Việt (Việt Nam)": "vi",
@@ -35,3 +40,42 @@ def get(target_language: Union[disnake.User, str], identifier: str) -> any:
     for i in path:
         dest = dest[i]
     return dest
+
+
+async def translate(*source: str, target_language: str, source_language: str = None) -> list:
+    """
+    Translates the given text to the target language.
+    """
+    payload = [f"q={urllib.parse.quote(i)}" for i in source]
+    payload = "".join(payload)
+    payload += f"&target={urllib.parse.quote(target_language)}"
+    payload += f"&source={urllib.parse.quote(source_language)}" if source_language is not None else ""
+    # payload = "q=Hello%2C%20%20world!&target=vi"
+    headers = {
+        "content-type": "application/x-www-form-urlencoded",
+        "Accept-Encoding": "application/gzip",
+        "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+        "X-RapidAPI-Key": cfg.read("rapidapi-key")
+    }
+    logger.debug(f"Completed translation payload: {payload}")
+    async with aiohttp.ClientSession() as session:
+        async with session.post(
+            "https://google-translate1.p.rapidapi.com/language/translate/v2",
+            data=payload,
+            headers=headers
+        ) as r:
+            data = await r.json()
+            if r.status == 200:
+                data = data["data"]["translations"]
+                output = [i["translatedText"] for i in data]
+                return output
+            else:
+                a = await r.text("utf8")
+                logger.error(f"API translation request error: code {r.status}: {a}")
+                return []
+
+
+async def find_lang(name: str):
+    for k, v in langlist.LIST.items():
+        if v["name"] in name or v["nativeName"] in name:
+            return k
