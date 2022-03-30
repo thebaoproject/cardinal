@@ -3,8 +3,6 @@ import datetime
 import inspect
 import os
 
-from disnake.ext import tasks
-
 
 LOG = []
 

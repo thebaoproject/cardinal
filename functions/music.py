@@ -67,8 +67,13 @@ class SongSelect(disnake.ui.Button):
             except IndexError:
                 pass
             except disnake.ClientException as e:
-                logger.warning(f"ClientException received: {e}")
-                pass
+                logger.info(f"ClientException received: {e}. Retrying...")
+                try:
+                    VOICE_CLIENT = await channel.connect()
+                    await interaction.send(embed=infobox(self.supposed_choice, interaction.author))
+                    _play(VOICE_CLIENT, QUEUE[0]["rawurl"])
+                except disnake.ClientException as e:
+                    logger.error(f"ClientException received: {e}.")
         else:
             await interaction.send(msg.get(interaction.author, "music.error.notInVoice"))
 

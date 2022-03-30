@@ -1,26 +1,14 @@
 import json
 import os
+from config import CONFIG
 
 
-def read(entry: str):
-    """
-    Chilling with the config
-    """
-    with open("config.json", "r") as f:
-        config = json.loads(f.read())
-    if config[entry] is None:
-        return os.environ[entry]
+def get(entry: str):
+    path = entry.split(".")
+    a = CONFIG.copy()
+    for i in path:
+        a = a[i]
+    if a is not None:
+        return a
     else:
-        return config[entry]
-
-
-def write(entry: str, value):
-    """
-    Writes to the config.
-    """
-    with open("config.json", "r") as f:
-        config = json.loads(f.read())
-        config[entry] = value
-
-    with open("config.json", "w") as a:
-        a.write(json.dumps(config))
+        return os.environ[entry]

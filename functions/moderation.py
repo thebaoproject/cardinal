@@ -1,9 +1,12 @@
+from __future__ import annotations
+
+import builtins
 import datetime
+from typing import Coroutine
 
 import disnake
-
 import logger
-import utils
+import bot_utils as utils
 import random
 import translations as msg
 import config_manager as cfg
@@ -32,6 +35,15 @@ name = {
 # Messages will be randomized to add "tension"
 
 
+async def democracy(interaction: Aci, action: str):
+    """
+    well its real democracy
+    """
+    # To Be Implemented (tm)
+    # await interaction.send()
+    ...
+
+
 async def enough_permission(interaction: Aci):
     if interaction.author.bot:
         return False
@@ -39,43 +51,47 @@ async def enough_permission(interaction: Aci):
     # Check for RAT module
     try:
         from functions import rat
-        # Tyrrant
         return rat.eat(interaction.author)
     except ModuleNotFoundError:
         pass
 
-    for role_id in cfg.read("admin-roles"):
+    for role_id in cfg.get("manualConfig.adminRoles"):
         if interaction.author.get_role(role_id) is None:
             await interaction.response.send_message(random.choice(msg.get(interaction.author, "mod.perms.public")))
             logger.info(f"{interaction.author} tried to get access to administrative commands, but access is denied: "
-                        f"not enough premission.")
+                        f"not enough permission.")
             return False
     return True
 
 
 async def say_goodbye(
-    to,
-    member,
-    admin: disnake.Member,
+    to: disnake.ApplicationCommandInteraction | disnake.abc.Messageable,
+    member: disnake.Member | disnake.User,
+    admin: disnake.Member | disnake.User,
     string: str,
-    lang: disnake.User,
+    action: Coroutine = None,
+    lang: disnake.User = "en",
     reason: str = None,
     duration: str = None,
     dm: bool = True
 ):
     """
-    Says goodbye to a member when he is punished by a moderation command.
+    The Hammer to execute the moderation commands.
+    To avoid repetition.
 
-    Args:
-        to (disnake.ApplicationCommandInteraction | disnake.Messagable): The public channel to send the message to
-        member (disnake.Member): The member to send the message to.
-        admin (disnake.Member): The moderator who punished the member.
-        string (str): The codename of the string needed.
-        lang (disnake.User): The user from whom the language will be infered
-        reason (str, optional): The reason for the punishment. Defaults to None.
-        duration (str, optional): The duration of the punishment. Defaults to None.
-        dm (bool, optional): Whether will the member be dm-ed. Will check if they had dm enabled first. Defaults to True.
+    :param to: The public channel to send the message to
+    :param member: The member to send the message to.
+    :param admin: The moderator who punished the member.
+    :param string: The codename of the string needed.
+    :param action: The function to execute after saying goodbye.
+    :type action: function
+    :param lang: The user from whom the language will be inferred
+    :param reason: The reason for the punishment. Defaults to None.
+    :param duration: The duration of the punishment. Defaults to None.
+    :param dm: Whether will the member be dm-ed. Will check if they had DMing enabled first. Defaults to True.
     """
+    if not enough_permission(to):
+        return
     if reason is None:
         nreason = msg.get(lang, "mod.unspecifiedReason")
     else:
@@ -100,6 +116,8 @@ async def say_goodbye(
                 reas=nreason
             )
         )
+    if action is not None:
+        await action
     logger.success(f"{to.author} ({to.author.id}) has used {string} on {member} ({member.id})")
     punishments = storage.get_dtb().child("users").child(str(member.id)).child("violations").child(string)
     punishments_list = punishments.get()
@@ -126,11 +144,16 @@ class Moderate(commands.Cog):
         reason: str = None,
         duration: str = None
     ):
-        if not enough_permission(interaction):
-            return
-
-        await say_goodbye(interaction, member, interaction.author, "mod.ban", interaction.author, reason, duration)
-        await interaction.author.guild.ban(user=member, reason=reason)
+        await say_goodbye(
+            interaction,
+            member,
+            interaction.author,
+            "mod.ban",
+            interaction.author.guild.ban(user=member, reason=reason),
+            interaction.author,
+            reason,
+            duration
+        )
 
     # Một cách viết khác dễ hiểu hơn.
     @commands.slash_command(name=name["tempban"], description=des["tempban"])
@@ -141,10 +164,7 @@ class Moderate(commands.Cog):
         reason: str = "không xác định",
         duration: int = 0
     ):
-        if not enough_permission(interaction):
-            return
-        # await self.ban(interaction, member, reason, duration)
-        # await interaction.response.send_message(mes["tempban"])
+        ...
 
     @commands.slash_command(name=name["unban"], description=des["unban"])
     async def unban(
@@ -153,11 +173,16 @@ class Moderate(commands.Cog):
         reason: str = "không xác định",
         duration: str = "mãi mãi"
     ):
-        if not enough_permission(interaction):
-            return
-
-        await say_goodbye(interaction, member, interaction.author, "mod.unban", interaction.author, reason, duration)
-        await interaction.author.guild.unban(user=member, reason=reason)
+        await say_goodbye(
+            interaction,
+            member,
+            interaction.author,
+            "mod.unban",
+            interaction.author.guild.unban(user=member, reason=reason),
+            interaction.author,
+            reason,
+            duration
+        )
 
     # Get out!
     @commands.slash_command(name=name["kick"], description=des["kick"])
@@ -167,10 +192,15 @@ class Moderate(commands.Cog):
         member: disnake.Member, 
         reason: str = "không xác định"
     ):
-        if not enough_permission(interaction):
-            return
-        await say_goodbye(interaction, member, interaction.author, "mod.kick", interaction.author, reason)
-        await member.kick(reason=reason)
+        await say_goodbye(
+            interaction,
+            member,
+            interaction.author,
+            "mod.kick",
+            member.kick(reason=reason),
+            interaction.author,
+            reason
+        )
 
     # Warn!
     @commands.slash_command(name=name["warn"], description=des["warn"])
@@ -180,9 +210,17 @@ class Moderate(commands.Cog):
         member: disnake.Member, 
         content: str = "không gì cả"
     ):
-        if not enough_permission(interaction):
-            return
-        await say_goodbye(interaction, member, interaction.author, "mod.warn", interaction.author, content, "", False)
+        await say_goodbye(
+            interaction,
+            member,
+            interaction.author,
+            "mod.warn",
+            None,
+            interaction.author,
+            content,
+            "",
+            False
+        )
 
     # Finally, isolate. Your opinion don't matter to us.
     @commands.slash_command(name=name["isolate"], description=des["isolate"])
@@ -193,10 +231,15 @@ class Moderate(commands.Cog):
         duration: str,
         reason: str = "không gì cả"
     ):
-        if not enough_permission(interaction):
-            return
-        await say_goodbye(interaction, member, interaction.author, "mod.isolate", interaction.author, reason, duration)
-        await member.timeout(until=utils.handle_time(duration))
+        await say_goodbye(
+            interaction,
+            member,
+            interaction.author,
+            "mod.isolate",
+            member.timeout(until=utils.handle_time(duration)),
+            interaction.author,
+            reason,
+            duration)
 
 
 def setup(bot):

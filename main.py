@@ -1,7 +1,6 @@
 import os
 import sys
 import disnake
-import logger
 import config_manager as cfg
 import logger
 
@@ -9,10 +8,10 @@ from disnake.ext import commands
 
 # Omitted, because we use / here
 bot = commands.Bot(
-    command_prefix=cfg.read("prefix"),
+    command_prefix=cfg.get("general.prefix"),
     intents=disnake.Intents.all()
 )
-status = cfg.read("status")
+status = cfg.get("general.status")
 
 
 @bot.event
@@ -60,4 +59,4 @@ if __name__ == "__main__":
     #             logger.warning(f"Cannot load game cog {file}: no setup() method found")
 
     logger.info("Running bot with token...")
-    bot.run(cfg.read("bot-token"))
+    bot.run(cfg.get("general.botToken"))

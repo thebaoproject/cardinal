@@ -1,9 +1,6 @@
-import asyncio
-import logger
-import translations
+from wiktionaryparser import WiktionaryParser
 
-if __name__ == "__main__":
-    logger.set_min_level(logger.DEBUG)
-    loop = asyncio.new_event_loop()
-    a = loop.run_until_complete(translations.translate("hello world", target_language="vi"))
-    print(a)
+if __name__ == '__main__':
+    wp = WiktionaryParser()
+    word = wp.fetch("dictionary")
+    print(word)

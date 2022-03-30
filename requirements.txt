@@ -5,6 +5,6 @@ sympy
 youtube_dl
 youtube-search-python
 pyrebase4
-colorlog
 numpy
 aiohttp
+wiktionaryparser

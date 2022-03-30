@@ -3,10 +3,9 @@ import disnake
 import logger
 import translations as msg
 import storage
-import utils
+import bot_utils as utils
 
 from disnake.ext import commands
-from disnake import ApplicationCommandInteraction as Aci
 from functions.moderation import enough_permission
 
 
@@ -37,21 +36,22 @@ class LanguageChooser(disnake.ui.Select):
             "description": None,
         }
         dtb.child("users").child(str(interaction.user.id)).set(data)
-        await interaction.send(msg.get(self.values[0], "setup.languageSuccess").format(lang=utils.get_key(msg.LANG_LIST, self.values[0])))
+        await interaction.send(msg.get(self.values[0], "setup.languageSuccess")
+                               .format(lang=utils.get_key(msg.LANG_LIST, self.values[0])))
 
 
-class LocationChooser(disnake.ui.Select):
-    def __init__(self):
-        super().__init__()
-
-        for i, v in msg.REIGIONS.items():
-            self.add_option(
-                label=i,
-                value=v
-            )
-
-    async def callback(self, interaction: disnake.MessageInteraction):
-        storage.get_dtb().child("users").child(str(interaction.author.id)).child("location").set(self.values[0])
+# class LocationChooser(disnake.ui.Select):
+#     def __init__(self):
+#         super().__init__()
+#
+#         for i, v in msg.REIGIONS.items():
+#             self.add_option(
+#                 label=i,
+#                 value=v
+#             )
+#
+#     async def callback(self, interaction: disnake.MessageInteraction):
+#         storage.get_dtb().child("users").child(str(interaction.author.id)).child("location").set(self.values[0])
 
 
 class DontSpamMeButton(disnake.ui.Button):

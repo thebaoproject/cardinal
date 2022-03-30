@@ -8,7 +8,8 @@ __pycache__
 .vscode
 *.pyc
 env/
-config.json
+venv/
+config.py
 dtb.json
 test.py
 *.webm

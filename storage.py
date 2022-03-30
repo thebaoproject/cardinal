@@ -3,8 +3,8 @@ import config_manager as cfg
 import pyrebase
 
 CONFIG = {
-    "databaseURL": cfg.read("fire-dtb"),
-    "apiKey": cfg.read("fire-api-key"),
+    "databaseURL": cfg.get("backend.fireDtb"),
+    "apiKey": cfg.get("backend.fireApiKey"),
     "authDomain": "",
     "storageBucket": "",
     "serviceAccount": ""

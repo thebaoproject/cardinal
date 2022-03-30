@@ -23,7 +23,7 @@ LANG_LIST = {
 
 def get(target_language: Union[disnake.User, str], identifier: str) -> any:
     path = identifier.split(".")
-    logger.debug(f"path to read: {path}")
+    # logger.debug(f"path to read: {path}")
     if type(target_language) == str:
         n_lan = "en" if target_language in ["en-UK", "en-US"] else target_language
         n_lan = "vi" if n_lan == "vi-VN" else n_lan
@@ -55,7 +55,7 @@ async def translate(*source: str, target_language: str, source_language: str = N
         "content-type": "application/x-www-form-urlencoded",
         "Accept-Encoding": "application/gzip",
         "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
-        "X-RapidAPI-Key": cfg.read("rapidapi-key")
+        "X-RapidAPI-Key": cfg.get("backend.rapidApiKey")
     }
     logger.debug(f"Completed translation payload: {payload}")
     async with aiohttp.ClientSession() as session:
@@ -79,3 +79,4 @@ async def find_lang(name: str):
     for k, v in langlist.LIST.items():
         if v["name"] in name or v["nativeName"] in name:
             return k
+

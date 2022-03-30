@@ -1,6 +1,6 @@
 import disnake
 import translations as msg
-import utils
+import bot_utils as utils
 import numpy
 import config_manager as cfg
 
@@ -13,7 +13,7 @@ class AntiRaid(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: disnake.Message):
-        if not cfg.read("enable-antiraid"):
+        if not cfg.get("antiRaid.enable"):
             return
         c = message.content
         a = message.author
@@ -49,7 +49,10 @@ class AntiRaid(commands.Cog):
         if avg_time < 2:
             is_raid += 0.3
 
-        is_raid = is_raid >= cfg.read("spam-threshold")
+        if a.guild.audit_logs(limit=5):
+            pass
+
+        is_raid = is_raid >= cfg.get("antiRaid.spamThreshold")
         if is_raid:
             await a.timeout(duration=1*60*60)
             card = disnake.Embed(title=msg.get("vi", "antiRaid.susTitle"))

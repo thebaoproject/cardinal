@@ -9,7 +9,7 @@ msg = {
     "rickroll": "Này, Rick Astley tặng quà cho bạn này!\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ",
     "name": "rickroll",
     "description": "Tự Rick Roll bản thân mình. Tăng sự ức chế, bồi bổ sự nhẫn nhịn.",
-    "invalid": "Hiện tại Rick Roll không được bật. Hãy thay đổi cài đặt trong `config.json` hoặc gõ lệnh `/config "
+    "invalid": "Hiện tại Rick Roll không được bật. Hãy thay đổi cài đặt trong `config.py` hoặc gõ lệnh `/config "
                "change <tên> <giá trị>` "
 }
 

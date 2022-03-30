@@ -1,6 +1,7 @@
 import disnake
-from disnake.ext import commands
 import config_manager as cfg
+
+from disnake.ext import commands
 
 
 class AutoTrash(commands.Cog):
@@ -11,13 +12,12 @@ class AutoTrash(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    # Tự tạo reaction trash cho tất cả những tin nhắn đã được gửi đi
     @commands.Cog.listener()
     async def on_message(self, message: disnake.Message):
-        if message.author.id == self.bot.user.id:
-            await message.add_reaction("🚮")
+        if cfg.get("autoTrash.enabled"):
+            if message.author.id == self.bot.user.id:
+                await message.add_reaction("🚮")
 
-    # Xóa tất cả các tin nhắn do bot gửi mà có quá nhiều emoji trash
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction: disnake.Reaction, user: disnake.Member):
         if reaction.emoji == "🚮" and reaction.count >= 3:

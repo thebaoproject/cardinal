@@ -1,4 +1,3 @@
-import logger
 import translations as msg
 
 from disnake.ext import commands
