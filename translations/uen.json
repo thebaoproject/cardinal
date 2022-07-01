@@ -120,5 +120,10 @@
   "trans": {
     "Tcard": "`{r}` :pǝʇɐlsuɐɹᴛ\n`{src}` :ǝɔɹnoS",
     "error": "`{err}` :pǝlᴉɐɟ uoᴉʇɐlsuɐɹᴛ",
+  },
+  "math": {
+    "solist": ":ǝɹɐ ʎǝɥʇ 'suoᴉʇnlos {sol} sɐɥ uoᴉʇɐnbǝ sᴉɥ┴",
+    "simplify": ":sɐ pǝᴉɟᴉldɯᴉs ǝq uɐɔ uoᴉssǝɹdxǝ ɹno⅄",
+    "invalid": "¡pᴉlɐʌuᴉ sᴉ uoᴉʇɐnbǝ ɹno⅄"
   }
 }

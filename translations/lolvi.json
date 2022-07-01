@@ -119,5 +119,10 @@
   "trans": {
     "Tcard": "Pé đưa cho ank: `{src}`\nAnk lại đưa cho pé: `{r}`",
     "error": "Ko pé ơi: `{err}`"
+  },
+  "math": {
+    "solist": "ank trả lạik {sol} ngịm cho pé nè:",
+    "simplify": "nè sau khi gọi Ngô'z Bảo'z Châu'z thì ổng cho cái này nè:",
+    "invalid": "phương trình như cc ~:<"
   }
 }

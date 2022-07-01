@@ -119,5 +119,10 @@
   "trans": {
     "Tcard": "Gốc: `{src}`\nĐã dịch: `{r}`",
     "error": "Dịch thất bại: `{err}`"
+  },
+  "math": {
+    "solist": "Fươq cìn' kủa bạn kó {sol} qiệm, là:",
+    "simplify": "Da wứk kủa bạn sẽ dượk wu gọn wàn':",
+    "invalid": "Da wứk kủa bạn xôq hợp lệ!"
   }
 }

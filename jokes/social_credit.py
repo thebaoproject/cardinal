@@ -27,7 +27,7 @@ class SocialCredit(commands.Cog):
     async def on_message(self, message: disnake.Message):
         img_path = os.path.join("jokes", "social_credit", f"rem-{random.randint(0, 4)}.png")
         content = message.content
-        if cfg.read("social-credit-channel-ids").__contains__(message.channel.id):
+        if cfg.get("manualConfig.socialCreditChannelIds").__contains__(message.channel.id):
             for entry in banned:
                 if entry.upper() in content.upper():
                     await message.reply(file=disnake.File(img_path))

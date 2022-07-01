@@ -1,10 +1,8 @@
 disnake[voice]
-opencv-python
-scipy
 sympy
 youtube_dl
 youtube-search-python
 pyrebase4
-numpy
 aiohttp
+numpy
 wiktionaryparser

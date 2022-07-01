@@ -120,5 +120,10 @@
   "trans": {
     "Tcard": "Source: `{src}`\nTranslated: `{r}`",
     "error": "Translation failed: `{err}`"
+  },
+  "math": {
+    "solist": "The equation has {sol} solutions, they are:",
+    "simplify": "Your expression can be simplified as:",
+    "invalid": "Your equation is invalid!"
   }
 }

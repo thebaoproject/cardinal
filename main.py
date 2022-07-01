@@ -9,7 +9,8 @@ from disnake.ext import commands
 # Omitted, because we use / here
 bot = commands.Bot(
     command_prefix=cfg.get("general.prefix"),
-    intents=disnake.Intents.all()
+    intents=disnake.Intents.all(),
+    sync_commands=False
 )
 status = cfg.get("general.status")
 

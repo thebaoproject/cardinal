@@ -119,5 +119,10 @@
   "trans": {
     "Tcard": "food input: `{src}`\noutput-thingy: `{r}`",
     "error": "meowz errz: `{err}`"
+  },
+  "math": {
+    "solist": "ur input katstrinz hz {sol} solutions, they r:",
+    "simplify": "kat is zinplifin ur ezpression:",
+    "invalid": "no no no dont giv me ur invalid ezpression ~:<"
   }
 }

@@ -127,5 +127,10 @@
   "trans": {
     "Tcard": "Gốc: `{src}`\nĐã dịch: `{r}`",
     "error": "Dịch thất bại: `{err}`"
+  },
+  "math": {
+    "solist": "Phương trình của bạn có {sol} nghiệm, là:",
+    "simplify": "Đa thức của bạn sẽ được thu gọn thành:",
+    "invalid": "Đa thức của bạn không hợp lệ!"
   }
 }
