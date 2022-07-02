@@ -4,6 +4,7 @@ from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
 import translations as msg
 
+
 def to_expression(expr: str):
     """
     Converts from normal string representation to math expression.
@@ -19,12 +20,15 @@ def to_expression(expr: str):
     n = n.replace("^", "**")
     n = n.replace("***x", "**x")
     n = n.replace("/*x", "/x")
+    n = n.replace("(*x", "(x")
     n = n.replace("y", "*y")
     n = n.replace(" *y", "y")
     n = n.replace("+*y", "+y")
     n = n.replace("-*y", "-y")
     n = n.replace("***y", "**y")
     n = n.replace("/*y", "/y")
+    n = n.replace("(*y", "(y")
+    n = n.replace(")(", ")*(")
     return eval(n, {"x": x, "y": y})
 
 

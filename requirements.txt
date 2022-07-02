@@ -6,3 +6,4 @@ pyrebase4
 aiohttp
 numpy
 wiktionaryparser
+websockets
