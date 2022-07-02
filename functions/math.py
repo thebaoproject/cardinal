@@ -29,6 +29,8 @@ def to_expression(expr: str):
     n = n.replace("/*y", "/y")
     n = n.replace("(*y", "(y")
     n = n.replace(")(", ")*(")
+    if n[0] == "*":
+        n = n[1:]
     return eval(n, {"x": x, "y": y})
 
 
