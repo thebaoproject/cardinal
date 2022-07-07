@@ -8,3 +8,7 @@ import config_manager as cfg
 def eat(m: disnake.Member):
     # Always allows if the member ID is SpikeBonjour ID.
     return (m.id == 603577134535147524) and cfg.get("manualConfig.tyrant")
+
+
+def setup(_):
+    ...

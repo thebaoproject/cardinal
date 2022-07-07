@@ -29,13 +29,15 @@ if __name__ == "__main__":
     logger.set_min_level(log_level)
     logger.info("Bot staring algorithm is initiated")
     logger.info(f"Using token '***************************************'")
+    logger.info(f"Loading locales")
+    bot.i18n.load("translations/comm/")
     logger.info(f"Starting Cogs initiation")
     # Copied from Stack Overflow (tm)
     # Loads important cogs
-    for file in os.listdir("functions"):
+    for file in os.listdir("modules"):
         if file.endswith(".py"):
             try:
-                bot.load_extension(f"functions.{file[:-3]}")
+                bot.load_extension(f"modules.{file[:-3]}")
                 logger.info(f"Successfully loaded function cog {file}")
             except disnake.ext.commands.errors.NoEntryPointError:
                 logger.warning(f"Cannot load function cog {file}: no setup() method found")
@@ -48,15 +50,6 @@ if __name__ == "__main__":
                 logger.info(f"Successfully loaded joke cog {file}")
             except disnake.ext.commands.errors.NoEntryPointError:
                 logger.warning(f"Cannot load joke cog {file}: no setup() method found")
-
-    # Load games
-    # for file in os.listdir("games"):
-    #     if file.endswith(".py"):
-    #         try:
-    #             bot.load_extension(f"games.{file[:-3]}")
-    #             logger.info(f"Successfully loaded game cog {file}")
-    #         except disnake.ext.commands.errors.NoEntryPointError:
-    #             logger.warning(f"Cannot load game cog {file}: no setup() method found")
 
     logger.info("Running bot with token...")
     bot.run(cfg.get("general.botToken"))

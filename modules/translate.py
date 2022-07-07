@@ -1,3 +1,4 @@
+import disnake
 import translations as msg
 
 from disnake.ext import commands
@@ -20,7 +21,7 @@ class Translate(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.slash_command(name="translate", description="Dịch")
+    @commands.slash_command(name="translate", description=disnake.Localized("Dịch các thứ", key="translate"))
     async def translate(
         self,
         interaction: Aci,

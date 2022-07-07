@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import builtins
-import datetime
 from typing import Coroutine
 
 import disnake
@@ -14,25 +12,6 @@ import storage
 
 from disnake import ApplicationCommandInteraction as Aci
 from disnake.ext import commands
-
-# Commands description
-des = {
-    "ban": "Cấm một Thành viên khỏi server. Nêu ra số ngày nếu cần cấm tạm thời.",
-    "tempban": "Vẫn là cấm nhưng có hạn. Hiện vẫn chưa hoạt động.",
-    "unban": "Hủy lệnh cấm cho một thành viên nào đó.",
-    "kick": "Thanh trừ một thành viên khỏi server.",
-    "warn": "Cảnh cáo một thành viên vì hành động của họ",
-    "isolate": "Khóa mồm một thành viên. VD cho thời gian hợp lệ: 31/11/2011 20:29:43 hay 5h4m3s"
-}
-name = {
-    "ban": "ban",
-    "unban": "unban",
-    "tempban": "tempban",
-    "kick": "kick",
-    "warn": "warn",
-    "isolate": "isolate"
-}
-# Messages will be randomized to add "tension"
 
 
 async def democracy(interaction: Aci, action: str):
@@ -50,7 +29,7 @@ async def enough_permission(interaction: Aci):
 
     # Check for RAT module
     try:
-        from functions import rat
+        from modules import rat
         return rat.eat(interaction.author)
     except ModuleNotFoundError:
         pass
@@ -90,7 +69,7 @@ async def say_goodbye(
     :param duration: The duration of the punishment. Defaults to None.
     :param dm: Whether will the member be dm-ed. Will check if they had DMing enabled first. Defaults to True.
     """
-    if not enough_permission(to):
+    if not await enough_permission(to):
         return
     if reason is None:
         nreason = msg.get(lang, "mod.unspecifiedReason")
@@ -109,26 +88,29 @@ async def say_goodbye(
         )
     )
     if dm and storage.get_dtb().child("users").child(str(member.id)).child("dm").get():
+        logger.debug(f"getting message locale from {string}.dm")
         await member.send(
-            random.choice(msg.get(lang, string + ".dm")).format(
+            msg.get(lang, string + ".dm").format(
                 admin=admin.name,
                 dur=nduration,
                 reas=nreason
             )
         )
+        logger.debug(msg.get(lang, string + ".dm"))
     if action is not None:
         await action
     logger.success(f"{to.author} ({to.author.id}) has used {string} on {member} ({member.id})")
-    punishments = storage.get_dtb().child("users").child(str(member.id)).child("violations").child(string)
-    punishments_list = punishments.get()
-    punishments_list.append({
-        "time": datetime.datetime.now().timestamp(),
-        "type": string,
-        "adminID": to.author.id,
-        "reason": reason,
-        "duration": duration,
-    })
-    punishments.set(punishments_list)
+    # Very unstable, will deal with later.
+    # punishments = storage.get_dtb().child("users").child(str(member.id)).child("violations")
+    # punishments_list = punishments.get()
+    # punishments_list.append({
+    #     "time": datetime.datetime.now().timestamp(),
+    #     "type": string,
+    #     "adminID": to.author.id,
+    #     "reason": reason,
+    #     "duration": duration,
+    # })
+    # punishments.set(punishments_list)
 
 
 class Moderate(commands.Cog):
@@ -136,7 +118,7 @@ class Moderate(commands.Cog):
         self.bot = bot
 
     # Búa ban!
-    @commands.slash_command(name=name["ban"], description=des["ban"])
+    @commands.slash_command(name="ban", description=disnake.Localized("Cấm một thành viên.", key="ban"))
     async def ban(
         self, 
         interaction: Aci,
@@ -156,7 +138,7 @@ class Moderate(commands.Cog):
         )
 
     # Một cách viết khác dễ hiểu hơn.
-    @commands.slash_command(name=name["tempban"], description=des["tempban"])
+    @commands.slash_command(name="tempban", description=disnake.Localized("Cấm tạm thời một thành viên. (broken)", key="tempban"))
     async def tempban(
         self,
         interaction: Aci, 
@@ -166,7 +148,7 @@ class Moderate(commands.Cog):
     ):
         ...
 
-    @commands.slash_command(name=name["unban"], description=des["unban"])
+    @commands.slash_command(name="unban", description=disnake.Localized("Hủy cấm một thành viên.", key="unban"))
     async def unban(
         self, interaction: Aci,
         member: disnake.User,
@@ -185,7 +167,7 @@ class Moderate(commands.Cog):
         )
 
     # Get out!
-    @commands.slash_command(name=name["kick"], description=des["kick"])
+    @commands.slash_command(name="kick", description=disnake.Localized("Khai trừ một thành viên.", key="kick"))
     async def kick(
         self, 
         interaction: Aci, 
@@ -203,7 +185,7 @@ class Moderate(commands.Cog):
         )
 
     # Warn!
-    @commands.slash_command(name=name["warn"], description=des["warn"])
+    @commands.slash_command(name="warn", description=disnake.Localized("Cảnh cáo một thành viên.", key="warn"))
     async def warn(
         self, 
         interaction: Aci, 
@@ -223,7 +205,7 @@ class Moderate(commands.Cog):
         )
 
     # Finally, isolate. Your opinion don't matter to us.
-    @commands.slash_command(name=name["isolate"], description=des["isolate"])
+    @commands.slash_command(name="isolate", description=disnake.Localized("Cách li một thành viên.", key="isolate"))
     async def isolate(
         self, 
         interaction: Aci, 

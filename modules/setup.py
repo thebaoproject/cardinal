@@ -6,18 +6,10 @@ import storage
 import bot_utils as utils
 
 from disnake.ext import commands
-from functions.moderation import enough_permission
+from modules.moderation import enough_permission
 
 
 LANGUAGE = "en"
-
-name = {
-    "jointask": "jointask",
-}
-
-description = {
-    "jointask": "Làm việc với người dùng mới vào server",
-}
 
 
 class LanguageChooser(disnake.ui.Select):
@@ -40,20 +32,6 @@ class LanguageChooser(disnake.ui.Select):
                                .format(lang=utils.get_key(msg.LANG_LIST, self.values[0])))
 
 
-# class LocationChooser(disnake.ui.Select):
-#     def __init__(self):
-#         super().__init__()
-#
-#         for i, v in msg.REIGIONS.items():
-#             self.add_option(
-#                 label=i,
-#                 value=v
-#             )
-#
-#     async def callback(self, interaction: disnake.MessageInteraction):
-#         storage.get_dtb().child("users").child(str(interaction.author.id)).child("location").set(self.values[0])
-
-
 class DontSpamMeButton(disnake.ui.Button):
     def __init__(self):
         super().__init__(
@@ -63,7 +41,7 @@ class DontSpamMeButton(disnake.ui.Button):
 
     async def callback(self, interaction: disnake.MessageInteraction):
         await interaction.send(
-            msg.get(interaction.locale, "setup.noDMok")
+            msg.get(str(interaction.locale), "setup.noDMok")
         )
         storage.get_dtb().child("users").child(
             str(interaction.user.id)).child("dm").set(False)
@@ -77,7 +55,7 @@ class Setup(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.slash_command(name=name["jointask"], description=description["jointask"])
+    @commands.slash_command(name="jointask", description=disnake.Localized("Xử lí newbie.", key="jointask"))
     async def jointask(self, interaction, debug=True):
         global LANGUAGE
         LANGUAGE = interaction.locale
@@ -87,11 +65,11 @@ class Setup(commands.Cog):
         ui.add_item(LanguageChooser())
         ui.add_item(DontSpamMeButton())
         if debug:
-            await interaction.send(msg.get(interaction.locale, "setup.card"), view=ui)
+            await interaction.send(msg.get(interaction.locale.name, "setup.card"), view=ui)
             dtb = storage.get_dtb()
             data = {
                 "name": interaction.user.name,
-                "language": interaction.locale,
+                "language": str(interaction.locale),
                 "dm": True,
                 "description": None,
                 "violations": []
@@ -102,6 +80,8 @@ class Setup(commands.Cog):
     async def on_member_join(self, member: disnake.Member):
         global LANGUAGE
         LANGUAGE = "em"
+        if member.bot:
+            return
         logger.info(f"{member} ({member.id}) has joined the server. Executing jointask...")
         ui = disnake.ui.View()
         ui.add_item(LanguageChooser())

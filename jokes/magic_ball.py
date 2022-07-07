@@ -5,15 +5,6 @@ from disnake.ext import commands
 from enum import Enum
 import datetime
 
-name = "quacauphale"
-des = "Trả lời một câu hỏi cho bạn. Đừng tin vào nó quá."
-response = [
-    "Đúng", "Ừ", "Có", "Chuẩn luôn", "Không", "Còn lâu", "",
-    "Không biết", "HỎI KHÓ THẾ AI MÀ BIẾT???", "Tất nhiên rồi, thế mà cũng hỏi",
-    "Không thèm trả lời", "Có thể đúng, mà cũng có thể sai", "????",
-    "AAAAAAAAAA", "...", "à, cái đó thì tôi không biết."
-]
-
 
 class Choice(str, Enum):
     answer = "answer"
@@ -28,7 +19,7 @@ class MagicBall(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.slash_command(name=name, description=des)
+    @commands.slash_command(name="8ball", description=disnake.Localized("Là quả cầu pha lê đấy. Đừng tin vào nó quá.", key="8ball"))
     async def qua_cau_pha_le(self, interaction: Aci, option: Choice, data: str):
         t = "Trả lời" if option == Choice.answer else "Lựa chọn"
         embed = disnake.Embed(

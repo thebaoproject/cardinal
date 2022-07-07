@@ -1,8 +1,9 @@
 import disnake
 import sympy
-from disnake.ext import commands
-from disnake import ApplicationCommandInteraction as Aci
 import translations as msg
+
+from disnake import ApplicationCommandInteraction as Aci
+from disnake.ext import commands
 
 
 def to_expression(expr: str):
@@ -38,11 +39,11 @@ class Math(commands.Cog):
     def __int__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.slash_command(name="math", description="Liên lạc với Ngô Bảo Châu")
+    @commands.slash_command(name="math")
     async def math(self, interaction: Aci):
         pass
 
-    @math.sub_command(name="solve", description="Giải phương trình ez")
+    @math.sub_command(name="solve", description=disnake.Localized("Giải phương trình.", key="solve"))
     async def solve(self, interaction: Aci, equation: str):
         eq = to_expression(equation)
         try:
@@ -57,7 +58,7 @@ class Math(commands.Cog):
         except NameError:
             await interaction.response.send_message(msg.get(interaction.author, "math.error"))
 
-    @math.sub_command(name="simplify", description="Ông thần rút gọn")
+    @math.sub_command(name="simplify", description=disnake.Localized("Rút gọn đa thức.", key="simplify"))
     async def simplify(self, interaction: Aci, equation: str):
         ex = to_expression(equation)
         try:

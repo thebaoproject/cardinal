@@ -275,7 +275,7 @@ def ensure_ffmpeg() -> str:
         # if "LINUX" in platform.platform().upper():
         #     link = "https://johnvansickle.com/ffmpeg/builds/ffmpeg-git-amd64-static.tar.xz"
         #     logger.info(
-        #         "FFmpeg not found. It is required to do sound functions. Downloading binary for Linux AMD64...")
+        #         "FFmpeg not found. It is required to do sound modules. Downloading binary for Linux AMD64...")
         #     r = requests.get(link)
         #     f_dir = os.path.abspath("ffmpeg.tar.gz")
         #     with open(f_dir, "wb") as f:

@@ -1,5 +1,5 @@
 
-functions/__pycache__
+modules/__pycache__
 jokes/__pycache__
 games/__pycache__
 test.ipynb
@@ -10,8 +10,6 @@ __pycache__
 env/
 venv/
 config.py
-dtb.json
-test.py
 *.webm
 *.mp4
 *.m4a

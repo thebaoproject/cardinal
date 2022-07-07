@@ -22,7 +22,7 @@ class LogManager(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.slash_command(name="log", description="Log của bot")
+    @commands.slash_command(name="log", description=disnake.Localized("Nhật kí của bot.", key="logs"))
     async def log(
             self,
             interaction: Aci,
@@ -37,7 +37,7 @@ class LogManager(commands.Cog):
         with open(os.path.join("logs", datetime.datetime.now().strftime("latest.log")), "w", encoding="utf8") as f:
             f.write("\n")
 
-    @commands.slash_command(name="savelogsession", description="Lưu file log")
+    @commands.slash_command(name="savelog", description=disnake.Localized("Lưu file log.", key="savelogs"))
     async def sls(self, interaction: Aci):
         os.rename(os.path.join("ffmpeg", "latest.log"), os.path.join("ffmpeg", datetime.datetime.now().strftime("%y-%m-%d-%H:%M%:%S.log")))
         await interaction.send(msg.get(interaction.author, "ok"))

@@ -21,14 +21,16 @@ LANG_LIST = {
 }
 
 
-def get(target_language: Union[disnake.User, str], identifier: str) -> any:
+def get(target_language: Union[disnake.User, str, disnake.Locale], identifier: str) -> any:
     path = identifier.split(".")
     # logger.debug(f"path to read: {path}")
-    if type(target_language) == str:
-        n_lan = "en" if target_language in ["en-UK", "en-US"] else target_language
+    if isinstance(target_language, str) or isinstance(target_language, disnake.Locale):
+        n_lan = "en" if str(target_language) in ["en-GB", "en-US"] else str(target_language)
         n_lan = "vi" if n_lan == "vi-VN" else n_lan
-    else:
+    elif isinstance(target_language, disnake.User):
         n_lan = storage.get_dtb().child("users").child(str(target_language.id)).child("language").get().val()
+    else:
+        n_lan = "en"
     try:
         with open(os.path.join("translations", f"{n_lan}.json"), "r", encoding="utf-8") as f:
             strings = json.loads(f.read())

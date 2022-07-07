@@ -1,11 +1,11 @@
 # This is the bot configuration options.
 # We use .py file here so that we can use comments.
 # If any of the options is None, it will be searched for as environment variables.
-# pLs dOnT pUt aNyCoDe hErE iT wIlL eXeCuTe oN rUnTiMe
+# DO NOT PUT ANY CODE HERE, IT WILL EXECUTE ON RUNTIME.
 
 CONFIG = {
     # Bot general options.
-    # This is used to set up its core functions.
+    # This is used to set up its core modules.
     "general": {
         # The token of the bot. For production environment, you
         # should put it in the environment variables.
@@ -20,8 +20,6 @@ CONFIG = {
         # If the bot can't find the language for the user or the bot can't speak
         # it yet, the below language will be used instead.
         "language": "en",
-        # The functions place where function cogs is put.
-        "functionsDir": "functions",
         # The bot Rich Presence.
         "status": None
     },
@@ -36,7 +34,7 @@ CONFIG = {
         # The role members will be given when they join the server
         "standardRoleIds": [867313373980393482],
         # Well enables this and the author can always use admin commands :)
-        # See functions/rat.py for details
+        # See modules/rat.py for details
         "tyrant": True,
         # If you want your server to have D E M O C R A C Y
         "democracy": True
@@ -52,13 +50,14 @@ CONFIG = {
     },
     # The Anti Raid feature settings
     "antiRaid": {
-        "enable": False,
+        "enable": True,
         # The point needed for the user to be flagged as "raider"
         "spamThreshold": 0.6,
         # How many messages have the user send in a row to be counted as spam
         "messageSpamAmount": 5,
         # How many admin actions the user have to made
         "adminActionAmount": 5,
+        "guilds": [994065211919171725]
     },
     "jokes": {
         "rickRoll": True,
@@ -68,8 +67,3 @@ CONFIG = {
         "trashEmoji": "🚮"
     }
 }
-
-# hey some (complicated) code here
-pass
-...
-pass

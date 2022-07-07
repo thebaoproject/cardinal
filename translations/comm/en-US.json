@@ -1,0 +1,18 @@
+{
+  "logs": "The bot's log.",
+  "savelogs": "Saves logs.",
+  "intelligence": "Lists intelligence information about an user.",
+  "ban": "Bans a member.",
+  "tempban": "Temporarily bans a member. (broken)",
+  "unban": "Terminates a member's ban.",
+  "kick": "Kicks a member.",
+  "warn": "Warns a member.",
+  "isolate": "Isolates a member",
+  "jointask": "Deal with newbies.",
+  "solve": "Solve equations.",
+  "simplify": "Simplify expressions.",
+  "socialcredit": "-9999999 social credit",
+  "rickroll": "Rick Astley's gift.",
+  "translate": "Translate stuffs.",
+  "8ball": "It's your average 8ball. Don't believe it too much though."
+}

@@ -5,24 +5,12 @@ import logger
 from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
 
-name = {
-    "intelligence": "intelligence",
-    "intel": "intel",
-    "refreshdtb": "refreshdtb"
-}
-
-des = {
-    "intelligence": "Câu lệnh tìn báo, nêu thông tin về một người dùng nào đó. Câu cửa miệng của CIA.",
-    "intel": "Cách gõ ngắn hơn, cũng tìm kiếm thông tin.",
-    "refrestdtb": "Làm mới cơ sở dữ liệu toàn server."
-}
-
 
 class Intelligence(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(name=name["intelligence"], description=des["intelligence"])
+    @commands.slash_command(name="intelligence", description=disnake.Localized("Liệt kê thông tin tình báo của một thành viên nào đó.", key="intelligence"))
     async def intelligence(self, interaction: Aci, member: disnake.Member):
         # user = Profile(interaction.guild, member.id, member.name)
         await interaction.response.defer()

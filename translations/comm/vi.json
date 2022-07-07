@@ -1,0 +1,18 @@
+{
+  "logs": "Nhật kí của bot.",
+  "savelogs": "Lưu file log.",
+  "intelligence": "Liệt kê thông tin tình báo của một thành viên nào đó.",
+  "ban": "Cấm một thành viên.",
+  "tempban": "Cấm tạm thời một thành viên. (broken)",
+  "unban": "Hủy cấm một thành viên.",
+  "kick": "Khai trừ một thành viên.",
+  "warn": "Cảnh cáo một thành viên.",
+  "isolate": "Cách li một thành viên.",
+  "jointask": "Xử lí newbie.",
+  "solve": "Giải phương trình.",
+  "simplify": "Rút gọn đa thức.",
+  "socialcredit": "tập cận bình đang theo dõi bạn đấy",
+  "rickroll": "Quà tặng của Rick Astley",
+  "translate": "Dịch các thứ",
+  "8ball": "Là quả cầu pha lê đấy. Đừng tin vào nó quá."
+}
