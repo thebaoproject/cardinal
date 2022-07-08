@@ -3,6 +3,8 @@ import sys
 import disnake
 import config_manager as cfg
 import logger
+import threading
+import web
 
 from disnake.ext import commands
 
@@ -31,6 +33,10 @@ if __name__ == "__main__":
     logger.info(f"Using token '***************************************'")
     logger.info(f"Loading locales")
     bot.i18n.load("translations/comm/")
+    logger.info("Starting API thread...")
+    web_thread = threading.Thread(target=web.start)
+    web_thread.daemon = True
+    web_thread.start()
     logger.info(f"Starting Cogs initiation")
     # Copied from Stack Overflow (tm)
     # Loads important cogs

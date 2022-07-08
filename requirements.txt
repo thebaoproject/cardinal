@@ -7,3 +7,8 @@ aiohttp
 numpy
 wiktionaryparser
 websockets
+aiofiles
+Flask[async]
+flask_cors
+CherryPy
+cheroot

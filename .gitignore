@@ -13,3 +13,5 @@ config.py
 *.webm
 *.mp4
 *.m4a
+privkey.pem
+fullchain.pem
