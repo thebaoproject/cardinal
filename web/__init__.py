@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import secrets
 import config_manager as cfg
 import storage
@@ -65,7 +66,7 @@ def ensure_ssl():
 def start():
     ensure_ssl()
     d = PathInfoDispatcher({'/': app})
-    server = WSGIServer(("localhost", 443), d)
+    server = WSGIServer(("localhost", os.environ["PORT"]), d)
     server.ssl_adapter = BuiltinSSLAdapter("web/fullchain.pem", "web/privkey.pem", None)
     try:
         server.start()
