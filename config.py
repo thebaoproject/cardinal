@@ -9,7 +9,7 @@ CONFIG = {
     "general": {
         # The token of the bot. For production environment, you
         # should put it in the environment variables.
-        "botToken": "NzgwNjY4MjcwNzI1NDMxMjk3.X7yb-w.Hc4Jb0fTC_V2fzIX-z8e_1Cxcq8",
+        "botToken": None,
         # The prefix of the bot.
         # This will be omitted, as the bot uses slash commands.
         "prefix": ".c",
@@ -21,7 +21,7 @@ CONFIG = {
         # it yet, the below language will be used instead.
         "language": "en",
         # The bot Rich Presence.
-        "status": "Maintainance takedown"
+        "status": None
     },
     # This is the manual configuration options.
     "manualConfig": {
@@ -42,11 +42,11 @@ CONFIG = {
     # Bot backend options.
     "backend": {
         # The Firebase database URL
-        "fireDtb": "https://troli-320fc-default-rtdb.asia-southeast1.firebasedatabase.app/",
+        "fireDtb": None,
         # Firebase API key
-        "fireApiKey": "AIzaSyAL_oxQF0TIqGSR8J6p_zAZDT4LfOt6j5s",
+        "fireApiKey": None,
         # Rapid API key
-        "rapidApiKey": "a37b52eee4msh44c7bc550c9ac56p1f79cdjsnd27d75d6c074",
+        "rapidApiKey": None,
     },
     # The Anti Raid feature settings
     "antiRaid": {
