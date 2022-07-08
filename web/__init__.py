@@ -64,12 +64,13 @@ def ensure_ssl():
         k.write(cfg.get("crypt.privateKey"))
 
 
-if __name__ == "__main__":
+def start():
     ensure_ssl()
     d = PathInfoDispatcher({'/': app})
     logger.info(f"Binding to port {os.environ['PORT']}")
     server = WSGIServer(("localhost", int(os.environ["PORT"])), d)
     server.ssl_adapter = BuiltinSSLAdapter("fullchain.pem", "privkey.pem", None)
+    logger.info("web directory listing:" + str(os.listdir("web")))
     try:
         server.start()
     except KeyboardInterrupt:
