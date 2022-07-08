@@ -48,6 +48,10 @@ CONFIG = {
         # Rapid API key
         "rapidApiKey": None,
     },
+    "crypt": {
+        "fullChain": None,
+        "privateKey": None
+    },
     # The Anti Raid feature settings
     "antiRaid": {
         "enable": True,
