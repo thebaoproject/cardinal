@@ -3,6 +3,7 @@ import json
 import os
 import secrets
 import config_manager as cfg
+import logger
 import storage
 
 from flask import Flask, request, jsonify
@@ -63,10 +64,11 @@ def ensure_ssl():
         k.write(cfg.get("crypt.privateKey"))
 
 
-def start():
+if __name__ == "__main__":
     ensure_ssl()
     d = PathInfoDispatcher({'/': app})
-    server = WSGIServer(("localhost", os.environ["PORT"]), d)
+    logger.info(f"Binding to port {os.environ['PORT']}")
+    server = WSGIServer(("localhost", int(os.environ["PORT"])), d)
     server.ssl_adapter = BuiltinSSLAdapter("web/fullchain.pem", "web/privkey.pem", None)
     try:
         server.start()
