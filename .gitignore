@@ -9,7 +9,6 @@ __pycache__
 *.pyc
 env/
 venv/
-config.py
 *.webm
 *.mp4
 *.m4a
