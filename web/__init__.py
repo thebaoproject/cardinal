@@ -63,7 +63,7 @@ def ensure_ssl():
 
 
 def start():
-    # ensure_ssl()
+    ensure_ssl()
     d = PathInfoDispatcher({'/': app})
     server = WSGIServer(("localhost", 443), d)
     server.ssl_adapter = BuiltinSSLAdapter("web/fullchain.pem", "web/privkey.pem", None)
