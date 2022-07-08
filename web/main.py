@@ -58,9 +58,9 @@ async def register():
 
 
 def ensure_ssl():
-    with open("web/fullchain.pem", "w") as c:
+    with open("fullchain.pem", "w") as c:
         c.write(cfg.get("crypt.fullChain"))
-    with open("web/privkey.pem", "w") as k:
+    with open("privkey.pem", "w") as k:
         k.write(cfg.get("crypt.privateKey"))
 
 
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     d = PathInfoDispatcher({'/': app})
     logger.info(f"Binding to port {os.environ['PORT']}")
     server = WSGIServer(("localhost", int(os.environ["PORT"])), d)
-    server.ssl_adapter = BuiltinSSLAdapter("web/fullchain.pem", "web/privkey.pem", None)
+    server.ssl_adapter = BuiltinSSLAdapter("fullchain.pem", "privkey.pem", None)
     try:
         server.start()
     except KeyboardInterrupt:
