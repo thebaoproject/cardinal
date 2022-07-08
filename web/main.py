@@ -65,13 +65,12 @@ def ensure_ssl():
 
 
 if __name__ == "__main__":
+    logger.info("Ensuring SSL certificates are present...")
     ensure_ssl()
-    d = PathInfoDispatcher({'/': app})
-    logger.info(f"Binding to port {os.environ['PORT']}")
-    server = WSGIServer(("localhost", int(os.environ["PORT"])), d)
-    server.ssl_adapter = BuiltinSSLAdapter("web/fullchain.pem", "web/privkey.pem", None)
     logger.info("web directory listing:" + str(os.listdir("web")))
-    try:
-        server.start()
-    except KeyboardInterrupt:
-        server.stop()
+    d = PathInfoDispatcher({'/': app})
+    port = int(os.environ["PORT"])
+    logger.info(f"Binding to port {port}")
+    server = WSGIServer(("localhost", port), d)
+    server.ssl_adapter = BuiltinSSLAdapter("web/fullchain.pem", "web/privkey.pem", None)
+    server.start()
