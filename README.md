@@ -1,4 +1,4 @@
-# Trợ Lí.
+# Cardinal
 The bot that can do everything.
 
 ## Installation
