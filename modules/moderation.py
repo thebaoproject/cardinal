@@ -1,17 +1,17 @@
 from __future__ import annotations
 
+import random
 from typing import Coroutine
 
 import disnake
-import logger
-import bot_utils as utils
-import random
-import translations as msg
-import config_manager as cfg
-import storage
-
 from disnake import ApplicationCommandInteraction as Aci
 from disnake.ext import commands
+
+import bot_utils as utils
+import config_manager as cfg
+import logger
+import storage
+import translations as msg
 
 
 async def democracy(interaction: Aci, action: str):
@@ -44,15 +44,15 @@ async def enough_permission(interaction: Aci):
 
 
 async def say_goodbye(
-    to: disnake.ApplicationCommandInteraction | disnake.abc.Messageable,
-    member: disnake.Member | disnake.User,
-    admin: disnake.Member | disnake.User,
-    string: str,
-    action: Coroutine = None,
-    lang: disnake.User = "en",
-    reason: str = None,
-    duration: str = None,
-    dm: bool = True
+        to: disnake.ApplicationCommandInteraction | disnake.abc.Messageable,
+        member: disnake.Member | disnake.User,
+        admin: disnake.Member | disnake.User,
+        string: str,
+        action: Coroutine = None,
+        lang: disnake.User = "en",
+        reason: str = None,
+        duration: str = None,
+        dm: bool = True
 ):
     """
     The Hammer to execute the moderation commands.
@@ -120,11 +120,11 @@ class Moderate(commands.Cog):
     # Búa ban!
     @commands.slash_command(name="ban", description=disnake.Localized("Cấm một thành viên.", key="ban"))
     async def ban(
-        self, 
-        interaction: Aci,
-        member: disnake.Member,
-        reason: str = None,
-        duration: str = None
+            self,
+            interaction: Aci,
+            member: disnake.Member,
+            reason: str = None,
+            duration: str = None
     ):
         await say_goodbye(
             interaction,
@@ -138,22 +138,23 @@ class Moderate(commands.Cog):
         )
 
     # Một cách viết khác dễ hiểu hơn.
-    @commands.slash_command(name="tempban", description=disnake.Localized("Cấm tạm thời một thành viên. (broken)", key="tempban"))
+    @commands.slash_command(name="tempban",
+                            description=disnake.Localized("Cấm tạm thời một thành viên. (broken)", key="tempban"))
     async def tempban(
-        self,
-        interaction: Aci, 
-        member: disnake.Member, 
-        reason: str = "không xác định",
-        duration: int = 0
+            self,
+            interaction: Aci,
+            member: disnake.Member,
+            reason: str = "không xác định",
+            duration: int = 0
     ):
         ...
 
     @commands.slash_command(name="unban", description=disnake.Localized("Hủy cấm một thành viên.", key="unban"))
     async def unban(
-        self, interaction: Aci,
-        member: disnake.User,
-        reason: str = "không xác định",
-        duration: str = "mãi mãi"
+            self, interaction: Aci,
+            member: disnake.User,
+            reason: str = "không xác định",
+            duration: str = "mãi mãi"
     ):
         await say_goodbye(
             interaction,
@@ -169,10 +170,10 @@ class Moderate(commands.Cog):
     # Get out!
     @commands.slash_command(name="kick", description=disnake.Localized("Khai trừ một thành viên.", key="kick"))
     async def kick(
-        self, 
-        interaction: Aci, 
-        member: disnake.Member, 
-        reason: str = "không xác định"
+            self,
+            interaction: Aci,
+            member: disnake.Member,
+            reason: str = "không xác định"
     ):
         await say_goodbye(
             interaction,
@@ -187,10 +188,10 @@ class Moderate(commands.Cog):
     # Warn!
     @commands.slash_command(name="warn", description=disnake.Localized("Cảnh cáo một thành viên.", key="warn"))
     async def warn(
-        self, 
-        interaction: Aci, 
-        member: disnake.Member, 
-        content: str = "không gì cả"
+            self,
+            interaction: Aci,
+            member: disnake.Member,
+            content: str = "không gì cả"
     ):
         await say_goodbye(
             interaction,
@@ -207,11 +208,11 @@ class Moderate(commands.Cog):
     # Finally, isolate. Your opinion don't matter to us.
     @commands.slash_command(name="isolate", description=disnake.Localized("Cách li một thành viên.", key="isolate"))
     async def isolate(
-        self, 
-        interaction: Aci, 
-        member: disnake.Member, 
-        duration: str,
-        reason: str = "không gì cả"
+            self,
+            interaction: Aci,
+            member: disnake.Member,
+            duration: str,
+            reason: str = "không gì cả"
     ):
         await say_goodbye(
             interaction,

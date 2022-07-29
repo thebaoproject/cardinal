@@ -3,10 +3,9 @@ import datetime
 import inspect
 import os
 
-
 LOG = []
 
-__FORMAT = "{color}[{time} {level}] {file}:{line}: "
+__FORMAT = "{color}[{time} {level}] {file}@{line}: "
 
 __MIN_LEVEL = 0
 
@@ -36,9 +35,9 @@ N2LV = {
     "-3": "FUCKED"
 }
 LV2CL = {
-    "2": COLOR_WHITE,
-    "1":  COLOR_GREEN,
-    "0":  COLOR_CYAN,
+    "2": COLOR_CYAN,
+    "1": COLOR_GREEN,
+    "0": COLOR_WHITE,
     "-1": COLOR_YELLOW,
     "-2": COLOR_RED,
     "-3": COLOR_MAGENTA
@@ -69,7 +68,7 @@ def _log(filename: str, line: int, level: int, *message: str):
             line=line,
             level=N2LV[str(level)]
         ) +
-        "".join(message)
+        "".join(str(message))
     )
 
 

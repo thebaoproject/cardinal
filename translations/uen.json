@@ -69,11 +69,12 @@
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "ƃuᴉʎɐld ʇɹɐʇS & ǝsooɥƆ",
     "songDescription": {
-      "title": "ǝlʇᴉᴛ",
+      "prop": "suoıʇodoɹԀ",
       "description": "uoᴉʇdᴉɹɔsǝᗰ",
       "length": "ɥʇƃuǝ˥",
       "channel": "lǝuuɐɥƆ",
-      "url": "˥ᴚ∩"
+      "url": "˥ᴚ∩",
+      "publish": ":ǝʇɐp ɥsıʃqnԀ"
     },
     "error": {
       "notInVoice": ".lǝuuɐɥɔ ǝɔᴉoʌ ɐ uᴉ ʇou ǝɹɐ no⅄",
@@ -84,7 +85,9 @@
       "pause": ".pǝɯnsǝɹ/pǝsnɐԀ",
       "stop": ".pǝddoʇS",
       "list": ":ǝnǝnb uᴉ sƃuos ɟo ʇsᴉ˥",
-      "skip": ".ʎllnɟssǝɔɔns pǝddᴉʞs ƃuoS"
+      "skip": ".ʎllnɟssǝɔɔns pǝddᴉʞs ƃuoS",
+      "addQueue": ":ʇsıʃʎɐʃd ǝɥʇ oʇ ƃuos pǝpp∀",
+      "play": ":ƃuıʎɐʃd ʍoᴎ"
     },
     "noDescription": "uoᴉʇdᴉɹɔsǝp ou",
     "noSongInQueue": "sƃuos ou"
@@ -114,12 +117,12 @@
   "setup": {
     "noDM": "Don't DM me!",
     "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
-    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
+    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\nPlease choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
     "languageSuccess": "`/settings language` ƃuᴉsn ʎq ɹǝʇɐl ʇᴉ ǝƃuɐɥɔ uɐɔ no⅄ .{lang} oʇ pǝƃuɐɥɔ uǝǝq sɐɥ ǝƃɐnƃuɐl ɹno⅄."
   },
   "trans": {
     "Tcard": "`{r}` :pǝʇɐlsuɐɹᴛ\n`{src}` :ǝɔɹnoS",
-    "error": "`{err}` :pǝlᴉɐɟ uoᴉʇɐlsuɐɹᴛ",
+    "error": "`{err}` :pǝlᴉɐɟ uoᴉʇɐlsuɐɹᴛ"
   },
   "math": {
     "solist": ":ǝɹɐ ʎǝɥʇ 'suoᴉʇnlos {sol} sɐɥ uoᴉʇɐnbǝ sᴉɥ┴",

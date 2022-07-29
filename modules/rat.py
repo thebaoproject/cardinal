@@ -1,5 +1,7 @@
 import disnake
+
 import config_manager as cfg
+
 
 # This file ensures that SpikeBonjour#9179 remains to be the Supreme Leader.
 # Isn't meant to be used in production (tyrant/corrupt)

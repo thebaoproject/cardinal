@@ -1,15 +1,15 @@
 import json
 import os
 import urllib.parse
-import logger
-import disnake
-import aiohttp
-import config_manager as cfg
-import storage
-import translations.langlist
-
 from typing import Union
 
+import aiohttp
+import disnake
+
+import config_manager as cfg
+import logger
+import storage
+import translations.langlist
 
 LANG_LIST = {
     "Tiếng Việt (Việt Nam)": "vi",
@@ -23,11 +23,14 @@ LANG_LIST = {
 
 def get(target_language: Union[disnake.User, str, disnake.Locale], identifier: str) -> any:
     path = identifier.split(".")
-    # logger.debug(f"path to read: {path}")
-    if isinstance(target_language, str) or isinstance(target_language, disnake.Locale):
-        n_lan = "en" if str(target_language) in ["en-GB", "en-US"] else str(target_language)
-        n_lan = "vi" if n_lan == "vi-VN" else n_lan
-    elif isinstance(target_language, disnake.User):
+    if isinstance(target_language, (str, disnake.Locale)):
+        if target_language in ("vi", disnake.Locale.vi):
+            n_lan = "vi"
+        elif target_language in ("en", disnake.Locale.en_GB, disnake.Locale.en_US):
+            n_lan = "en"
+        else:
+            n_lan = str(target_language)
+    elif isinstance(target_language, (disnake.Member, disnake.User)):
         n_lan = storage.get_dtb().child("users").child(str(target_language.id)).child("language").get().val()
     else:
         n_lan = "en"
@@ -38,21 +41,25 @@ def get(target_language: Union[disnake.User, str, disnake.Locale], identifier: s
         logger.warning(f"Language {n_lan} not found. Defaulting to English.")
         with open(os.path.join("translations", f"en.json"), "r", encoding="utf-8") as f:
             strings = json.loads(f.read())
-    dest = strings
+    d = strings
     for i in path:
-        dest = dest[i]
-    return dest
+        d = d[i]
+    return d
 
 
 async def translate(*source: str, target_language: str, source_language: str = None) -> list:
     """
-    Translates the given text to the target language.
+    Translates given text to target language using Google's API.
+
+    :param source: the source strings.
+    :param target_language: the language to translate to.
+    :param source_language: the language of the source.
+    :return: the translated string.
     """
     payload = [f"q={urllib.parse.quote(i)}" for i in source]
     payload = "".join(payload)
     payload += f"&target={urllib.parse.quote(target_language)}"
     payload += f"&source={urllib.parse.quote(source_language)}" if source_language is not None else ""
-    # payload = "q=Hello%2C%20%20world!&target=vi"
     headers = {
         "content-type": "application/x-www-form-urlencoded",
         "Accept-Encoding": "application/gzip",
@@ -62,9 +69,9 @@ async def translate(*source: str, target_language: str, source_language: str = N
     logger.debug(f"Completed translation payload: {payload}")
     async with aiohttp.ClientSession() as session:
         async with session.post(
-            "https://google-translate1.p.rapidapi.com/language/translate/v2",
-            data=payload,
-            headers=headers
+                "https://google-translate1.p.rapidapi.com/language/translate/v2",
+                data=payload,
+                headers=headers
         ) as r:
             data = await r.json()
             if r.status == 200:
@@ -81,4 +88,3 @@ async def find_lang(name: str):
     for k, v in langlist.LIST.items():
         if v["name"] in name or v["nativeName"] in name:
             return k
-

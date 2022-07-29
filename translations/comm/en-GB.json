@@ -14,5 +14,10 @@
   "socialcredit": "-9999999 social credit",
   "rickroll": "Rick Astley's gift.",
   "translate": "Translate stuffs.",
-  "8ball": "It's your average 8ball. Don't believe it too much though."
+  "8ball": "It's your average 8ball. Don't believe it too much though.",
+  "musicplay": "Plays a song.",
+  "musicpause": "Pauses the currently playing song.",
+  "musicstop": "Stops playing.",
+  "musicskip": "Skips a song.",
+  "musiclist": "Displays the playlist."
 }

@@ -1,16 +1,17 @@
 import os
 import random
+
 import disnake
-import config_manager as cfg
-
-from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
+from disnake.ext import commands
 
+import config_manager as cfg
 
 banned = [
     "Thiên An Môn", "xe tăng", "biểu tình", "dân chủ", "Hồng Kông", "Biển Đông", "Đảo Điếu Ngư",
     "Vịt", "winnie the pooh", "tham nhũng", "Tân Cương", "Tây Tạng", "Giang Trạch Dân", "hai con", "Tàu Cộng"
-    "diệt chủng", "John Cena", "Tiannmen", "tank man", "protest", "democracy", "Hong Kong", "South China Sea",
+                                                                                                   "diệt chủng",
+    "John Cena", "Tiannmen", "tank man", "protest", "democracy", "Hong Kong", "South China Sea",
     "Sogakukan", "ducks", "winnie the pooh", "coruption", "Xinjiang", "Tibet", "Zhiang Zemin", "John Cena",
     "two children", "genocide", "holocaust", "free", "Giant Yellow Duck"
 ]
@@ -29,7 +30,8 @@ class SocialCredit(commands.Cog):
                 if entry.upper() in content.upper():
                     await message.reply(file=disnake.File(img_path))
 
-    @commands.slash_command(name="socialcredit", description=disnake.Localized("tập cận bình đang theo dõi bạn đấy", key="socialcredit"))
+    @commands.slash_command(name="socialcredit",
+                            description=disnake.Localized("tập cận bình đang theo dõi bạn đấy", key="socialcredit"))
     async def social_credit(self, interaction: Aci, member: disnake.Member):
         img_path = os.path.join("jokes", "social_credit", f"rem-{random.randint(0, 4)}.png")
         await interaction.response.send_message(f"{member.mention}, 你已被捕，明天将被处决!", file=disnake.File(img_path))

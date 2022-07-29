@@ -14,3 +14,4 @@ venv/
 *.m4a
 privkey.pem
 fullchain.pem
+/test.json

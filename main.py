@@ -1,10 +1,12 @@
+import logging
 import os
 import sys
+
 import disnake
+from disnake.ext import commands
+
 import config_manager as cfg
 import logger
-
-from disnake.ext import commands
 
 # Omitted, because we use / here
 bot = commands.Bot(
@@ -25,6 +27,7 @@ async def on_ready():
 
 if __name__ == "__main__":
     # Setup logger
+    logging.basicConfig(level=logging.INFO)
     log_level = logger.DEBUG if "--debug" in sys.argv else logger.INFO
     logger.set_min_level(log_level)
     logger.info("Bot staring algorithm is initiated")

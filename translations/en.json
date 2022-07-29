@@ -69,22 +69,25 @@
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "Choose & Start playing",
     "songDescription": {
-        "title": "Title",
-        "description": "Description",
-        "length": "Length",
-        "channel": "Channel",
-        "url": "URL"
+      "prop": "Propotions",
+      "description": "Description",
+      "length": "Length",
+      "channel": "Channel",
+      "url": "URL"
     },
     "error": {
-        "notInVoice": "You are not in a voice channel.",
-        "videoNotFound": "Video not found.",
-        "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
+      "notInVoice": "You are not in a voice channel.",
+      "videoNotFound": "Video not found.",
+      "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
     },
     "success": {
-        "pause": "Paused/resumed.",
-        "stop": "Stopped.",
-        "list": "List of songs in queue:",
-        "skip": "Song skipped successfully."
+      "pause": "Paused/resumed.",
+      "stop": "Stopped.",
+      "list": "List of songs in queue:",
+      "skip": "Song skipped successfully.",
+      "addQueue": "Added song to playlist:",
+      "play": "Now playing:",
+      "publish": "Publish date"
     },
     "noDescription": "no description",
     "noSongInQueue": "no songs"
@@ -114,7 +117,7 @@
   "setup": {
     "noDM": "Don't DM me!",
     "noDMok": "OK, I won't DM you anymore. Use `/settings enableDM true` to turn it on again.",
-    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\n Please choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
+    "card": "Hi, this is Cardinal, a bot made by SpikeBonjour.\nThis is the personalized, first-time setup.\nPlease choose your language to continue: (*ignoring this message will set your language to your Discord's display language*)",
     "languageSuccess": "Your language has been changed to {lang}. You can change it later by using `/settings language`."
   },
   "trans": {

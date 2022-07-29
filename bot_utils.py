@@ -82,7 +82,8 @@ def normalize_argument(value: str):
         return None
     if arg in ["yes", "true", "yeah", "ok", "on", "y", "t", "1", "affirmative", "+", "có", "c", "positive"]:
         return True
-    elif arg in ["no", "false", "nope", "sike", "no", "off", "f", "n", "k", "không", "negative", "-", "0", "nah", "fuck"]:
+    elif arg in ["no", "false", "nope", "sike", "no", "off", "f", "n", "k", "không", "negative", "-", "0", "nah",
+                 "fuck"]:
         return False
     elif arg in ["null", "none", "undefined", "không xác định", "\\0", "na", "unavailable"]:
         return None

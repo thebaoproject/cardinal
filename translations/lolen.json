@@ -69,22 +69,25 @@
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "Choose & Start playing da song",
     "songDescription": {
-        "title": "kat name",
-        "description": "food ìnormation",
-        "length": "food duration",
-        "channel": "Channel",
-        "url": "linkz"
+      "prop": "kat likez or not",
+      "description": "food ìnormation",
+      "length": "food duration",
+      "channel": "Channel",
+      "url": "linkz"
     },
     "error": {
-        "notInVoice": "kat needz voice chennel first",
-        "videoNotFound": "no kat with that name was foundz",
-        "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
+      "notInVoice": "kat needz voice chennel first",
+      "videoNotFound": "no kat with that name was foundz",
+      "internalError": "Internal bot error. Try spamming <@!603577134535147524> and hope it will be resolved soon."
     },
     "success": {
-        "pause": "kat has broken the music disc successfully",
-        "stop": "kat has stopped the msc.",
-        "list": "queue hz these songs:",
-        "skip": "skipped."
+      "pause": "kat has broken the music disc successfully",
+      "stop": "kat has stopped the msc.",
+      "list": "queue hz these songs:",
+      "skip": "skipped.",
+      "addQueue": "Songz pushd to th playlis:",
+      "play": "NOw playin':",
+      "publish": "Publiz detz"
     },
     "noDescription": "no desc :'<",
     "noSongInQueue": "no songz ¯\\_(ツ)_/¯"

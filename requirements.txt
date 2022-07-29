@@ -1,6 +1,7 @@
 disnake[voice]
 sympy
 youtube_dl
+youtube_search
 youtube-search-python
 pyrebase4
 aiohttp
@@ -8,7 +9,3 @@ numpy
 wiktionaryparser
 websockets
 aiofiles
-Flask[async]
-flask_cors
-CherryPy
-cheroot

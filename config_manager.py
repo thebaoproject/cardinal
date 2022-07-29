@@ -1,5 +1,5 @@
-import json
 import os
+
 from config import CONFIG
 
 

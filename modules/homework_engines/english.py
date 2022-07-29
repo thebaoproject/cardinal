@@ -1,6 +1,3 @@
-import bot_utils
-
-
 # def pronunciation(content: list[str]):
 #
 #
@@ -9,4 +6,3 @@ import bot_utils
 #     for i in separated:
 #         if "*" in i:
 #             return pronunciation(separated)
-

@@ -1,11 +1,12 @@
-import os
-import logger
-import disnake
 import datetime
-import translations as msg
+import os
 
+import disnake
 from disnake import ApplicationCommandInteraction as Aci
 from disnake.ext import commands
+
+import logger
+import translations as msg
 
 
 async def log_autocompleter(interaction: Aci, inp: str):
@@ -39,7 +40,8 @@ class LogManager(commands.Cog):
 
     @commands.slash_command(name="savelog", description=disnake.Localized("Lưu file log.", key="savelogs"))
     async def sls(self, interaction: Aci):
-        os.rename(os.path.join("ffmpeg", "latest.log"), os.path.join("ffmpeg", datetime.datetime.now().strftime("%y-%m-%d-%H:%M%:%S.log")))
+        os.rename(os.path.join("bin", "latest.log"),
+                  os.path.join("bin", datetime.datetime.now().strftime("%y-%m-%d-%H:%M%:%S.log")))
         await interaction.send(msg.get(interaction.author, "ok"))
 
 

@@ -40,7 +40,8 @@
         "sike",
         "ta lằng ta lằng.",
         "you know the rules, and so do i..."
-      ]    },
+      ]
+    },
     "isolate": {
       "public": [
         "{usr} đã bị kách li bởi {admin} trong vòng `{dur}`, không phải do COVID mà do `{reas}`.",
@@ -68,22 +69,25 @@
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "Chọn & Chơi luôn cho máu",
     "songDescription": {
-        "title": "Tiu đề",
-        "description": "Mô-tả",
-        "length": "Bao lâu",
-        "channel": "Kên",
-        "url": "sauce"
+      "title": "phừn trăm",
+      "description": "Mô-tả",
+      "length": "lâu wó",
+      "channel": "Kên",
+      "url": "sauce",
+      "publish": "ngày puát hàn"
     },
     "error": {
-        "notInVoice": "vào voice đi pé ơi.",
-        "videoNotFound": "ko tìm thấy ròi.",
-        "internalError": "Lỗi nội bộ bot. Hãy spam ping <@!603577134535147524> để thanh niên này xử lí."
+      "notInVoice": "vào voice đi pé ơi.",
+      "videoNotFound": "ko tìm thấy ròi.",
+      "internalError": "Lỗi nội bộ bot. Hãy spam ping <@!603577134535147524> để thanh niên này xử lí."
     },
     "success": {
-        "pause": "okii.",
-        "stop": "o hết nhạc ròi",
-        "list": "đây nè:",
-        "skip": "ok, không nge bài đó nữa."
+      "pause": "okii.",
+      "stop": "o hết nhạc ròi",
+      "list": "đây nè:",
+      "skip": "ok, không nge bài đó nữa.",
+      "addQueue": "oke, đã thêm bài này vào hàng chờ:",
+      "play": "đang chơi:"
     },
     "noDescription": "ko co mo tả rò",
     "noSongInQueue": "ko co gi UwU"
@@ -113,7 +117,7 @@
   "setup": {
     "noDM": "Đừng DM tôi!",
     "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
-    "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\n Hãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
+    "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\nHãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
     "languageSuccess": "Ngôn ngữ của pé đã đc đặt lè {lang}. Nếu pé ko thik á, đổi = cách `/settings language`."
   },
   "trans": {

@@ -1,8 +1,8 @@
 import disnake
-from disnake.ext import commands
-import config_manager as cfg
-
 from disnake import ApplicationCommandInteraction as Aci
+from disnake.ext import commands
+
+import config_manager as cfg
 
 # Tụ tập tất cả mọi thứ liên quan đến troll.
 # Không buộc phải có cái này. Để cho gọn thôi.

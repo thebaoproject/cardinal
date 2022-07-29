@@ -1,7 +1,7 @@
 import disnake
-import config_manager as cfg
-
 from disnake.ext import commands
+
+import config_manager as cfg
 
 
 class AutoTrash(commands.Cog):

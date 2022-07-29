@@ -1,6 +1,6 @@
-import config_manager as cfg
-
 import pyrebase
+
+import config_manager as cfg
 
 CONFIG = {
     "databaseURL": cfg.get("backend.fireDtb"),

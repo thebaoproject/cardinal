@@ -1,13 +1,12 @@
 import disnake
+import numpy
+from disnake.ext import commands
 
+import bot_utils as utils
+import config_manager as cfg
 import logger
 import translations as msg
-import bot_utils as utils
-import numpy
-import config_manager as cfg
 from modules import rat
-
-from disnake.ext import commands
 
 
 async def handle_command(cmd: disnake.Message, guild: disnake.Guild):
@@ -32,7 +31,10 @@ class AntiRaid(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: disnake.Message):
-        if not cfg.get("antiRaid.enable") or message.guild.id not in cfg.get("antiRaid.guilds") or message.author.id == self.bot.user.id:
+        if message.guild is None:
+            return
+        if not cfg.get("antiRaid.enable") or message.guild.id not in cfg.get(
+                "antiRaid.guilds") or message.author.id == self.bot.user.id:
             return
         if self.bot.user.mention in message.content:
             await handle_command(message, message.guild)
@@ -52,15 +54,15 @@ class AntiRaid(commands.Cog):
                 logger.debug("    -> Not an admin.")
                 is_raid += 0.2
         if utils.str_in_str(
-            [
-                ".com",
-                ".net",
-                ".gift",
-                ".gg",
-                "http",
-                "//"
-            ],
-            c
+                [
+                    ".com",
+                    ".net",
+                    ".gift",
+                    ".gg",
+                    "http",
+                    "//"
+                ],
+                c
         ):
             is_raid += 0.3
             logger.debug("The message has link.")
@@ -74,7 +76,8 @@ class AntiRaid(commands.Cog):
         print(author_list)
         if author_list.count(author_list[0]) == len(author_list) != 0:
             is_raid += 0.3
-            logger.debug(f"owner sends message repeatedly. {author_list}, {numpy.average(numpy.abs(numpy.diff(times)))}")
+            logger.debug(
+                f"owner sends message repeatedly. {author_list}, {numpy.average(numpy.abs(numpy.diff(times)))}")
             avg_time = numpy.average(numpy.abs(numpy.diff(times)))
             if avg_time < 2:
                 is_raid += 0.2

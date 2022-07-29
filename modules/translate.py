@@ -1,8 +1,8 @@
 import disnake
-import translations as msg
-
-from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
+from disnake.ext import commands
+
+import translations as msg
 from translations.langlist import LIST
 
 
@@ -23,11 +23,11 @@ class Translate(commands.Cog):
 
     @commands.slash_command(name="translate", description=disnake.Localized("Dịch các thứ", key="translate"))
     async def translate(
-        self,
-        interaction: Aci,
-        target_language=commands.Param(autocomplete=language_suggester),
-        query: str = commands.Param(),
-        source_language=None
+            self,
+            interaction: Aci,
+            target_language=commands.Param(autocomplete=language_suggester),
+            query: str = commands.Param(),
+            source_language=None
     ):
         await interaction.response.defer()
         tl = target_language[:2]
@@ -38,12 +38,9 @@ class Translate(commands.Cog):
             r = result[0]
         else:
             r = ", ".join(result)
-        await interaction.edit_original_message(content=msg.get(interaction.author, "trans.Tcard").format(src=query, r=r))
+        await interaction.edit_original_message(
+            content=msg.get(interaction.author, "trans.Tcard").format(src=query, r=r))
 
 
 def setup(bot):
     bot.add_cog(Translate(bot))
-
-
-
-

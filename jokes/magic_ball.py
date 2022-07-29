@@ -1,9 +1,10 @@
-import disnake
+import datetime
 import random
+from enum import Enum
+
+import disnake
 from disnake import ApplicationCommandInteraction as Aci
 from disnake.ext import commands
-from enum import Enum
-import datetime
 
 
 class Choice(str, Enum):
@@ -19,14 +20,15 @@ class MagicBall(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @commands.slash_command(name="8ball", description=disnake.Localized("Là quả cầu pha lê đấy. Đừng tin vào nó quá.", key="8ball"))
+    @commands.slash_command(name="8ball",
+                            description=disnake.Localized("Là quả cầu pha lê đấy. Đừng tin vào nó quá.", key="8ball"))
     async def qua_cau_pha_le(self, interaction: Aci, option: Choice, data: str):
         t = "Trả lời" if option == Choice.answer else "Lựa chọn"
         embed = disnake.Embed(
-                title=f"Quả cầu Pha lê: {t}",
-                description="Quả cầu kì diệu sẽ giúp bạn trả lời thắc mắc. *tHậT 100%:tm:*",
-                timestamp=datetime.datetime.now()
-            )
+            title=f"Quả cầu Pha lê: {t}",
+            description="Quả cầu kì diệu sẽ giúp bạn trả lời thắc mắc. *tHậT 100%:tm:*",
+            timestamp=datetime.datetime.now()
+        )
 
         embed.footer.icon_url = interaction.author.avatar.url
         embed.footer.text = f"Được yêu cầu bởi {interaction.author}"

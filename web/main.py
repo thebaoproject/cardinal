@@ -2,14 +2,15 @@ import hashlib
 import json
 import os
 import secrets
+
+from cheroot.ssl.builtin import BuiltinSSLAdapter
+from cheroot.wsgi import Server as WSGIServer, PathInfoDispatcher
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+
 import config_manager as cfg
 import logger
 import storage
-
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-from cheroot.wsgi import Server as WSGIServer, PathInfoDispatcher
-from cheroot.ssl.builtin import BuiltinSSLAdapter
 
 app = Flask(__name__)
 CORS(app)

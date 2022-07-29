@@ -69,22 +69,25 @@
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "Cọn & Bắt dầu cơi",
     "songDescription": {
-        "title": "Tiêu dề",
-        "description": "Mô tả",
-        "length": "Dộ zài",
-        "channel": "Kên'",
-        "url": "UZL"
+      "prop": "Tỉ lệ",
+      "description": "Mô tả",
+      "length": "Dộ zài",
+      "channel": "Kên'",
+      "url": "UZL",
+      "publish": "Qày fát hàn'"
     },
     "error": {
-        "notInVoice": "Bạn xôq ở coq kên' voike nào.",
-        "videoNotFound": "Vizeo kủa bạn xôq kó kết kuả tìm kiếm.",
-        "internalError": "Lỗi nội bộ bot. Hãy spam piq <@!603577134535147524> dể wan' niên này xử lí."
+      "notInVoice": "Bạn xôq ở coq kên' voike nào.",
+      "videoNotFound": "Vizeo kủa bạn xôq kó kết kuả tìm kiếm.",
+      "internalError": "Lỗi nội bộ bot. Hãy spam piq <@!603577134535147524> dể wan' niên này xử lí."
     },
     "success": {
-        "pause": "Bài n'ạk daq cơi dã dượk zừq/tiếp tụk.",
-        "stop": "Bot dã qừq fát.",
-        "list": "Kák bài n'ạk hiện kó coq hàq cờ:",
-        "skip": "Bỏ kua bài hát wàn' kôq."
+      "pause": "Bài n'ạk daq cơi dã dượk zừq/tiếp tụk.",
+      "stop": "Bot dã qừq fát.",
+      "list": "Kák bài n'ạk hiện kó coq hàq cờ:",
+      "skip": "Bỏ kua bài hát wàn' kôq.",
+      "addQueue": "Dã wêm bài hát vào hàq cờ:",
+      "play": "Hiện daq cơi:"
     },
     "noDescription": "xôq kó mô tả",
     "noSongInQueue": "xôq zì kả"

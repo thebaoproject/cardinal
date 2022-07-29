@@ -1,16 +1,18 @@
 import disnake
-import translations as msg
-import logger
-
-from disnake.ext import commands
 from disnake import ApplicationCommandInteraction as Aci
+from disnake.ext import commands
+
+import logger
+import translations as msg
 
 
 class Intelligence(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(name="intelligence", description=disnake.Localized("Liệt kê thông tin tình báo của một thành viên nào đó.", key="intelligence"))
+    @commands.slash_command(name="intelligence",
+                            description=disnake.Localized("Liệt kê thông tin tình báo của một thành viên nào đó.",
+                                                          key="intelligence"))
     async def intelligence(self, interaction: Aci, member: disnake.Member):
         # user = Profile(interaction.guild, member.id, member.name)
         await interaction.response.defer()

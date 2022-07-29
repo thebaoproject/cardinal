@@ -69,22 +69,25 @@
     "chooseCard": "{title} - {channel}",
     "buttonChooseLabel": "Chọn & Bắt đầu chơi",
     "songDescription": {
-        "title": "Tiêu đề",
-        "description": "Mô tả",
-        "length": "Độ dài",
-        "channel": "Kênh",
-        "url": "URL"
+      "prop": "Tỉ lệ",
+      "description": "Mô tả",
+      "length": "Độ dài",
+      "channel": "Kênh",
+      "url": "URL",
+      "publish": "Ngày xuất bản"
     },
     "error": {
-        "notInVoice": "Bạn không ở trong kênh voice nào.",
-        "videoNotFound": "Video của bạn không có kết quả tìm kiếm.",
-        "internalError": "Lỗi nội bộ bot. Hãy spam ping <@!603577134535147524> để thanh niên này xử lí."
+      "notInVoice": "Bạn không ở trong kênh voice nào.",
+      "videoNotFound": "Video của bạn không có kết quả tìm kiếm.",
+      "internalError": "Lỗi nội bộ bot. Hãy spam ping <@!603577134535147524> để thanh niên này xử lí."
     },
     "success": {
-        "pause": "Bài nhạc đang chơi đã được dừng/tiếp tục.",
-        "stop": "Bot đã ngừng phát.",
-        "list": "Các bài nhạc hiện có trong hàng chờ:",
-        "skip": "Bỏ qua bài hát thành công."
+      "pause": "Bài nhạc đang chơi đã được dừng/tiếp tục.",
+      "stop": "Bot đã ngừng phát.",
+      "list": "Các bài nhạc hiện có trong hàng chờ:",
+      "skip": "Bỏ qua bài hát thành công.",
+      "addQueue": "Đã thêm bài hát vào hàng chờ:",
+      "play": "Hiện đang chơi:"
     },
     "noDescription": "không có mô tả",
     "noSongInQueue": "không gì cả"
@@ -114,7 +117,7 @@
   "setup": {
     "noDM": "Đừng DM tôi!",
     "noDMok": "OK, tôi sẽ không DM bạn nữa. Bạn có thể dùng `/settings enableDM true` để bật lại DM.",
-    "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\n Hãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
+    "card": "Xin chào, đây là bot Cardinal, một con bot \"thập cẩm\" bởi SpikeBonjour.\nĐây là setup lần đầu riêng của bạn.\nHãy chọn ngôn ngữ của bạn để tiếp tục: (*nếu bạn không chọn, ngôn ngữ giao diện Discord của bạn sẽ được sử dụng*)",
     "languageSuccess": "Ngôn ngữ của bạn đã được đặt thành {lang}. Bạn có thể thay đổi bằng lệnh `/settings language`.",
     "askRegion": "Bạn hãy cho tôi biết bạn đang ở nước nào. Nếu bạn không muốn trả lời, hãy chọn Trái đất. Điều này sẽ ảnh hưởng đến kết quả tìm kiếm âm nhạc của bạn.",
     "regionSuccess": "Vùng của bạn đã được đặt thành {region} thành công."
