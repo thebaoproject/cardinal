@@ -9,4 +9,3 @@ numpy
 wiktionaryparser
 websockets
 aiofiles
-libvpx5
