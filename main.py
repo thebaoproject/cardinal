@@ -3,6 +3,7 @@ import os
 import sys
 
 import disnake
+import requests
 from disnake.ext import commands
 
 import config_manager as cfg
@@ -27,10 +28,20 @@ async def on_ready():
 
 if __name__ == "__main__":
     # Setup logger
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(asctime)s %(levelname)s] %(name)s: %(message)s',
+        datefmt='%H:%M:%S'
+    )
     log_level = logger.DEBUG if "--debug" in sys.argv else logger.INFO
     logger.set_min_level(log_level)
     logger.info("Bot staring algorithm is initiated")
+    # Production only
+    if log_level != logger.DEBUG:
+        logger.info("Downloading FFmpeg...")
+        r = requests.get("https://github.com/thebaoproject/cardinalresource/raw/main/ffmpeg")
+        with open(os.path.join("bin", "ffmpeg"), "wb") as f:
+            f.write(r.content)
     logger.info(f"Using token '***************************************'")
     logger.info(f"Loading locales")
     bot.i18n.load("translations/comm/")
