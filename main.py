@@ -48,7 +48,7 @@ if __name__ == "__main__":
         with open(os.path.join("bin", "ffmpeg"), "wb") as f:
             f.write(r.content)
         # Insecure POSIX permission, intentional
-        os.chmod(os.path.join("bin", "ffmpeg"), stat.S_IXOTH)
+        os.system("chmod +x bin/ffmpeg")
     logger.info(f"Using token '***************************************'")
     logger.info(f"Loading locales")
     bot.i18n.load("translations/comm/")
