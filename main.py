@@ -1,5 +1,6 @@
 import logging
 import os
+import stat
 import sys
 
 import disnake
@@ -46,6 +47,8 @@ if __name__ == "__main__":
         r = requests.get("https://github.com/thebaoproject/cardinalresource/raw/main/ffmpeg")
         with open(os.path.join("bin", "ffmpeg"), "wb") as f:
             f.write(r.content)
+        # Insecure POSIX permission, intentional
+        os.chmod(os.path.join("bin", "ffmpeg"), stat.S_IXOTH)
     logger.info(f"Using token '***************************************'")
     logger.info(f"Loading locales")
     bot.i18n.load("translations/comm/")

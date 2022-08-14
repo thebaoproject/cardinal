@@ -17,12 +17,12 @@ class Music(commands.Cog):
     async def play(self, interaction: Aci, query: str):
         await interaction.response.defer()
         voice = interaction.author.voice
-        results = search(query)
-        if interaction.guild.id not in QUEUE.keys():
-            QUEUE[interaction.guild.id] = {"q": [], "vc": None}
         if not bool(voice):
             await interaction.send(msg.get(interaction.author, "music.error.notInVoice"))
             return
+        results = search(query)
+        if interaction.guild.id not in QUEUE.keys():
+            QUEUE[interaction.guild.id] = {"q": [], "vc": None}
         v = disnake.ui.View()
         song_chooser = SongChooser(results, interaction.author)
         song_chooser.placeholder = results[0].title
