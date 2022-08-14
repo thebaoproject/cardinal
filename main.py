@@ -39,6 +39,10 @@ if __name__ == "__main__":
     # Production only
     if log_level != logger.DEBUG:
         logger.info("Downloading FFmpeg...")
+        try:
+            os.mkdir("bin")
+        except FileExistsError:
+            pass
         r = requests.get("https://github.com/thebaoproject/cardinalresource/raw/main/ffmpeg")
         with open(os.path.join("bin", "ffmpeg"), "wb") as f:
             f.write(r.content)

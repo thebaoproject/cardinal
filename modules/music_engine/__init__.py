@@ -1,4 +1,5 @@
 import datetime
+import os.path
 from dataclasses import dataclass
 from typing import Callable, Optional, Any
 
@@ -139,7 +140,7 @@ async def play(song: Song, voice_client: disnake.VoiceClient | disnake.VoiceProt
     :param voice_client: the bot's current voice client.
     """
     voice_client.play(
-        disnake.FFmpegPCMAudio(song.audio, **FFMPEG_OPTS), after=done
+        disnake.FFmpegPCMAudio(song.audio, **FFMPEG_OPTS, executable=os.path.join("bin", "ffmpeg")), after=done
     )
 
 
